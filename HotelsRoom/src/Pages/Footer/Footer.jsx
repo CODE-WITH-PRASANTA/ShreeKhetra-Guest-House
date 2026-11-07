@@ -102,12 +102,6 @@ const Icon = ({ name }) => {
           <path d="M8 3v4M16 3v4M3.5 10h17" />
         </svg>
       );
-    case 'arrow':
-      return (
-        <svg {...common} width={14} height={14} strokeWidth={2.2}>
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      );
     case 'up':
       return (
         <svg {...common} width={20} height={20} strokeWidth={2.2}>
@@ -192,6 +186,8 @@ const FooterBrand = () => {
         return to after darshan.
       </p>
 
+      <h3 className="footer__subtitle">Get updates and offers</h3>
+
       <form className="footer__subscribe" onSubmit={onSubmit} noValidate>
         <label htmlFor="footer-email" className="footer__sr-only">
           Email address
@@ -239,7 +235,7 @@ const FooterLinks = ({ title, links }) => (
       {links.map((l) => (
         <li key={l.label}>
           <a href={l.href} className="footer__link">
-            <Icon name="arrow" />
+            <span className="footer__link-dash" aria-hidden="true" />
             <span>{l.label}</span>
           </a>
         </li>
@@ -251,7 +247,7 @@ const FooterLinks = ({ title, links }) => (
 /* ---------- Section: recent posts ---------- */
 const FooterPosts = () => (
   <div className="footer__col footer__col--posts">
-    <h3 className="footer__title">Recent Post</h3>
+    <h3 className="footer__title">Recent Posts</h3>
     <ul className="footer__posts">
       {RECENT_POSTS.map((p, i) => (
         <li key={p.title}>
@@ -290,12 +286,6 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer__bg" aria-hidden="true">
-        <span className="footer__orb footer__orb--teal" />
-        <span className="footer__orb footer__orb--gold" />
-        <span className="footer__grid" />
-      </div>
-
       <div className="footer__container">
         <FooterContactStrip />
 
