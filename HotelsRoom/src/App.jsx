@@ -15,6 +15,7 @@ import OurHappyClients from "./Pages/OurHappyClients/OurHappyClients";
 import FandQ from "./Pages/FandQ/FandQ";
 import Offers from "./Components/Offers/Offers";
 import OfferdetailsMain from "./Components/OfferdetailsMain/OfferdetailsMain";
+import Homepage from "./Pages/Homepage/Homepage";
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
          <Route path="services" element={<Service/>}/>
          <Route path="offer" element={<Offers/>}/>
          <Route path="offer-details" element={<OfferdetailsMain/>}/>
+         <Route path="/" element={<Homepage/>}/>
          
 
       </Routes>
