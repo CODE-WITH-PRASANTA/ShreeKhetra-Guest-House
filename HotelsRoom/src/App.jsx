@@ -13,6 +13,8 @@ import News from "./Pages/News/News";
 import Service from "./Pages/Service/Service";
 import OurHappyClients from "./Pages/OurHappyClients/OurHappyClients";
 import FandQ from "./Pages/FandQ/FandQ";
+import Offers from "./Components/Offers/Offers";
+import OfferdetailsMain from "./Components/OfferdetailsMain/OfferdetailsMain";
 
 
 
@@ -30,6 +32,10 @@ const App = () => {
         <Route path="/faq" element={<FandQ/> }/>
          <Route path="news" element={<News/>}/>
          <Route path="services" element={<Service/>}/>
+         <Route path="offer" element={<Offers/>}/>
+         <Route path="offer-details" element={<OfferdetailsMain/>}/>
+         
+
       </Routes>
 
       <Footer />
