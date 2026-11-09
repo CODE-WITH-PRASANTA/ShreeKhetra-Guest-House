@@ -1,0 +1,698 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap");
+
+/* =========================================
+   MAIN SECTION
+========================================= */
+
+.room-suits-second {
+  width: 100%;
+  padding: 40px 18px 130px;
+  background: #fff;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.room-suits-second *,
+.room-suits-second *::before,
+.room-suits-second *::after {
+  box-sizing: border-box;
+}
+
+.room-suits-second-container {
+  width: 100%;
+  max-width: 1800px;
+  margin: auto;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.room-suits-second-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.room-suits-second-heading-decoration {
+  display: block;
+  color: #71816e;
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.room-suits-second-subtitle {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #71816e;
+  margin-bottom: 10px;
+}
+
+.room-suits-second-heading h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #171717;
+  margin: 0;
+}
+
+/* =========================================
+   FILTERS
+========================================= */
+
+.room-suits-second-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 42px;
+}
+
+.room-suits-second-filter {
+  min-width: 160px;
+  min-height: 52px;
+  padding: 12px 20px;
+  border: 1px solid #d7dce1;
+  border-radius: 12px;
+  background: #fff;
+  color: #151515;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.room-suits-second-filter:hover {
+  background: #0b1f3a;
+  border-color: #0b1f3a;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.room-suits-second-filter.active {
+  background: #0b1f3a;
+  border-color: #71816e;
+  color: #fff;
+}
+
+.room-suits-second-filter:focus-visible {
+  outline: 2px solid #71816e;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   ROOM GRID
+========================================= */
+
+.room-suits-second-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* =========================================
+   ROOM CARD
+========================================= */
+
+.room-suits-second-card {
+  position: relative;
+  width: 100%;
+  height: 475px;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #30251e;
+  isolation: isolate;
+  cursor: pointer;
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+/* =========================================
+   ROOM IMAGE
+========================================= */
+
+.room-suits-second-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1);
+  filter: brightness(0.95);
+  transition:
+    transform 0.8s ease,
+    filter 0.5s ease;
+}
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.room-suits-second-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.02) 15%,
+    rgba(0, 0, 0, 0.08) 45%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+  opacity: 0.7;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+/* =========================================
+   BLACK INFORMATION PANEL
+   DEFAULT HEIGHT: 100PX
+========================================= */
+
+.room-suits-second-info {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 4%;
+  width: 90%;
+  height: 100px;
+  max-height: calc(100% - 24px);
+  padding: 12px 16px;
+  border-radius: 21px;
+  background: rgba(34, 31, 31, 0.90);
+  color: #fff;
+  overflow: hidden;
+  transform: translateY(0);
+  transition:
+    height 0.45s ease,
+    max-height 0.45s ease,
+    background 0.45s ease,
+    padding 0.45s ease;
+}
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.room-suits-second-category {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #d6bd91;
+  margin-bottom: 6px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.35s ease;
+}
+
+/* =========================================
+   RATING
+========================================= */
+
+.room-suits-second-rating {
+  display: flex;
+  align-items: center;
+  color: #f49a13;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin-bottom: 7px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.35s ease;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.room-suits-second-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(20px, 1.5vw, 27px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.1px;
+  transition: color 0.35s ease;
+}
+
+/* =========================================
+   PRICE
+========================================= */
+
+.room-suits-second-price {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.35s ease;
+}
+
+.room-suits-second-price-label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 12px;
+  color: #e5ded4;
+}
+
+.room-suits-second-price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.room-suits-second-price-value {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #e6c994;
+}
+
+.room-suits-second-price-period {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: #e5ded4;
+}
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.room-suits-second-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    grid-template-rows 0.45s ease,
+    opacity 0.35s ease,
+    transform 0.4s ease;
+}
+
+.room-suits-second-details-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.room-suits-second-description {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #e9e2d9;
+  margin: 0;
+}
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.room-suits-second-features {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px 12px;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(230, 225, 216, 0.65);
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+.room-suits-second-features > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  color: #f0ece6;
+  white-space: nowrap;
+}
+
+.room-feature-icon {
+  color: #82917b;
+  font-size: 15px;
+}
+
+/* =========================================
+   AMENITIES
+========================================= */
+
+.room-suits-second-amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  overflow: hidden;
+  margin-top: 0;
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+.room-suits-second-amenities > span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 11px;
+  color: #e6c994;
+  border: 1px solid rgba(230, 201, 148, 0.45);
+  padding: 3px 8px;
+  border-radius: 30px;
+}
+
+/* =========================================
+   VIEW DETAILS BUTTON
+========================================= */
+
+.room-suits-second-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  margin-top: 0;
+  overflow: hidden;
+  border: 1px solid rgba(230, 225, 216, 0.85);
+  border-radius: 40px;
+  background: transparent;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+
+.room-suits-second-arrow {
+  font-size: 19px;
+  line-height: 1;
+  transition: transform 0.35s ease;
+}
+
+.room-suits-second-button:hover {
+  background: #0b1f3a;
+  border-color: #0b1f3a;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(11, 31, 58, 0.25);
+}
+
+.room-suits-second-button:hover .room-suits-second-arrow {
+  transform: translate(3px, -3px);
+}
+
+.room-suits-second-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* =========================================
+   HOVER ANIMATION
+========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .room-suits-second-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-image {
+    transform: scale(1.045);
+    filter: brightness(0.78);
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-image-overlay {
+    opacity: 0.9;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 10%,
+      rgba(0, 0, 0, 0.20) 45%,
+      rgba(0, 0, 0, 0.60) 100%
+    );
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-info {
+    height: auto;
+    max-height: calc(100% - 24px);
+    padding: 16px 17px;
+    background: rgba(32, 29, 29, 0.96);
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-category,
+
+  .room-suits-second-card:hover
+  .room-suits-second-rating {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-title {
+    color: #e6c994;
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-price {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-details {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-features {
+    margin-top: 9px;
+    opacity: 1;
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-amenities {
+    margin-top: 8px;
+    opacity: 1;
+  }
+
+  .room-suits-second-card:hover
+  .room-suits-second-button {
+    margin-top: 13px;
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+.room-suits-second-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 30px auto 0;
+  padding: 10px 0;
+  gap: 12px;
+}
+
+.room-pagination-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.room-pagination-number,
+.room-pagination-arrow {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d9d5cc;
+  border-radius: 50%;
+  background: #fff;
+  color: #29231f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.room-pagination-number:hover,
+.room-pagination-arrow:hover:not(:disabled) {
+  background: #0b1f3a;
+  border-color: #0b1f3a;
+  color: #fff;
+}
+
+.room-pagination-number.active {
+  background: #71816e;
+  border-color: #71816e;
+  color: #fff;
+}
+
+.room-pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.room-suits-second-empty {
+  width: 100%;
+  padding: 40px 15px;
+  text-align: center;
+  color: #777;
+  font-size: 15px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1500px) {
+  .room-suits-second-card {
+    height: 440px;
+  }
+
+  .room-suits-second-grid {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .room-suits-second-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .room-suits-second-card {
+    height: 420px;
+  }
+}
+
+@media (max-width: 900px) {
+  .room-suits-second-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .room-suits-second-card {
+    height: 420px;
+  }
+
+  .room-suits-second-heading {
+    margin-bottom: 35px;
+  }
+
+  .room-suits-second-filters {
+    margin-bottom: 32px;
+  }
+}
+
+/* =========================================
+   MOBILE - UPDATED PADDING
+========================================= */
+
+@media (max-width: 600px) {
+  .room-suits-second {
+    padding: 30px 12px 125px;
+  }
+
+  .room-suits-second-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .room-suits-second-card {
+    height: 400px;
+    border-radius: 22px;
+  }
+
+  .room-suits-second-info {
+    left: 4%;
+    right: 4%;
+    width: 92%;
+    bottom: 4%;
+    padding: 12px 14px;
+  }
+
+  .room-suits-second-heading h2 {
+    font-size: 38px;
+  }
+
+  .room-suits-second-heading-decoration {
+    font-size: 16px;
+  }
+
+  .room-suits-second-subtitle {
+    font-size: 18px;
+  }
+
+  .room-suits-second-filter {
+    min-width: auto;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .room-suits-second-filters {
+    gap: 8px;
+  }
+
+  .room-suits-second-pagination {
+    margin-top: 22px;
+  }
+
+  .room-pagination-number,
+  .room-pagination-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 380px) {
+  .room-suits-second-card {
+    height: 380px;
+  }
+
+  .room-suits-second-heading h2 {
+    font-size: 32px;
+  }
+
+  .room-suits-second-filter {
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+
+  .room-pagination-number,
+  .room-pagination-arrow {
+    width: 32px;
+    height: 32px;
+  }
+}

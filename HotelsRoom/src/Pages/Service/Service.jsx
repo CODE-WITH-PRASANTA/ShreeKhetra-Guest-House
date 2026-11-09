@@ -1,8 +1,11 @@
 import React from 'react'
+import ServiceFirst from '../../Components/ServiceFirst/ServiceFirst'
 
 const Service = () => {
   return (
-    <div>Service</div>
+    <div>
+      <ServiceFirst/>
+    </div>
   )
 }
 
