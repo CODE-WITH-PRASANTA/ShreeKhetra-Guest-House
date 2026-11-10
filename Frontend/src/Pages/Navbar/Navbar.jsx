@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from "../../assets/SriKshetra Residency 03.png"; // adjust path if your assets folder differs
 import "./Navbar.css";
 
-/* ---------- Menu data (no dropdowns) ---------- */
+/* ---------- Menu data ---------- */
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
@@ -31,43 +32,20 @@ const CloseIcon = () => (
   </svg>
 );
 
-const pad = (n) => String(n + 1).padStart(2, '0');
-
 const Navbar = () => {
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [pill, setPill] = useState({ left: 0, width: 0, show: false });
-
   const navRef = useRef(null);
-  const menuRef = useRef(null);
-  const plateRef = useRef(null);
-  const itemRefs = useRef([]);
 
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
   const isActive = (href) =>
-    href === '/' ? currentPath === '/' : currentPath.startsWith(href);
-  const activeIndex = NAV_ITEMS.findIndex((i) => isActive(i.href));
+    href === '/' ? pathname === '/' : pathname.startsWith(href);
 
-  /* ---------- Sliding pill ---------- */
-  const movePillTo = useCallback((index) => {
-    const el = itemRefs.current[index];
-    if (!el) {
-      setPill((p) => ({ ...p, show: false }));
-      return;
-    }
-    setPill({ left: el.offsetLeft, width: el.offsetWidth, show: true });
-  }, []);
-
-  const resetPill = useCallback(() => movePillTo(activeIndex), [movePillTo, activeIndex]);
-
-  useLayoutEffect(() => {
-    resetPill();
-    const onResize = () => resetPill();
-    window.addEventListener('resize', onResize);
-    // re-measure once fonts finish loading
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(resetPill);
-    return () => window.removeEventListener('resize', onResize);
-  }, [resetPill, scrolled]);
+  /* ---------- On every page change: close menu + go to top ---------- */
+  useEffect(() => {
+    setDrawerOpen(false);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   /* ---------- Scroll: shrink + progress line ---------- */
   useEffect(() => {
@@ -81,7 +59,7 @@ const Navbar = () => {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [pathname]);
 
   /* ---------- Lock body scroll when drawer is open ---------- */
   useEffect(() => {
@@ -105,30 +83,6 @@ const Navbar = () => {
     };
   }, []);
 
-  /* ---------- 3D logo tilt ---------- */
-  const handleTilt = useCallback((e) => {
-    const el = plateRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.setProperty('--rx', `${(-y * 18).toFixed(2)}deg`);
-    el.style.setProperty('--ry', `${(x * 24).toFixed(2)}deg`);
-    el.style.setProperty('--gx', `${((x + 0.5) * 100).toFixed(1)}%`);
-    el.style.setProperty('--gy', `${((y + 0.5) * 100).toFixed(1)}%`);
-  }, []);
-
-  const resetTilt = useCallback(() => {
-    const el = plateRef.current;
-    if (!el) return;
-    el.style.setProperty('--rx', '0deg');
-    el.style.setProperty('--ry', '0deg');
-    el.style.setProperty('--gx', '50%');
-    el.style.setProperty('--gy', '50%');
-  }, []);
-
-  const closeDrawer = () => setDrawerOpen(false);
-
   return (
     <>
       <header
@@ -138,50 +92,30 @@ const Navbar = () => {
         <span className="navbar__progress" aria-hidden="true" />
 
         <div className="navbar__container">
-          {/* ===== Brand / Logo ===== */}
-          <a href="/" className="navbar__brand" aria-label="SriKshetra Residency, Puri - Home">
-            <span className="navbar__logo-stage">
-              <span
-                ref={plateRef}
-                className="navbar__logo-plate"
-                onMouseMove={handleTilt}
-                onMouseLeave={resetTilt}
-              >
-                <img
-                  src={logo}
-                  alt="SriKshetra Residency Puri"
-                  className="navbar__logo-img"
-                  draggable="false"
-                />
-                <span className="navbar__logo-glare" aria-hidden="true" />
-              </span>
+          {/* ===== Logo ===== */}
+          <Link to="/" className="navbar__brand" aria-label="SriKshetra Residency, Puri - Home">
+            <span className="navbar__logo">
+              <img
+                src={logo}
+                alt="SriKshetra Residency Puri"
+                className="navbar__logo-img"
+                draggable="false"
+              />
             </span>
-          </a>
+          </Link>
 
           {/* ===== Desktop menu ===== */}
           <nav className="navbar__nav" aria-label="Primary">
-            <ul className="navbar__menu" ref={menuRef} onMouseLeave={resetPill}>
-              <span
-                className={`navbar__pill ${pill.show ? 'navbar__pill--show' : ''}`}
-                style={{ transform: `translateX(${pill.left}px)`, width: pill.width }}
-                aria-hidden="true"
-              />
-              {NAV_ITEMS.map((item, index) => (
-                <li
-                  key={item.label}
-                  className="navbar__item"
-                  ref={(el) => (itemRefs.current[index] = el)}
-                  onMouseEnter={() => movePillTo(index)}
-                >
-                  <a
-                    href={item.href}
+            <ul className="navbar__menu">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.label} className="navbar__item">
+                  <Link
+                    to={item.href}
                     className={`navbar__link ${isActive(item.href) ? 'navbar__link--active' : ''}`}
                     aria-current={isActive(item.href) ? 'page' : undefined}
-                    onFocus={() => movePillTo(index)}
-                    onBlur={resetPill}
                   >
-                    <span className="navbar__link-text">{item.label}</span>
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -189,11 +123,10 @@ const Navbar = () => {
 
           {/* ===== Right actions ===== */}
           <div className="navbar__actions">
-            <a href="/booking" className="navbar__cta">
-              <span className="navbar__cta-text">Book Your Stay</span>
+            <Link to="/booking" className="navbar__cta">
+              <span>Book Your Stay</span>
               <ArrowIcon />
-              <span className="navbar__cta-shine" aria-hidden="true" />
-            </a>
+            </Link>
 
             <button
               type="button"
@@ -213,7 +146,7 @@ const Navbar = () => {
       {/* ===== Mobile overlay ===== */}
       <div
         className={`navbar__overlay ${drawerOpen ? 'navbar__overlay--show' : ''}`}
-        onClick={closeDrawer}
+        onClick={() => setDrawerOpen(false)}
         aria-hidden="true"
       />
 
@@ -231,7 +164,7 @@ const Navbar = () => {
             type="button"
             className="navbar__drawer-close"
             aria-label="Close menu"
-            onClick={closeDrawer}
+            onClick={() => setDrawerOpen(false)}
           >
             <CloseIcon />
           </button>
@@ -244,21 +177,23 @@ const Navbar = () => {
               className={`navbar__drawer-item ${isActive(item.href) ? 'navbar__drawer-item--active' : ''}`}
               style={{ '--i': index }}
             >
-              <a href={item.href} className="navbar__drawer-link" onClick={closeDrawer}>
-                <span className="navbar__drawer-num">{pad(index)}</span>
+              <Link
+                to={item.href}
+                className="navbar__drawer-link"
+                aria-current={isActive(item.href) ? 'page' : undefined}
+              >
                 <span className="navbar__drawer-label">{item.label}</span>
                 <ArrowIcon />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="navbar__drawer-foot">
-          <a href="/booking" className="navbar__cta navbar__cta--block" onClick={closeDrawer}>
-            <span className="navbar__cta-text">Book Your Stay</span>
+          <Link to="/booking" className="navbar__cta navbar__cta--block">
+            <span>Book Your Stay</span>
             <ArrowIcon />
-            <span className="navbar__cta-shine" aria-hidden="true" />
-          </a>
+          </Link>
           <p className="navbar__drawer-tagline">Stay Closer to the Divine</p>
         </div>
       </aside>
