@@ -1,0 +1,842 @@
+/* =========================================
+   ABOUT EGIHT
+   PREMIUM LUXURY TESTIMONIAL SECTION
+========================================= */
+
+.about-eight-section {
+  --eight-green: #71816e;
+  --eight-green-dark: #596b56;
+  --eight-text: #171717;
+  --eight-muted: #777777;
+  --eight-border: #d8dde2;
+
+  width: 100%;
+  padding: 100px 0 95px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: #ffffff;
+
+  font-family: "Poppins", sans-serif;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.about-eight-heading {
+  width: 100%;
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  box-sizing: border-box;
+
+  margin-bottom: 45px;
+
+  animation: eightHeadingReveal 1s ease both;
+}
+
+@keyframes eightHeadingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   DECORATIVE ORNAMENT
+========================================= */
+
+.about-eight-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  color: var(--eight-green);
+
+  margin-bottom: 12px;
+}
+
+.about-eight-decoration span {
+  width: 45px;
+  height: 1px;
+
+  background: var(--eight-green);
+
+  position: relative;
+}
+
+.about-eight-decoration span::before,
+.about-eight-decoration span::after {
+  content: "";
+
+  width: 3px;
+  height: 3px;
+
+  background: var(--eight-green);
+
+  border-radius: 50%;
+
+  position: absolute;
+  top: -1px;
+}
+
+.about-eight-decoration span::before {
+  left: 0;
+}
+
+.about-eight-decoration span::after {
+  right: 0;
+}
+
+.about-eight-decoration i {
+  font-size: 29px;
+
+  font-style: normal;
+
+  line-height: 1;
+
+  animation: eightOrnamentFloat 4s ease-in-out infinite;
+}
+
+@keyframes eightOrnamentFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.about-eight-subtitle {
+  color: var(--eight-green);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 14px;
+  font-weight: 400;
+
+  letter-spacing: 0.4px;
+
+  margin-bottom: 8px;
+}
+
+/* =========================================
+   MAIN TITLE
+========================================= */
+
+.about-eight-heading h2 {
+  color: var(--eight-text);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(30px, 3vw, 38px);
+
+  font-weight: 400;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.5px;
+
+  margin: 0;
+}
+
+/* =========================================
+   HEADING DESCRIPTION
+========================================= */
+
+.about-eight-heading-description {
+  color: var(--eight-muted);
+
+  font-size: 12px;
+
+  line-height: 1.8;
+
+  margin: 15px 0 0;
+
+  max-width: 500px;
+}
+
+/* =========================================
+   TESTIMONIAL SLIDER
+========================================= */
+
+.about-eight-slider {
+  width: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 0 0 15px;
+
+  box-sizing: border-box;
+
+  /* Fade edges for a premium carousel appearance */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+
+/* =========================================
+   ANIMATION TRACK
+========================================= */
+
+.about-eight-track {
+  display: flex;
+
+  width: max-content;
+
+  align-items: stretch;
+
+  animation: eightTestimonialsMove 48s linear infinite;
+
+  animation-delay: 2s;
+
+  will-change: transform;
+}
+
+/* =========================================
+   RIGHT TO LEFT INFINITE ANIMATION
+========================================= */
+
+@keyframes eightTestimonialsMove {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================
+   TESTIMONIAL GROUP
+========================================= */
+
+.about-eight-group {
+  display: flex;
+
+  flex: 0 0 auto;
+
+  align-items: stretch;
+
+  gap: 36px;
+
+  padding-right: 36px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   TESTIMONIAL CARD
+========================================= */
+
+.about-eight-card {
+  width: 488px;
+
+  min-width: 488px;
+
+  min-height: 287px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #f8f8f8;
+
+  border: 1px solid var(--eight-border);
+
+  border-radius: 23px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    background 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    transform 0.45s ease;
+}
+
+/* =========================================
+   CARD DECORATIVE LIGHT
+========================================= */
+
+.about-eight-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255, 255, 255, 0.75),
+    transparent
+  );
+
+  transform: skewX(-18deg);
+
+  pointer-events: none;
+
+  transition: left 0.8s ease;
+}
+
+.about-eight-card:hover::before {
+  left: 150%;
+}
+
+/* =========================================
+   CARD HOVER
+========================================= */
+
+.about-eight-card:hover {
+  background: #ffffff;
+
+  border-color: #c7d0c4;
+
+  box-shadow: 0 18px 45px rgba(30, 35, 30, 0.075);
+
+  transform: translateY(-5px);
+}
+
+/* =========================================
+   CARD TOP
+========================================= */
+
+.about-eight-card-top {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 23px;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+/* =========================================
+   QUOTE ICON
+========================================= */
+
+.about-eight-quote {
+  color: var(--eight-green);
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 76px;
+
+  font-weight: 700;
+
+  line-height: 0.65;
+
+  height: 42px;
+
+  display: flex;
+  align-items: flex-start;
+
+  transform: rotate(180deg);
+
+  opacity: 0.95;
+}
+
+/* =========================================
+   STAR RATING
+========================================= */
+
+.about-eight-stars {
+  display: flex;
+
+  align-items: center;
+
+  gap: 1px;
+
+  color: #f59a00;
+
+  font-size: 17px;
+
+  line-height: 1;
+}
+
+.about-eight-stars span {
+  display: inline-block;
+
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.about-eight-card:hover .about-eight-stars span {
+  color: #e99500;
+}
+
+.about-eight-card:hover .about-eight-stars span:nth-child(1) {
+  transform: translateY(-2px);
+}
+
+.about-eight-card:hover .about-eight-stars span:nth-child(2) {
+  transform: translateY(-3px);
+}
+
+.about-eight-card:hover .about-eight-stars span:nth-child(3) {
+  transform: translateY(-4px);
+}
+
+.about-eight-card:hover .about-eight-stars span:nth-child(4) {
+  transform: translateY(-3px);
+}
+
+.about-eight-card:hover .about-eight-stars span:nth-child(5) {
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   TESTIMONIAL MESSAGE
+========================================= */
+
+.about-eight-message {
+  color: #666666;
+
+  font-size: 12px;
+
+  font-weight: 400;
+
+  line-height: 1.9;
+
+  margin: 0 0 25px;
+
+  position: relative;
+
+  z-index: 1;
+
+  flex: 1;
+
+  transition: color 0.35s ease;
+}
+
+.about-eight-card:hover .about-eight-message {
+  color: #555555;
+}
+
+/* =========================================
+   AUTHOR
+========================================= */
+
+.about-eight-author {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: auto;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+/* =========================================
+   AUTHOR IMAGE
+========================================= */
+
+.about-eight-author img {
+  width: 46px;
+  height: 46px;
+
+  min-width: 46px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 1px solid rgba(113, 129, 110, 0.15);
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.about-eight-card:hover .about-eight-author img {
+  transform: scale(1.08);
+
+  box-shadow: 0 5px 15px rgba(30, 35, 30, 0.12);
+}
+
+/* =========================================
+   AUTHOR DETAILS
+========================================= */
+
+.about-eight-author-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.about-eight-author-info h3 {
+  color: #292929;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 15px;
+
+  font-weight: 400;
+
+  line-height: 1.3;
+
+  margin: 0;
+}
+
+.about-eight-author-info span {
+  color: #858585;
+
+  font-size: 11px;
+
+  font-weight: 400;
+
+  line-height: 1.4;
+}
+
+/* =========================================
+   PAUSE ON HOVER
+========================================= */
+
+.about-eight-slider:hover .about-eight-track {
+  animation-play-state: paused;
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1600px) {
+  .about-eight-section {
+    padding: 120px 0 110px;
+  }
+
+  .about-eight-heading {
+    margin-bottom: 55px;
+  }
+
+  .about-eight-card {
+    width: 520px;
+    min-width: 520px;
+
+    min-height: 300px;
+
+    padding: 35px;
+  }
+
+  .about-eight-group {
+    gap: 40px;
+
+    padding-right: 40px;
+  }
+
+  .about-eight-track {
+    animation-duration: 55s;
+  }
+}
+
+/* =========================================
+   LAPTOP
+========================================= */
+
+@media (max-width: 1200px) {
+  .about-eight-section {
+    padding: 85px 0 80px;
+  }
+
+  .about-eight-card {
+    width: 420px;
+    min-width: 420px;
+
+    min-height: 285px;
+
+    padding: 27px;
+  }
+
+  .about-eight-group {
+    gap: 28px;
+
+    padding-right: 28px;
+  }
+
+  .about-eight-track {
+    animation-duration: 42s;
+  }
+
+  .about-eight-message {
+    font-size: 11.5px;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .about-eight-section {
+    padding: 75px 0 65px;
+  }
+
+  .about-eight-heading {
+    margin-bottom: 35px;
+  }
+
+  .about-eight-heading h2 {
+    font-size: 32px;
+  }
+
+  .about-eight-heading-description {
+    max-width: 400px;
+  }
+
+  .about-eight-card {
+    width: 360px;
+    min-width: 360px;
+
+    min-height: 280px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+  }
+
+  .about-eight-group {
+    gap: 22px;
+
+    padding-right: 22px;
+  }
+
+  .about-eight-track {
+    animation-duration: 38s;
+  }
+
+  .about-eight-card-top {
+    margin-bottom: 18px;
+  }
+
+  .about-eight-quote {
+    font-size: 68px;
+  }
+
+  .about-eight-message {
+    font-size: 11px;
+
+    line-height: 1.85;
+
+    margin-bottom: 20px;
+  }
+
+  .about-eight-author img {
+    width: 43px;
+    height: 43px;
+
+    min-width: 43px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+  .about-eight-section {
+    padding: 65px 0 55px;
+  }
+
+  .about-eight-heading {
+    padding: 0 18px;
+
+    margin-bottom: 30px;
+  }
+
+  .about-eight-decoration {
+    margin-bottom: 10px;
+  }
+
+  .about-eight-subtitle {
+    font-size: 12px;
+  }
+
+  .about-eight-heading h2 {
+    font-size: 27px;
+
+    line-height: 1.3;
+
+    letter-spacing: -0.3px;
+  }
+
+  .about-eight-heading-description {
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    margin-top: 12px;
+  }
+
+  .about-eight-slider {
+    padding-bottom: 10px;
+  }
+
+  .about-eight-card {
+    width: 310px;
+    min-width: 310px;
+
+    min-height: 285px;
+
+    padding: 23px;
+
+    border-radius: 19px;
+  }
+
+  .about-eight-group {
+    gap: 18px;
+
+    padding-right: 18px;
+  }
+
+  .about-eight-track {
+    animation-duration: 34s;
+  }
+
+  .about-eight-card-top {
+    margin-bottom: 18px;
+  }
+
+  .about-eight-quote {
+    font-size: 64px;
+
+    height: 35px;
+  }
+
+  .about-eight-stars {
+    font-size: 15px;
+  }
+
+  .about-eight-message {
+    font-size: 11px;
+
+    line-height: 1.85;
+
+    margin-bottom: 20px;
+  }
+
+  .about-eight-author {
+    gap: 12px;
+  }
+
+  .about-eight-author img {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+  }
+
+  .about-eight-author-info h3 {
+    font-size: 14px;
+  }
+
+  .about-eight-author-info span {
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+  .about-eight-heading h2 {
+    font-size: 25px;
+  }
+
+  .about-eight-card {
+    width: 285px;
+    min-width: 285px;
+
+    padding: 20px;
+
+    min-height: 300px;
+  }
+
+  .about-eight-group {
+    gap: 15px;
+
+    padding-right: 15px;
+  }
+
+  .about-eight-message {
+    font-size: 10.5px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-eight-section *,
+  .about-eight-section *::before,
+  .about-eight-section *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+  .about-eight-track {
+    animation: none !important;
+  }
+}

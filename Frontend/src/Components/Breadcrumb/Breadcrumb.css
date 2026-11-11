@@ -1,0 +1,14 @@
+
+.hotel-breadcrumb {
+  width: 100%;
+  min-height: 340px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

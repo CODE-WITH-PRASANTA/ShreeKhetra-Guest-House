@@ -1,0 +1,354 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+.RoomFourth {
+  width: 100%;
+  padding: 60px 0 85px;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.RoomFourth__container {
+  width: min(1122px, calc(100% - 60px));
+  margin: 0 auto;
+}
+
+.RoomFourth__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #171717;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 43px;
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+  margin: -2px 0 55px;
+}
+
+.RoomFourth__heading span {
+  display: block;
+}
+
+.RoomFourth__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px minmax(0, 1fr);
+  align-items: stretch;
+  column-gap: 38px;
+}
+
+.RoomFourth__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.RoomFourth__offer {
+  position: relative;
+  min-height: 218px;
+  padding: 0 0 24px;
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--offer-delay, 0ms);
+}
+
+.RoomFourth__offer--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.RoomFourth__offer:first-child {
+  border-bottom: 1px solid #d7dcdf;
+}
+
+.RoomFourth__offer:last-child {
+  padding-top: 27px;
+}
+
+.RoomFourth__offer--left {
+  text-align: right;
+}
+
+.RoomFourth__offer--right {
+  text-align: left;
+}
+
+.RoomFourth__icon {
+  display: flex;
+  color: #7b8d77;
+  margin-bottom: 13px;
+  transition:
+    color 0.35s ease,
+    transform 0.4s ease;
+}
+
+.RoomFourth__offer--left .RoomFourth__icon {
+  justify-content: flex-end;
+}
+
+.RoomFourth__offer--right .RoomFourth__icon {
+  justify-content: flex-start;
+}
+
+.RoomFourth__offer:hover .RoomFourth__icon {
+  color: #a18b65;
+  transform: translateY(-5px) scale(1.06);
+}
+
+.RoomFourth__icon svg {
+  display: block;
+  width: 52px;
+  height: 52px;
+}
+
+.RoomFourth__offer h3 {
+  color: #151515;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 10px;
+  transition: color 0.35s ease;
+}
+
+.RoomFourth__offer:hover h3 {
+  color: #8a7658;
+}
+
+.RoomFourth__offer p {
+  color: #414141;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.9;
+  margin: 0;
+}
+
+.RoomFourth__image-wrapper {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.RoomFourth__image-frame {
+  position: relative;
+  width: 100%;
+  height: 439px;
+  overflow: hidden;
+  border-radius: 50% 50% 0 0 / 41% 41% 0 0;
+  background: #e5edf5;
+  box-shadow: 0 0 0 1px rgba(150, 160, 170, 0.08);
+  opacity: 0;
+  transform: translateY(30px) scale(0.97);
+  transition:
+    opacity 1s ease,
+    transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.5s ease;
+  transition-delay: 150ms;
+}
+
+.RoomFourth--visible .RoomFourth__image-frame {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: RoomFourthFloat 6s ease-in-out 1.3s infinite;
+}
+
+.RoomFourth__image-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 1s ease;
+}
+
+.RoomFourth__image-frame:hover img {
+  transform: scale(1.055);
+}
+
+.RoomFourth__image-frame:hover {
+  box-shadow: 0 15px 45px rgba(34, 47, 61, 0.15);
+}
+
+.RoomFourth__image-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.12) 45%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 1.1s ease;
+}
+
+.RoomFourth__image-frame:hover .RoomFourth__image-shine {
+  transform: translateX(120%);
+}
+
+@keyframes RoomFourthFloat {
+  0%, 100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+/* Large laptops */
+@media (max-width: 1100px) {
+  .RoomFourth__container {
+    width: calc(100% - 50px);
+  }
+
+  .RoomFourth__content {
+    grid-template-columns: minmax(0, 1fr) 320px minmax(0, 1fr);
+    column-gap: 25px;
+  }
+
+  .RoomFourth__image-frame {
+    height: 410px;
+  }
+
+  .RoomFourth__offer h3 {
+    font-size: 21px;
+  }
+
+  .RoomFourth__offer p {
+    font-size: 13px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 850px) {
+  .RoomFourth {
+    padding: 60px 0 65px;
+  }
+
+  .RoomFourth__heading {
+    font-size: 39px;
+    margin-bottom: 40px;
+  }
+
+  .RoomFourth__content {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 35px;
+  }
+
+  .RoomFourth__image-wrapper {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: min(360px, 75%);
+    margin: 0 auto 15px;
+  }
+
+  .RoomFourth__image-frame {
+    height: 430px;
+  }
+
+  .RoomFourth__column {
+    gap: 20px;
+  }
+
+  .RoomFourth__offer {
+    min-height: 190px;
+  }
+
+  .RoomFourth__offer:first-child {
+    border-bottom: none;
+  }
+
+  .RoomFourth__offer:last-child {
+    padding-top: 0;
+  }
+
+  .RoomFourth__offer--left,
+  .RoomFourth__offer--right {
+    text-align: center;
+  }
+
+  .RoomFourth__offer--left .RoomFourth__icon,
+  .RoomFourth__offer--right .RoomFourth__icon {
+    justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 550px) {
+  .RoomFourth {
+    padding: 60px 0 55px;
+  }
+
+  .RoomFourth__container {
+    width: calc(100% - 36px);
+  }
+
+  .RoomFourth__heading {
+    font-size: 34px;
+    line-height: 1.15;
+    margin-bottom: 32px;
+  }
+
+  .RoomFourth__content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .RoomFourth__image-wrapper {
+    grid-column: 1;
+    grid-row: 1;
+    width: min(300px, 85%);
+    margin-bottom: 12px;
+  }
+
+  .RoomFourth__image-frame {
+    height: 370px;
+  }
+
+  .RoomFourth__column {
+    gap: 20px;
+  }
+
+  .RoomFourth__offer {
+    min-height: auto;
+    padding: 15px 8px 24px !important;
+    border-bottom: 1px solid #e1e3e5;
+  }
+
+  .RoomFourth__offer h3 {
+    font-size: 24px;
+  }
+
+  .RoomFourth__offer p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .RoomFourth__icon {
+    margin-bottom: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .RoomFourth *,
+  .RoomFourth *::before,
+  .RoomFourth *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,208 @@
+/* Import Google Fonts for a luxury/editorial look */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+.blog-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #2c2c2c;
+  background-color: #faf9f6;
+}
+
+/* Header Styling */
+.blog-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.blog-subtitle-deco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.blog-subtitle-deco .line {
+  height: 1px;
+  width: 50px;
+  background-color: #d1c7b7;
+}
+
+.deco-icon {
+  font-size: 12px;
+  color: #8c7a6b;
+  letter-spacing: 2px;
+}
+
+.blog-tag {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #7a6e65;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.blog-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+/* Layout Grid Container */
+.blog-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Common Image & Badge Styles */
+.blog-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.blog-image-wrapper.large {
+  height: 480px;
+}
+
+.blog-image-wrapper.small {
+  width: 140px;
+  height: 100px;
+  flex-shrink: 0;
+}
+
+.blog-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-image-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+.blog-date-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: rgba(70, 82, 72, 0.85);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+/* Meta Data (Author & Comments) */
+.blog-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.blog-meta .separator {
+  color: #ccc;
+}
+
+/* Card Content Layout */
+.blog-main-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.blog-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #1f1f1f;
+  transition: color 0.2s ease;
+}
+
+.blog-card-title:hover {
+  color: #556653;
+}
+
+.blog-card-title.small {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Sidebar List Layout */
+.blog-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.blog-side-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-side-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.blog-side-card .blog-content {
+  flex: 1;
+}
+
+.blog-side-card .blog-meta {
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .blog-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .blog-image-wrapper.large {
+    height: 380px;
+  }
+}
+
+@media (max-width: 500px) {
+  .blog-side-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .blog-image-wrapper.small {
+    width: 100%;
+    height: 200px;
+  }
+
+  .blog-title {
+    font-size: 32px;
+  }
+}

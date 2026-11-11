@@ -1,0 +1,611 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Lato:wght@300;400;500;600;700&display=swap');
+
+/* =====================================
+   ABOUT FOURTH - PREMIUM HOTEL SECTION
+===================================== */
+
+.about-fourth {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #f8f8f7;
+  padding: 42px 7.5%;
+  box-sizing: border-box;
+}
+
+/* Main Layout */
+
+.about-fourth__container {
+  max-width: 1650px;
+  width: 100%;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 55px;
+}
+
+/* =====================================
+   LEFT CONTENT
+===================================== */
+
+.about-fourth__content {
+  width: 100%;
+  max-width: 800px;
+
+  animation: aboutFourthContent 1s ease both;
+}
+
+@keyframes aboutFourthContent {
+  from {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Decorative Ornament */
+
+.about-fourth__ornament {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  width: 220px;
+  height: 32px;
+  margin-bottom: 8px;
+
+  color: #788675;
+}
+
+.about-fourth__ornament b {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 39px;
+  line-height: 1;
+  transform: rotate(180deg);
+}
+
+.about-fourth__ornament span {
+  height: 1px;
+  width: 65px;
+  background: #788675;
+  position: relative;
+}
+
+.about-fourth__ornament span::before,
+.about-fourth__ornament span::after {
+  content: "❧";
+  position: absolute;
+  font-size: 13px;
+  top: -9px;
+  color: #788675;
+}
+
+.about-fourth__ornament span:first-child::before {
+  left: -4px;
+}
+
+.about-fourth__ornament span:last-child::after {
+  right: -4px;
+  transform: rotate(180deg);
+}
+
+/* Eyebrow */
+
+.about-fourth__eyebrow {
+  color: #788675;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  margin: 0 0 12px;
+}
+
+/* Main Heading */
+
+.about-fourth__heading {
+  color: #061b35;
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: clamp(42px, 3.4vw, 65px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+
+  margin: 0 0 32px;
+}
+
+/* Description */
+
+.about-fourth__description {
+  color: #526174;
+  font-family: "Lato", sans-serif;
+
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.95;
+  letter-spacing: 0.05px;
+
+  margin: 0 0 35px;
+  max-width: 780px;
+}
+
+/* =====================================
+   BENEFITS
+===================================== */
+
+.about-fourth__benefits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 30px;
+  row-gap: 30px;
+
+  margin-bottom: 48px;
+}
+
+.about-fourth__benefit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #071b36;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+
+  transition:
+    transform 0.35s ease,
+    color 0.35s ease;
+}
+
+.about-fourth__benefit:hover {
+  color: #6e7d6a;
+  transform: translateX(6px);
+}
+
+/* Check Icon */
+
+.about-fourth__check {
+  width: 21px;
+  height: 21px;
+  min-width: 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-fourth__check svg {
+  width: 21px;
+  height: 21px;
+
+  stroke: #788675;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  transition:
+    stroke 0.35s ease,
+    transform 0.35s ease;
+}
+
+.about-fourth__benefit:hover .about-fourth__check svg {
+  stroke: #c49a45;
+  transform: rotate(45deg);
+}
+
+/* =====================================
+   READ MORE BUTTON
+===================================== */
+
+.about-fourth__button {
+  width: fit-content;
+  min-width: 228px;
+  min-height: 70px;
+
+  padding: 0 30px;
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  border-radius: 25px;
+  background: #6e7d6a;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    background 0.4s ease,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.about-fourth__button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.about-fourth__button:hover {
+  background: #061b35;
+  color: #ffffff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(2, 15, 46, 0.18);
+}
+
+.about-fourth__button:hover::before {
+  left: 100%;
+}
+
+.about-fourth__button svg {
+  width: 21px;
+  height: 21px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  transition: transform 0.35s ease;
+}
+
+.about-fourth__button:hover svg {
+  transform: translateX(6px);
+}
+
+/* =====================================
+   RIGHT IMAGE
+===================================== */
+
+.about-fourth__visual {
+  width: 100%;
+  height: 100%;
+  min-height: 570px;
+
+  position: relative;
+
+  animation: aboutFourthImage 1.1s ease both;
+}
+
+@keyframes aboutFourthImage {
+  from {
+    opacity: 0;
+    transform: translateX(35px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.about-fourth__image-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 570px;
+
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 38px;
+  background: #e5e5e5;
+
+  box-shadow: 0 20px 55px rgba(2, 15, 46, 0.10);
+}
+
+.about-fourth__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  min-height: 570px;
+
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.7s ease;
+}
+
+.about-fourth__image-frame:hover .about-fourth__image {
+  transform: scale(1.07);
+  filter: brightness(0.88);
+}
+
+/* Image Overlay */
+
+.about-fourth__image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(2, 15, 46, 0.65),
+    transparent 40%
+  );
+
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.about-fourth__image-frame:hover .about-fourth__image-overlay {
+  opacity: 1;
+}
+
+/* Image Caption */
+
+.about-fourth__image-caption {
+  position: absolute;
+  bottom: 35px;
+  left: 35px;
+
+  color: #ffffff;
+
+  opacity: 0;
+  transform: translateY(15px);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.about-fourth__image-caption span {
+  color: #f0c868;
+  font-family: "Lato", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.about-fourth__image-caption p {
+  margin: 8px 0 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 29px;
+}
+
+.about-fourth__image-frame:hover .about-fourth__image-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gold Decorative Corner */
+
+.about-fourth__corner {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+
+  top: -13px;
+  right: -13px;
+
+  border-top: 2px solid #d5ae5e;
+  border-right: 2px solid #d5ae5e;
+
+  border-radius: 0 38px 0 0;
+
+  z-index: -1;
+}
+
+/* =====================================
+   LARGE LAPTOP
+===================================== */
+
+@media (max-width: 1400px) {
+  .about-fourth {
+    padding: 45px 5%;
+  }
+
+  .about-fourth__container {
+    gap: 38px;
+  }
+
+  .about-fourth__heading {
+    font-size: 53px;
+  }
+
+  .about-fourth__description {
+    font-size: 17px;
+  }
+
+  .about-fourth__benefit {
+    font-size: 16px;
+  }
+
+  .about-fourth__visual,
+  .about-fourth__image-frame,
+  .about-fourth__image {
+    min-height: 530px;
+  }
+}
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 991px) {
+  .about-fourth {
+    padding: 55px 5%;
+  }
+
+  .about-fourth__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-fourth__content {
+    max-width: 100%;
+  }
+
+  .about-fourth__heading {
+    font-size: 55px;
+    max-width: 750px;
+  }
+
+  .about-fourth__description {
+    max-width: 100%;
+    font-size: 18px;
+  }
+
+  .about-fourth__visual {
+    min-height: 480px;
+  }
+
+  .about-fourth__image-frame,
+  .about-fourth__image {
+    min-height: 480px;
+  }
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 576px) {
+  .about-fourth {
+    padding: 42px 20px;
+  }
+
+  .about-fourth__container {
+    gap: 30px;
+  }
+
+  .about-fourth__ornament {
+    transform: scale(0.85);
+    transform-origin: left center;
+    margin-bottom: 5px;
+  }
+
+  .about-fourth__eyebrow {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .about-fourth__heading {
+    font-size: 40px;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+    margin-bottom: 22px;
+  }
+
+  .about-fourth__desktop-break {
+    display: none;
+  }
+
+  .about-fourth__description {
+    font-size: 16px;
+    line-height: 1.85;
+    margin-bottom: 27px;
+  }
+
+  .about-fourth__benefits {
+    grid-template-columns: 1fr;
+    gap: 19px;
+    margin-bottom: 32px;
+  }
+
+  .about-fourth__benefit {
+    font-size: 16px;
+  }
+
+  .about-fourth__button {
+    min-width: 190px;
+    min-height: 58px;
+    border-radius: 19px;
+    font-size: 15px;
+  }
+
+  .about-fourth__visual {
+    min-height: 360px;
+  }
+
+  .about-fourth__image-frame,
+  .about-fourth__image {
+    min-height: 360px;
+  }
+
+  .about-fourth__image-frame {
+    border-radius: 25px;
+  }
+
+  .about-fourth__corner {
+    width: 65px;
+    height: 65px;
+    border-radius: 0 25px 0 0;
+  }
+
+  .about-fourth__image-caption {
+    left: 20px;
+    bottom: 22px;
+  }
+
+  .about-fourth__image-caption p {
+    font-size: 23px;
+  }
+}
+
+/* =====================================
+   EXTRA SMALL MOBILE
+===================================== */
+
+@media (max-width: 360px) {
+  .about-fourth__heading {
+    font-size: 34px;
+  }
+
+  .about-fourth__eyebrow {
+    font-size: 19px;
+  }
+
+  .about-fourth__description {
+    font-size: 15px;
+  }
+
+  .about-fourth__visual,
+  .about-fourth__image-frame,
+  .about-fourth__image {
+    min-height: 300px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-fourth__content,
+  .about-fourth__visual {
+    animation: none;
+  }
+
+  .about-fourth__image,
+  .about-fourth__button,
+  .about-fourth__benefit {
+    transition: none;
+  }
+}

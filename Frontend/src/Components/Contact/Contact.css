@@ -1,0 +1,264 @@
+/* Main Contact Page */
+
+.contact-page {
+  width: 100%;
+  background: #ffff;
+  color: #292b27;
+  font-family: Georgia, "Times New Roman", serif;
+  overflow: hidden;
+}
+
+/* Heading Section */
+
+.contact-heading {
+  text-align: center;
+  padding: 75px 20px 55px;
+}
+
+.contact-heading h1 {
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 22px;
+}
+
+.contact-heading p {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #68635e;
+}
+
+/* Main Two Column Section */
+
+.contact-container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 55px;
+  align-items: start;
+}
+
+/* Left Contact Card */
+
+.contact-info {
+  background: #18352e;
+  border-radius: 30px;
+  padding: 35px 25px;
+  color: #fff;
+}
+
+.contact-info-inner {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 18px;
+  padding: 35px 25px;
+  text-align: center;
+}
+
+.info-block {
+  margin-bottom: 45px;
+}
+
+.info-block:last-child {
+  margin-bottom: 10px;
+}
+
+.info-block h2 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.info-block p {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 2;
+  color: #deded9;
+}
+
+/* Social Links */
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-links a {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: #f5e5dc;
+  color: #18352e;
+}
+
+/* Contact Form */
+
+.contact-form-section {
+  padding: 0 5px;
+}
+
+.contact-form-section h2 {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 35px;
+}
+
+.contact-form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.contact-form-section input,
+.contact-form-section textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(70, 65, 60, 0.3);
+  padding: 15px 10px;
+  outline: none;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #292b27;
+  resize: vertical;
+}
+
+.contact-form-section input::placeholder,
+.contact-form-section textarea::placeholder {
+  color: #716d67;
+}
+
+.contact-form-section input:focus,
+.contact-form-section textarea:focus {
+  border-bottom: 1px solid #18352e;
+}
+
+/* Submit Button */
+
+.contact-form-section button {
+  width: fit-content;
+  background: #18352e;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 16px 28px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form-section button span {
+  margin-left: 12px;
+  font-size: 18px;
+}
+
+.contact-form-section button:hover {
+  background: #315b4c;
+  transform: translateY(-2px);
+}
+
+/* Google Map */
+
+.contact-map {
+  width: 100%;
+  margin-top: 65px;
+  line-height: 0;
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 450px;
+  display: block;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+
+  .contact-heading {
+    padding: 50px 18px 35px;
+  }
+
+  .contact-heading h1 {
+    font-size: 27px;
+  }
+
+  .contact-heading h1 br,
+  .contact-heading p br {
+    display: none;
+  }
+
+  .contact-heading p {
+    font-size: 12px;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    width: 88%;
+    gap: 40px;
+  }
+
+  .contact-info {
+    padding: 22px;
+  }
+
+  .contact-info-inner {
+    padding: 30px 15px;
+  }
+
+  .info-block h2 {
+    font-size: 25px;
+  }
+
+  .contact-form-section h2 {
+    font-size: 25px;
+  }
+
+  .contact-map {
+    margin-top: 45px;
+  }
+
+  .contact-map iframe {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .contact-heading h1 {
+    font-size: 23px;
+  }
+
+  .contact-container {
+    width: 90%;
+  }
+
+  .contact-info {
+    border-radius: 22px;
+  }
+
+  .contact-form-section h2 {
+    font-size: 22px;
+  }
+
+  .contact-map iframe {
+    height: 300px;
+  }
+}

@@ -1,0 +1,552 @@
+
+/* ==============================
+   WHY CHOOSE US SECTION
+================================ */
+
+.why-section {
+  width: 100%;
+  padding: 70px 5%;
+  background: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.why-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+/* ==============================
+   LEFT CONTENT
+================================ */
+
+.why-content {
+  opacity: 0;
+  transform: translateX(-55px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.why-visible .why-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.why-subtitle {
+  margin-bottom: 18px;
+  color: #788574;
+}
+
+.why-subtitle .ornament {
+  display: block;
+  width: fit-content;
+  font-size: 22px;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 12px;
+  color: #7c8877;
+}
+
+.why-subtitle p {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  color: #788574;
+}
+
+.why-heading {
+  margin: 0;
+  color: #202027;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 4vw, 66px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1.8px;
+}
+
+.why-description {
+  max-width: 690px;
+  margin: 10px 0 35px;
+  color: #66636a;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 2.05;
+}
+
+/* ==============================
+   FEATURES
+================================ */
+
+.why-features {
+  display: flex;
+  align-items: center;
+  gap: 65px;
+  margin: 35px 0 30px;
+}
+
+.why-feature {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  color: #202027;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  line-height: 1.55;
+}
+
+.feature-icon {
+  width: 62px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: #899483;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ==============================
+   DIVIDER AND HIGHLIGHT
+================================ */
+
+.why-divider {
+  width: 100%;
+  height: 1px;
+  background: #d9ddda;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.why-highlight {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 50px;
+}
+
+.highlight-arrow {
+  width: 27px;
+  height: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background: #788574;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 19px;
+}
+
+.why-highlight p {
+  margin: 0;
+  color: #24242a;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ==============================
+   DISCOVER BUTTON
+================================ */
+
+.why-button {
+  width: fit-content;
+  min-width: 255px;
+  min-height: 73px;
+  padding: 0 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #788574;
+  color: #fff;
+  border: 1px solid #788574;
+  border-radius: 26px;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 600;
+  transition: background 0.35s ease, color 0.35s ease,
+    transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.why-button span {
+  font-size: 25px;
+  transition: transform 0.35s ease;
+}
+
+.why-button:hover {
+  background: #fff;
+  color: #788574;
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(67, 81, 63, 0.15);
+}
+
+.why-button:hover span {
+  transform: translateX(7px);
+}
+
+/* ==============================
+   RIGHT IMAGE CARDS
+================================ */
+
+.why-visuals {
+  min-height: 660px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  position: relative;
+}
+
+.why-image-card {
+  position: relative;
+  width: 48%;
+  height: 400px;
+  overflow: visible;
+  border-radius: 40px;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.why-image-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 40px;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.why-image-card:hover img {
+  transform: scale(1.045);
+  filter: brightness(1.06);
+}
+
+/* FIRST IMAGE */
+
+.why-image-one {
+  margin-top: 0;
+  transform: translateY(70px);
+  animation: none;
+}
+
+.why-visible .why-image-one {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+  animation: imageFloatOne 6s ease-in-out 1.4s infinite;
+}
+
+/* SECOND IMAGE */
+
+.why-image-two {
+  margin-top: 72px;
+  transform: translateY(100px);
+}
+
+.why-visible .why-image-two {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+  animation: imageFloatTwo 6s ease-in-out 1.7s infinite;
+}
+
+/* ==============================
+   CUSTOMER BADGE
+================================ */
+
+.customer-badge {
+  position: absolute;
+  right: 12%;
+  bottom: 8%;
+  min-width: 155px;
+  padding: 17px 25px 20px;
+  background: #788574;
+  color: #fff;
+  border-radius: 17px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  animation: badgeFloat 4s ease-in-out infinite;
+}
+
+.customer-badge h3 {
+  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 39px;
+  font-weight: 400;
+}
+
+.customer-badge p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+/* ==============================
+   IMAGE ANIMATIONS
+================================ */
+
+@keyframes imageFloatOne {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-13px);
+  }
+}
+
+@keyframes imageFloatTwo {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(14px);
+  }
+}
+
+@keyframes badgeFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* ==============================
+   TABLET RESPONSIVE
+================================ */
+
+@media (max-width: 1100px) {
+  .why-section {
+    padding: 65px 4%;
+  }
+
+  .why-container {
+    grid-template-columns: 1fr 0.9fr;
+    gap: 35px;
+  }
+
+  .why-heading {
+    font-size: 43px;
+  }
+
+  .why-description {
+    margin-top: 30px;
+    font-size: 17px;
+  }
+
+  .why-features {
+    gap: 25px;
+  }
+
+  .why-feature {
+    font-size: 18px;
+    gap: 10px;
+  }
+
+  .why-visuals {
+    min-height: 520px;
+    gap: 18px;
+  }
+
+  .why-image-card {
+    height: 450px;
+    border-radius: 30px;
+  }
+
+  .why-image-card img {
+    border-radius: 30px;
+  }
+
+  .why-image-two {
+    margin-top: 55px;
+  }
+
+  .customer-badge {
+    min-width: 120px;
+    padding: 13px 17px;
+  }
+
+  .customer-badge h3 {
+    font-size: 30px;
+  }
+
+  .customer-badge p {
+    font-size: 15px;
+  }
+}
+
+/* ==============================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .why-section {
+    padding: 55px 6%;
+  }
+
+  .why-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .why-subtitle p {
+    font-size: 21px;
+  }
+
+  .why-heading {
+    font-size: clamp(35px, 8vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -1px;
+  }
+
+  .why-heading br {
+    display: none;
+  }
+
+  .why-description {
+    margin: 25px 0;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .why-features {
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 30px 0;
+  }
+
+  .why-feature {
+    font-size: 18px;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .why-divider {
+    margin-bottom: 28px;
+  }
+
+  .why-highlight {
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+
+  .why-highlight p {
+    font-size: 16px;
+  }
+
+  .why-button {
+    min-height: 60px;
+    min-width: 220px;
+    font-size: 16px;
+    border-radius: 20px;
+  }
+
+  .why-visuals {
+    min-height: 440px;
+    gap: 16px;
+  }
+
+  .why-image-card {
+    height: 380px;
+    width: 48%;
+    border-radius: 25px;
+  }
+
+  .why-image-card img {
+    border-radius: 25px;
+  }
+
+  .why-image-two {
+    margin-top: 45px;
+  }
+
+  .customer-badge {
+    right: 5%;
+    bottom: 7%;
+    min-width: 105px;
+    padding: 12px 15px;
+    border-radius: 13px;
+  }
+
+  .customer-badge h3 {
+    font-size: 27px;
+  }
+
+  .customer-badge p {
+    font-size: 14px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px) {
+  .why-section {
+    padding: 45px 5%;
+  }
+
+  .why-heading {
+    font-size: 36px;
+  }
+
+  .why-features {
+    gap: 20px;
+  }
+
+  .why-feature {
+    font-size: 16px;
+  }
+
+  .why-visuals {
+    min-height: 340px;
+    gap: 12px;
+  }
+
+  .why-image-card {
+    height: 300px;
+    border-radius: 20px;
+  }
+
+  .why-image-card img {
+    border-radius: 20px;
+  }
+
+  .why-image-two {
+    margin-top: 35px;
+  }
+
+  .customer-badge {
+    min-width: 90px;
+    padding: 10px 12px;
+  }
+
+  .customer-badge h3 {
+    font-size: 23px;
+  }
+
+  .customer-badge p {
+    font-size: 12px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .why-section *,
+  .why-section *::before,
+  .why-section *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}

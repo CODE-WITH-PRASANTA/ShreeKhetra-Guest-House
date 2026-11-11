@@ -1,0 +1,229 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+/* =====================================
+   ROOM & SUITES THIRD SECTION
+===================================== */
+
+.RoomSuitsThird-section {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background-image: url("https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=2000&q=90");
+
+  background-position: center 55%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  isolation: isolate;
+  cursor: default;
+}
+
+/* DARK TRANSPARENT OVERLAY */
+
+.RoomSuitsThird-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    90deg,
+    rgba(10, 13, 20, 0.83) 0%,
+    rgba(12, 16, 25, 0.76) 50%,
+    rgba(12, 16, 25, 0.83) 100%
+  );
+}
+
+/* CONTAINER */
+
+.RoomSuitsThird-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 30px 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* STATISTICS GRID */
+
+.RoomSuitsThird-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* INDIVIDUAL STATISTIC */
+
+.RoomSuitsThird-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  opacity: 0;
+  transform: translateY(25px);
+
+  animation: RoomSuitsThirdReveal 0.9s ease forwards;
+  animation-delay: calc(var(--item-index) * 0.17s);
+}
+
+/* NUMBER */
+
+.RoomSuitsThird-number {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 4.2vw, 76px);
+  font-weight: 400;
+  line-height: 1.15;
+
+  color: #ffffff;
+  letter-spacing: 1px;
+  white-space: nowrap;
+
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.4s ease;
+}
+
+/* LABEL */
+
+.RoomSuitsThird-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(15px, 1.35vw, 24px);
+  font-weight: 600;
+  line-height: 1.4;
+
+  color: #ffffff;
+
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+/* DECORATIVE LINE */
+
+.RoomSuitsThird-line {
+  width: 0;
+  height: 2px;
+
+  background: #c5a46d;
+
+  margin-top: 12px;
+
+  transition: width 0.5s ease;
+}
+
+.RoomSuitsThird-item:hover .RoomSuitsThird-line {
+  width: 45px;
+}
+
+.RoomSuitsThird-item:hover .RoomSuitsThird-number {
+  transform: translateY(-4px);
+}
+
+/* REVEAL ANIMATION */
+
+@keyframes RoomSuitsThirdReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 991px) {
+  .RoomSuitsThird-section {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .RoomSuitsThird-container {
+    padding: 25px;
+  }
+
+  .RoomSuitsThird-grid {
+    gap: 12px;
+  }
+
+  .RoomSuitsThird-number {
+    font-size: 48px;
+  }
+
+  .RoomSuitsThird-label {
+    font-size: 16px;
+    margin-top: 12px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .RoomSuitsThird-section {
+    height: auto;
+    min-height: 390px;
+    background-position: center;
+  }
+
+  .RoomSuitsThird-container {
+    padding: 35px 15px;
+  }
+
+  .RoomSuitsThird-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 40px;
+    column-gap: 10px;
+  }
+
+  .RoomSuitsThird-number {
+    font-size: 43px;
+  }
+
+  .RoomSuitsThird-label {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .RoomSuitsThird-line {
+    margin-top: 9px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .RoomSuitsThird-section {
+    min-height: 350px;
+  }
+
+  .RoomSuitsThird-number {
+    font-size: 36px;
+  }
+
+  .RoomSuitsThird-label {
+    font-size: 13px;
+  }
+}
