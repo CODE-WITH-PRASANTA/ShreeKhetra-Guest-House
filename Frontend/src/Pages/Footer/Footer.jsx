@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from "../../assets/SriKshetra Residency 03.png"; // adjust path if your assets folder differs
 import "./Footer.css";
 
-/* ---------- Footer data (same 10 sections as the navbar) ---------- */
+/* ---------- Footer data (same sections as the navbar) ---------- */
 const QUICK_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
@@ -104,14 +104,8 @@ const Icon = ({ name }) => {
       );
     case 'arrow':
       return (
-        <svg {...common} width={14} height={14} strokeWidth={2.2}>
+        <svg {...common} width={16} height={16} strokeWidth={2.2}>
           <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      );
-    case 'up':
-      return (
-        <svg {...common} width={20} height={20} strokeWidth={2.2}>
-          <path d="M12 19V5M6 11l6-6 6 6" />
         </svg>
       );
     case 'facebook':
@@ -218,15 +212,22 @@ const FooterBrand = () => {
         {status === 'error' && 'Enter a valid email address, for example name@email.com.'}
       </p>
 
-      <ul className="footer__socials">
-        {SOCIALS.map((s) => (
-          <li key={s.key}>
-            <a href={s.href} className="footer__social" aria-label={s.label}>
-              <Icon name={s.key} />
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="footer__brand-row">
+        <ul className="footer__socials">
+          {SOCIALS.map((s) => (
+            <li key={s.key}>
+              <a href={s.href} className="footer__social" aria-label={s.label}>
+                <Icon name={s.key} />
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <a href="/rooms" className="footer__cta">
+          <span>Book Your Stay</span>
+          <Icon name="arrow" />
+        </a>
+      </div>
     </div>
   );
 };
@@ -239,7 +240,6 @@ const FooterLinks = ({ title, links }) => (
       {links.map((l) => (
         <li key={l.label}>
           <a href={l.href} className="footer__link">
-            <Icon name="arrow" />
             <span>{l.label}</span>
           </a>
         </li>
@@ -277,6 +277,18 @@ const FooterBottom = () => (
     <p className="footer__copy">
       &copy; {new Date().getFullYear()} SriKshetra Residency, Puri. All rights reserved.
     </p>
+    <p className="footer__credit">
+      Designed &amp; developed by{' '}
+      <a
+        href="https://prwebstock.com/"
+        className="footer__credit-link"
+        target="_blank"
+        rel="noopener"
+        aria-label="PR WEBSTOCK (opens in a new tab)"
+      >
+        PR WEBSTOCK
+      </a>
+    </p>
     <ul className="footer__legal">
       <li><a href="/privacy" className="footer__legal-link">Privacy Policy</a></li>
       <li><a href="/terms" className="footer__legal-link">Terms &amp; Conditions</a></li>
@@ -285,39 +297,31 @@ const FooterBottom = () => (
 );
 
 /* ---------- Main component ---------- */
-const Footer = () => {
-  const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+const Footer = () => (
+  <footer className="footer">
+    <div className="footer__bg" aria-hidden="true">
+      <span className="footer__glow footer__glow--teal" />
+      <span className="footer__glow footer__glow--gold" />
+      <span className="footer__grid" />
+    </div>
 
-  return (
-    <footer className="footer">
-      <div className="footer__bg" aria-hidden="true">
-        <span className="footer__orb footer__orb--teal" />
-        <span className="footer__orb footer__orb--gold" />
-        <span className="footer__grid" />
+    <div className="footer__container">
+      <FooterContactStrip />
+
+      <div className="footer__main">
+        <FooterBrand />
+        <FooterLinks title="Quick Links" links={QUICK_LINKS} />
+        <FooterLinks title="Useful Links" links={USEFUL_LINKS} />
+        <FooterPosts />
       </div>
+    </div>
 
-      <div className="footer__container">
-        <FooterContactStrip />
+    <div className="footer__divider" />
 
-        <div className="footer__main">
-          <FooterBrand />
-          <FooterLinks title="Quick Links" links={QUICK_LINKS} />
-          <FooterLinks title="Useful Links" links={USEFUL_LINKS} />
-          <FooterPosts />
-        </div>
-      </div>
-
-      <div className="footer__divider" />
-
-      <div className="footer__container">
-        <FooterBottom />
-      </div>
-
-      <button type="button" className="footer__top" onClick={toTop} aria-label="Back to top">
-        <Icon name="up" />
-      </button>
-    </footer>
-  );
-};
+    <div className="footer__container">
+      <FooterBottom />
+    </div>
+  </footer>
+);
 
 export default Footer;

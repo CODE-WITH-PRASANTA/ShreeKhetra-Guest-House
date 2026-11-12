@@ -16,6 +16,7 @@ import Offers from "./Components/Offers/Offers";
 import OfferdetailsMain from "./Components/OfferdetailsMain/OfferdetailsMain";
 import Homepage from "./Pages/Homepage/Homepage";
 import Contact from "./Components/Contact/Contact";
+import FloatingIcons from "./Components/FloatingIcons/FloatingIcons";
 
   
 
@@ -42,6 +43,7 @@ const App = () => {
       </Routes>
 
       <Footer />
+      <FloatingIcons/>
     </BrowserRouter>
   );
 };
