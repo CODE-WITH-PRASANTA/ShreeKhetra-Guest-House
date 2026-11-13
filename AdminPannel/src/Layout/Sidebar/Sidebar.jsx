@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -14,10 +13,29 @@ import {
   FilePenLine,
   FolderKanban,
   Leaf,
+  
 } from "lucide-react";
 
 import logo from "../../assets/SriKshetra Residency 03.png";
 import "./Sidebar.css";
+
+const ColdLeadsIcon = ({ size = 20 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="9" cy="8" r="3.5" />
+    <path d="M2.5 20c0-3.6 2.9-6 6.5-6" />
+    <path d="M18 11v8M14.5 15h7" />
+    <path d="m15.5 12.5 5 5m0-5-5 5" />
+  </svg>
+);
 
 // =========================================================
 // NAVIGATION ITEMS
@@ -71,6 +89,12 @@ export const NAV_ITEMS = [
     icon: MessageSquareText,
     path: "/admin/enquiry",
   },
+  {
+    label: "ColdLeads",
+    icon: ColdLeadsIcon,
+    path: "/admin/codeleads",
+  },
+   
 ];
 
 // =========================================================

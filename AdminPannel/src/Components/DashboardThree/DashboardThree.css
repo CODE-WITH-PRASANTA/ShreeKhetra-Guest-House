@@ -1,0 +1,630 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.dashboard-three {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.48fr) minmax(0, 1fr);
+  gap: 18px;
+  font-family: 'DM Sans', sans-serif;
+  color: #192642;
+  box-sizing: border-box;
+}
+
+.dashboard-three *,
+.dashboard-three *::before,
+.dashboard-three *::after {
+  box-sizing: border-box;
+}
+
+/* MAIN CARDS */
+
+.dashboard-three-card {
+  min-width: 0;
+  min-height: 330px;
+  padding: 19px 20px;
+  background: linear-gradient(145deg, #ffffff, #fbfcff);
+  border: 1px solid #e5eaf3;
+  border-radius: 19px;
+  box-shadow: 0 5px 22px rgba(39, 61, 105, .045);
+  transition: all .3s ease;
+  animation: dashboardThreeAppear .65s ease both;
+}
+
+.dashboard-three-card:hover {
+  border-color: #d5e0f2;
+  box-shadow: 0 12px 30px rgba(39, 61, 105, .075);
+}
+
+.bookings-card {
+  animation-delay: .05s;
+}
+
+.enquiries-card {
+  animation-delay: .15s;
+}
+
+/* HEADER */
+
+.dashboard-three-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 19px;
+  min-height: 34px;
+}
+
+.dashboard-three-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.dashboard-three-title h2 {
+  margin: 0;
+  color: #172442;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  white-space: nowrap;
+}
+
+.three-heading-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.calendar-icon {
+  color: #285bc0;
+}
+
+.mail-icon {
+  color: #304d78;
+}
+
+/* HEADER ACTIONS */
+
+.three-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.three-view-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 5px 0;
+  border: none;
+  background: transparent;
+  color: #2471db;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .25s ease;
+}
+
+.three-view-all svg {
+  transition: transform .25s ease;
+}
+
+.three-view-all:hover {
+  color: #104caa;
+}
+
+.three-view-all:hover svg {
+  transform: translateX(5px);
+}
+
+/* LIVE INDICATOR */
+
+.three-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border-radius: 20px;
+  background: #e9fbf1;
+  color: #13985b;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.three-live-indicator i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16bd70;
+  animation: threeLivePulse 1.8s infinite;
+}
+
+/* =================================
+   RECENT BOOKINGS TABLE
+================================= */
+
+.booking-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #d5deec transparent;
+}
+
+.booking-table-wrapper::-webkit-scrollbar {
+  height: 5px;
+}
+
+.booking-table-wrapper::-webkit-scrollbar-thumb {
+  background: #d5deec;
+  border-radius: 10px;
+}
+
+.recent-bookings-table {
+  width: 100%;
+  min-width: 790px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+/* TABLE HEADER */
+
+.recent-bookings-table thead th {
+  padding: 13px 10px;
+  background: #f0f4fb;
+  color: #3b4b68;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.recent-bookings-table thead th:first-child {
+  border-radius: 9px 0 0 0;
+}
+
+.recent-bookings-table thead th:last-child {
+  border-radius: 0 9px 0 0;
+}
+
+/* TABLE BODY */
+
+.recent-bookings-table tbody td {
+  height: 51px;
+  padding: 9px 10px;
+  border-bottom: 1px solid #edf0f5;
+  color: #34425e;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background .2s ease;
+}
+
+.recent-bookings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.recent-bookings-table tbody tr:hover td {
+  background: #f7faff;
+}
+
+/* BOOKING ID */
+
+.booking-id {
+  color: #1e2e4c !important;
+  font-weight: 800 !important;
+}
+
+/* GUEST DETAILS */
+
+.booking-guest {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.guest-avatar {
+  width: 31px;
+  height: 31px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 800;
+  transition: transform .25s ease;
+}
+
+.recent-bookings-table tbody tr:hover .guest-avatar {
+  transform: scale(1.1);
+}
+
+.guest-avatar-0 {
+  background: #eee4ff;
+  color: #7345c6;
+}
+
+.guest-avatar-1 {
+  background: #dff0ff;
+  color: #2477cf;
+}
+
+.guest-avatar-2 {
+  background: #fff0d9;
+  color: #c47b19;
+}
+
+.guest-avatar-3 {
+  background: #ffe5e8;
+  color: #d65b75;
+}
+
+.guest-name {
+  color: #293751;
+  font-weight: 700;
+}
+
+.room-name {
+  color: #52617a !important;
+}
+
+.booking-date {
+  color: #46546d !important;
+}
+
+/* BOOKING STATUS BADGES */
+
+.booking-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status-confirmed {
+  background: #dcf9e7;
+  color: #138343;
+}
+
+.status-pending {
+  background: #fff3d8;
+  color: #c18312;
+}
+
+.status-check-in {
+  background: #e1efff;
+  color: #2472d4;
+}
+
+.status-check-out {
+  background: #f0e5ff;
+  color: #8146c6;
+}
+
+.status-completed {
+  background: #e9eef7;
+  color: #526581;
+}
+
+.status-cancelled {
+  background: #ffe6e8;
+  color: #cf4054;
+}
+
+/* AMOUNT */
+
+.booking-amount {
+  color: #1d2c49 !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+/* =================================
+   RECENT ENQUIRIES
+================================= */
+
+.enquiries-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.enquiry-item {
+  position: relative;
+  min-width: 0;
+  min-height: 82px;
+  padding: 12px 1px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-bottom: 1px solid #edf0f5;
+  transition: background .25s ease, padding .25s ease;
+}
+
+.enquiry-item:last-child {
+  border-bottom: none;
+}
+
+.enquiry-item:hover {
+  padding-left: 7px;
+  padding-right: 7px;
+  background: #f8faff;
+  border-radius: 10px;
+}
+
+/* ENQUIRY AVATAR */
+
+.enquiry-avatar {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  transition: transform .3s ease;
+}
+
+.enquiry-item:hover .enquiry-avatar {
+  transform: scale(1.08);
+}
+
+.enquiry-avatar-0 {
+  background: linear-gradient(145deg, #f0e6ff, #e6d9ff);
+  color: #6940ba;
+}
+
+.enquiry-avatar-1 {
+  background: linear-gradient(145deg, #e1fbed, #cdf6dc);
+  color: #188a48;
+}
+
+.enquiry-avatar-2 {
+  background: linear-gradient(145deg, #fff0dc, #ffdfb9);
+  color: #a55a1e;
+}
+
+.enquiry-avatar-3 {
+  background: linear-gradient(145deg, #e3edff, #d2e1ff);
+  color: #356bc4;
+}
+
+/* ENQUIRY MESSAGE */
+
+.enquiry-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.enquiry-content h3 {
+  margin: 0 0 5px;
+  color: #192844;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.enquiry-content p {
+  margin: 0;
+  color: #53627c;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ENQUIRY TIME */
+
+.enquiry-time {
+  align-self: flex-start;
+  padding-top: 3px;
+  flex-shrink: 0;
+  color: #75829a;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* LOADING / EMPTY / ERROR */
+
+.three-message-cell {
+  padding: 30px 12px !important;
+  color: #8793a7 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-align: center;
+}
+
+.three-error-message {
+  margin-top: 10px;
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: #fff0f0;
+  color: #c34444;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes dashboardThreeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes threeLivePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(22, 189, 112, .12);
+  }
+
+  50% {
+    box-shadow: 0 0 0 5px rgba(22, 189, 112, .04);
+  }
+}
+
+/* =================================
+   LARGE LAPTOP
+================================= */
+
+@media (max-width: 1250px) {
+  .dashboard-three {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  .dashboard-three-card {
+    min-height: 0;
+  }
+
+  .recent-bookings-table {
+    min-width: 790px;
+  }
+}
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 768px) {
+  .dashboard-three-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .dashboard-three-title h2 {
+    font-size: 15px;
+  }
+
+  .enquiry-item {
+    min-height: 77px;
+  }
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 480px) {
+  .dashboard-three {
+    gap: 13px;
+  }
+
+  .dashboard-three-card {
+    padding: 13px;
+  }
+
+  .dashboard-three-header {
+    gap: 6px;
+    margin-bottom: 15px;
+  }
+
+  .dashboard-three-title {
+    gap: 6px;
+  }
+
+  .dashboard-three-title h2 {
+    font-size: 12px;
+    letter-spacing: -.3px;
+  }
+
+  .three-heading-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .three-heading-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .three-header-actions {
+    gap: 6px;
+  }
+
+  .three-view-all {
+    gap: 3px;
+    font-size: 10px;
+  }
+
+  .three-view-all svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .three-live-indicator {
+    font-size: 8px;
+    padding: 4px 5px;
+  }
+
+  .enquiry-item {
+    gap: 9px;
+    min-height: 72px;
+  }
+
+  .enquiry-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .enquiry-content h3 {
+    font-size: 11px;
+  }
+
+  .enquiry-content p {
+    font-size: 9px;
+  }
+
+  .enquiry-time {
+    font-size: 8px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+.three-view-all:focus-visible {
+  outline: 2px solid #287cf0;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-three *,
+  .dashboard-three *::before,
+  .dashboard-three *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
