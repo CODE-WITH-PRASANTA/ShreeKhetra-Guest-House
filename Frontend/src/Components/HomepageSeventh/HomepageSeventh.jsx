@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./HomepageSeventh.css";
 
@@ -84,8 +83,15 @@ const QuoteIcon = () => (
 
 const TestimonialCard = ({ item }) => (
   <article className="testimonial-card">
+    {/* big faded quote mark behind the text */}
+    <span className="testimonial-watermark" aria-hidden="true">
+      ”
+    </span>
+
     <div className="testimonial-card-top">
-      <QuoteIcon />
+      <div className="testimonial-quote-badge">
+        <QuoteIcon />
+      </div>
 
       <div className="testimonial-stars" aria-label="5 out of 5 stars">
         ★★★★★
@@ -94,13 +100,19 @@ const TestimonialCard = ({ item }) => (
 
     <p className="testimonial-review">{item.review}</p>
 
+    <div className="testimonial-divider"></div>
+
     <div className="testimonial-user">
-      <img src={item.image} alt={item.name} loading="lazy" />
+      <div className="testimonial-avatar">
+        <img src={item.image} alt={item.name} loading="lazy" />
+      </div>
 
       <div className="testimonial-user-info">
         <h3>{item.name}</h3>
         <p>{item.role}</p>
       </div>
+
+      <span className="testimonial-verified">✓ Verified Guest</span>
     </div>
   </article>
 );
@@ -196,7 +208,6 @@ const HomepageSeventh = () => {
   return (
     <section className="homepage-testimonials">
       <div className="testimonial-container">
-
         {/* SECTION HEADING */}
         <div className="testimonial-heading">
           <div className="testimonial-ornament">
@@ -250,7 +261,6 @@ const HomepageSeventh = () => {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

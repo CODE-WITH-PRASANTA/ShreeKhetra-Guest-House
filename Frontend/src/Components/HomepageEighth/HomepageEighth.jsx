@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./HomepageEighth.css";
 
@@ -55,24 +54,22 @@ const galleryImages = [
 
 const HomepageEighth = () => {
   const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Reveal gallery when it enters the screen
   useEffect(() => {
     const section = sectionRef.current;
-
     if (!section) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          section.classList.add("gallery-visible");
-          observer.unobserve(section);
+          setVisible(true);
+          observer.disconnect();
         }
       },
-      {
-        threshold: 0.12,
-      }
+      { threshold: 0.12 }
     );
 
     observer.observe(section);
@@ -80,33 +77,33 @@ const HomepageEighth = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Close image preview with Escape key
+  // Shared navigation helpers
+  const showNext = () => {
+    setSelectedImage((current) => {
+      if (!current) return current;
+      const index = galleryImages.findIndex((i) => i.id === current.id);
+      return galleryImages[(index + 1) % galleryImages.length];
+    });
+  };
+
+  const showPrevious = () => {
+    setSelectedImage((current) => {
+      if (!current) return current;
+      const index = galleryImages.findIndex((i) => i.id === current.id);
+      return galleryImages[
+        (index - 1 + galleryImages.length) % galleryImages.length
+      ];
+    });
+  };
+
+  // Keyboard controls: Escape, Left, Right
   useEffect(() => {
+    if (!selectedImage) return;
+
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setSelectedImage(null);
-      }
-
-      if (event.key === "ArrowRight" && selectedImage) {
-        const currentIndex = galleryImages.findIndex(
-          (item) => item.id === selectedImage.id
-        );
-
-        const nextIndex = (currentIndex + 1) % galleryImages.length;
-        setSelectedImage(galleryImages[nextIndex]);
-      }
-
-      if (event.key === "ArrowLeft" && selectedImage) {
-        const currentIndex = galleryImages.findIndex(
-          (item) => item.id === selectedImage.id
-        );
-
-        const previousIndex =
-          (currentIndex - 1 + galleryImages.length) %
-          galleryImages.length;
-
-        setSelectedImage(galleryImages[previousIndex]);
-      }
+      if (event.key === "Escape") setSelectedImage(null);
+      if (event.key === "ArrowRight") showNext();
+      if (event.key === "ArrowLeft") showPrevious();
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -114,13 +111,30 @@ const HomepageEighth = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage]);
 
-  return (
-    <section className="homepage-gallery" ref={sectionRef}>
-      <div className="gallery-container">
+  // Stop the page scrolling behind the lightbox
+  useEffect(() => {
+    if (!selectedImage) return;
 
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [selectedImage]);
+
+  const selectedIndex = selectedImage
+    ? galleryImages.findIndex((item) => item.id === selectedImage.id)
+    : 0;
+
+  return (
+    <section
+      className={`homepage-gallery ${visible ? "gallery-visible" : ""}`}
+      ref={sectionRef}
+    >
+      <div className="gallery-container">
         {/* GALLERY HEADER */}
         <div className="gallery-header">
-
           <div className="gallery-heading">
             <div className="gallery-ornament">
               <span>✦</span>
@@ -143,7 +157,6 @@ const HomepageEighth = () => {
               comfort and elegance.
             </p>
           </div>
-
         </div>
 
         {/* GALLERY GRID */}
@@ -154,17 +167,24 @@ const HomepageEighth = () => {
               key={item.id}
               style={{ "--gallery-delay": `${index * 120}ms` }}
               onClick={() => setSelectedImage(item)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Open ${item.title}`}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setSelectedImage(item);
+                }
+              }}
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-              />
+              <img src={item.image} alt={item.title} loading="lazy" />
+
+              <span className="gallery-chip">{item.category}</span>
 
               <div className="gallery-image-overlay">
                 <div className="gallery-image-info">
-                  <span>{item.category}</span>
                   <h3>{item.title}</h3>
+                  <span className="gallery-line"></span>
                 </div>
 
                 <div className="gallery-zoom-icon">
@@ -205,16 +225,7 @@ const HomepageEighth = () => {
               aria-label="Previous image"
               onClick={(event) => {
                 event.stopPropagation();
-
-                const currentIndex = galleryImages.findIndex(
-                  (item) => item.id === selectedImage.id
-                );
-
-                const previousIndex =
-                  (currentIndex - 1 + galleryImages.length) %
-                  galleryImages.length;
-
-                setSelectedImage(galleryImages[previousIndex]);
+                showPrevious();
               }}
             >
               &#10094;
@@ -222,6 +233,7 @@ const HomepageEighth = () => {
 
             <div
               className="gallery-lightbox-content"
+              key={selectedImage.id}
               onClick={(event) => event.stopPropagation()}
             >
               <img src={selectedImage.image} alt={selectedImage.title} />
@@ -229,6 +241,9 @@ const HomepageEighth = () => {
               <div className="gallery-lightbox-caption">
                 <span>{selectedImage.category}</span>
                 <h3>{selectedImage.title}</h3>
+                <p>
+                  {selectedIndex + 1} / {galleryImages.length}
+                </p>
               </div>
             </div>
 
@@ -237,22 +252,13 @@ const HomepageEighth = () => {
               aria-label="Next image"
               onClick={(event) => {
                 event.stopPropagation();
-
-                const currentIndex = galleryImages.findIndex(
-                  (item) => item.id === selectedImage.id
-                );
-
-                const nextIndex =
-                  (currentIndex + 1) % galleryImages.length;
-
-                setSelectedImage(galleryImages[nextIndex]);
+                showNext();
               }}
             >
               &#10095;
             </button>
           </div>
         )}
-
       </div>
     </section>
   );

@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./RoomandSuitsSecond.css";
+
+/* ==========================================
+   ROOM DATA
+========================================== */
 
 const rooms = [
   {
@@ -141,246 +145,283 @@ const filters = [
   "Twine Rooms",
 ];
 
+/* ==========================================
+   SMALL SVG ICONS
+========================================== */
+
+const Icon = ({ name, size = 16 }) => {
+  const paths = {
+    area: (
+      <>
+        <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+      </>
+    ),
+    bed: (
+      <>
+        <path d="M3 5v14M3 16h18v3M3 11h18v5M7 11V8h5a3 3 0 0 1 3 3" />
+        <path d="M15 11h3a3 3 0 0 1 3 3" />
+      </>
+    ),
+    bath: (
+      <>
+        <path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3z" />
+        <path d="M6 12V6a2 2 0 0 1 2-2h1M7 19l-1 2M17 19l1 2" />
+      </>
+    ),
+    arrow: <path d="M7 17 17 7M8 7h9v9" />,
+    plus: <path d="M12 5v14M5 12h14" />,
+  };
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {paths[name]}
+    </svg>
+  );
+};
+
+/* ==========================================
+   COMPONENT
+========================================== */
+
+const ROOMS_PER_PAGE = 8;
+
 const RoomandSuitsSecond = () => {
   const [activeFilter, setActiveFilter] = useState("Show All");
   const [currentPage, setCurrentPage] = useState(1);
-
-  const roomsPerPage = 8;
+  const [openId, setOpenId] = useState(null); // tap-to-expand on touch devices
+  const filtersRef = useRef(null);
 
   const filteredRooms =
     activeFilter === "Show All"
       ? rooms
       : rooms.filter((room) => room.category === activeFilter);
 
-  const totalPages = Math.ceil(filteredRooms.length / roomsPerPage);
+  const totalPages = Math.ceil(filteredRooms.length / ROOMS_PER_PAGE);
 
   const currentRooms = filteredRooms.slice(
-    (currentPage - 1) * roomsPerPage,
-    currentPage * roomsPerPage
+    (currentPage - 1) * ROOMS_PER_PAGE,
+    currentPage * ROOMS_PER_PAGE
   );
 
-  useEffect(() => {
+  const countFor = (filter) =>
+    filter === "Show All"
+      ? rooms.length
+      : rooms.filter((room) => room.category === filter).length;
+
+  const handleFilter = (filter) => {
+    setActiveFilter(filter);
     setCurrentPage(1);
-  }, [activeFilter]);
+    setOpenId(null);
+  };
+
+  const goToPage = (page) => {
+    setCurrentPage(page);
+    setOpenId(null);
+    filtersRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // On touch screens there is no hover, so a tap expands the card.
+  const handleCardClick = (event, id) => {
+    if (!window.matchMedia("(hover: none)").matches) return;
+    if (event.target.closest("a")) return;
+    setOpenId((prev) => (prev === id ? null : id));
+  };
 
   return (
-    <section className="room-suits-second">
-      <div className="room-suits-second-container">
+    <section className="RoomandSuitsSecond">
+      <div className="RoomandSuitsSecond-container">
         {/* SECTION HEADING */}
-
-        <div className="room-suits-second-heading">
-          <span className="room-suits-second-heading-decoration">
+        <div className="RoomandSuitsSecond-heading">
+          <span className="RoomandSuitsSecond-headingDecoration">
             ───── ❧ ─────
           </span>
-
-          <span className="room-suits-second-subtitle">
-            LUXURY COMFORT
-          </span>
-
+          <span className="RoomandSuitsSecond-subtitle">LUXURY COMFORT</span>
           <h2>Featured Rooms &amp; Suits</h2>
         </div>
 
         {/* FILTER BUTTONS */}
-
-        <div className="room-suits-second-filters">
+        <div
+          className="RoomandSuitsSecond-filters"
+          ref={filtersRef}
+          role="group"
+          aria-label="Filter rooms by category"
+        >
           {filters.map((filter) => (
             <button
               key={filter}
               type="button"
-              className={`room-suits-second-filter ${
-                activeFilter === filter ? "active" : ""
+              className={`RoomandSuitsSecond-filter ${
+                activeFilter === filter ? "is-active" : ""
               }`}
-              onClick={() => {
-                setActiveFilter(filter);
-                setCurrentPage(1);
-              }}
+              onClick={() => handleFilter(filter)}
               aria-pressed={activeFilter === filter}
             >
-              {filter}
+              <span>{filter}</span>
+              <span className="RoomandSuitsSecond-filterCount">
+                {countFor(filter)}
+              </span>
             </button>
           ))}
         </div>
 
         {/* ROOM GRID */}
-
-        <div className="room-suits-second-grid">
+        <div className="RoomandSuitsSecond-grid">
           {currentRooms.map((room) => (
             <article
-              className="room-suits-second-card"
+              className={`RoomandSuitsSecond-card ${
+                openId === room.id ? "is-open" : ""
+              }`}
               key={room.id}
+              onClick={(e) => handleCardClick(e, room.id)}
             >
-              {/* ROOM IMAGE */}
-
               <img
                 src={room.image}
                 alt={room.title}
-                className="room-suits-second-image"
+                className="RoomandSuitsSecond-image"
                 loading="lazy"
+                decoding="async"
               />
 
-              {/* IMAGE OVERLAY */}
+              <div className="RoomandSuitsSecond-overlay" />
 
-              <div className="room-suits-second-image-overlay" />
-
-              {/* ROOM INFORMATION */}
-
-              <div className="room-suits-second-info">
-                {/* CATEGORY */}
-
-                <span className="room-suits-second-category">
+              {/* TOP BADGES */}
+              <div className="RoomandSuitsSecond-top">
+                <span className="RoomandSuitsSecond-category">
                   {room.category}
                 </span>
-
-                {/* RATING */}
-
-                <div
-                  className="room-suits-second-rating"
+                <span
+                  className="RoomandSuitsSecond-rating"
                   aria-label={`${room.rating} out of 5 stars`}
                 >
                   {"★".repeat(room.rating)}
-                </div>
+                </span>
+              </div>
 
-                {/* TITLE */}
+              {/* INFORMATION PANEL */}
+              <div className="RoomandSuitsSecond-info">
+                <div className="RoomandSuitsSecond-headline">
+                  <div className="RoomandSuitsSecond-headlineText">
+                    <h3 className="RoomandSuitsSecond-title">{room.title}</h3>
 
-                <h3 className="room-suits-second-title">
-                  {room.title}
-                </h3>
-
-                {/* PRICE */}
-
-                <div className="room-suits-second-price">
-                  <span className="room-suits-second-price-label">
-                    Starting from
-                  </span>
-
-                  <div className="room-suits-second-price-row">
-                    <span className="room-suits-second-price-value">
-                      {room.price}
-                    </span>
-
-                    <span className="room-suits-second-price-period">
-                      /{room.period}
-                    </span>
+                    <div className="RoomandSuitsSecond-price">
+                      <span className="RoomandSuitsSecond-priceLabel">
+                        From
+                      </span>
+                      <span className="RoomandSuitsSecond-priceValue">
+                        {room.price}
+                      </span>
+                      <span className="RoomandSuitsSecond-pricePeriod">
+                        / {room.period}
+                      </span>
+                    </div>
                   </div>
+
+                  <span className="RoomandSuitsSecond-toggle" aria-hidden="true">
+                    <Icon name="plus" size={15} />
+                  </span>
                 </div>
 
-                {/* HIDDEN DETAILS */}
-
-                <div className="room-suits-second-details">
-                  <div className="room-suits-second-details-inner">
-                    {/* ROOM DESCRIPTION */}
-
-                    <p className="room-suits-second-description">
+                {/* EXPANDING DETAILS */}
+                <div className="RoomandSuitsSecond-details">
+                  <div className="RoomandSuitsSecond-detailsInner">
+                    <p className="RoomandSuitsSecond-description">
                       {room.description}
                     </p>
 
-                    {/* ROOM FEATURES */}
+                    <ul className="RoomandSuitsSecond-specs">
+                      <li>
+                        <Icon name="area" size={15} />
+                        <span>{room.area}</span>
+                      </li>
+                      <li>
+                        <Icon name="bed" size={15} />
+                        <span>{room.beds}</span>
+                      </li>
+                      <li>
+                        <Icon name="bath" size={15} />
+                        <span>{room.bathrooms}</span>
+                      </li>
+                    </ul>
 
-                    <div className="room-suits-second-features">
-                      <span>
-                        <span className="room-feature-icon">⌁</span>
-                        {room.area}
-                      </span>
-
-                      <span>
-                        <span className="room-feature-icon">▱</span>
-                        {room.beds}
-                      </span>
-
-                      <span>
-                        <span className="room-feature-icon">♧</span>
-                        {room.bathrooms}
-                      </span>
-                    </div>
-
-                    {/* EXTRA AMENITIES */}
-
-                    <div className="room-suits-second-amenities">
-                      {room.features.map((feature, index) => (
-                        <span key={index}>{feature}</span>
+                    <div className="RoomandSuitsSecond-amenities">
+                      {room.features.map((feature) => (
+                        <span key={feature}>{feature}</span>
                       ))}
                     </div>
+
+                    <Link
+                      to={`/rooms/${room.id}`}
+                      className="RoomandSuitsSecond-button"
+                      aria-label={`View details of ${room.title}`}
+                    >
+                      <span>VIEW DETAILS</span>
+                      <span className="RoomandSuitsSecond-arrow">
+                        <Icon name="arrow" size={17} />
+                      </span>
+                    </Link>
                   </div>
                 </div>
-
-                {/* VIEW DETAILS BUTTON */}
-
-                <Link
-                  to={`/rooms/${room.id}`}
-                  className="room-suits-second-button"
-                  aria-label={`View details of ${room.title}`}
-                >
-                  <span>VIEW DETAILS</span>
-
-                  <span className="room-suits-second-arrow">
-                    ↗
-                  </span>
-                </Link>
               </div>
             </article>
           ))}
         </div>
 
-        {/* CENTERED PAGINATION */}
-
+        {/* PAGINATION */}
         {totalPages > 1 && (
-          <div
-            className="room-suits-second-pagination"
-            aria-label="Room pages"
-          >
+          <nav className="RoomandSuitsSecond-pagination" aria-label="Room pages">
             <button
               type="button"
-              className="room-pagination-arrow"
-              onClick={() =>
-                setCurrentPage((page) => Math.max(page - 1, 1))
-              }
+              className="RoomandSuitsSecond-pageArrow"
+              onClick={() => goToPage(Math.max(currentPage - 1, 1))}
               disabled={currentPage === 1}
               aria-label="Previous page"
             >
               ‹
             </button>
 
-            <div className="room-pagination-numbers">
-              {Array.from(
-                { length: totalPages },
-                (_, index) => index + 1
-              ).map((page) => (
-                <button
-                  type="button"
-                  key={page}
-                  className={`room-pagination-number ${
-                    currentPage === page ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentPage(page)}
-                  aria-current={
-                    currentPage === page ? "page" : undefined
-                  }
-                >
-                  {page}
-                </button>
-              ))}
+            <div className="RoomandSuitsSecond-pageNumbers">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    type="button"
+                    key={page}
+                    className={`RoomandSuitsSecond-pageNumber ${
+                      currentPage === page ? "is-active" : ""
+                    }`}
+                    onClick={() => goToPage(page)}
+                    aria-current={currentPage === page ? "page" : undefined}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
             </div>
 
             <button
               type="button"
-              className="room-pagination-arrow"
-              onClick={() =>
-                setCurrentPage((page) =>
-                  Math.min(page + 1, totalPages)
-                )
-              }
+              className="RoomandSuitsSecond-pageArrow"
+              onClick={() => goToPage(Math.min(currentPage + 1, totalPages))}
               disabled={currentPage === totalPages}
               aria-label="Next page"
             >
               ›
             </button>
-          </div>
+          </nav>
         )}
 
-        {/* EMPTY FILTER RESULT */}
-
+        {/* EMPTY RESULT */}
         {filteredRooms.length === 0 && (
-          <div className="room-suits-second-empty">
+          <div className="RoomandSuitsSecond-empty">
             No rooms available in this category.
           </div>
         )}

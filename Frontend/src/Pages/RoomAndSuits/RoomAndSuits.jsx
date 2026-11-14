@@ -1,16 +1,29 @@
-import React from 'react'
-import RoomandSuitsSecond from '../../Components/RoomandSuitsSecond/RoomandSuitsSecond'
-import RoomandSuitsThird from '../../Components/RoomandSuitsThird/RoomandSuitsThird'
-import RoomandSuitsFourth from '../../Components/RoomandSuitsFourth/RoomandSuitsFourth'
+
+import React from "react";
+
+// Breadcrumb
+import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
+
+// Room Components
+import RoomandSuitsSecond from "../../Components/RoomandSuitsSecond/RoomandSuitsSecond";
+import RoomandSuitsThird from "../../Components/RoomandSuitsThird/RoomandSuitsThird";
+import RoomandSuitsFourth from "../../Components/RoomandSuitsFourth/RoomandSuitsFourth";
 
 const RoomAndSuits = () => {
   return (
-    <div>
-        <RoomandSuitsSecond/>
-        <RoomandSuitsThird/>
-        <RoomandSuitsFourth/>
-    </div>
-  )
-}
+    <>
+      {/* Room Breadcrumb */}
+      <Breadcrumb
+        title="Rooms & Suites"
+        subtitle="Discover elegant rooms, modern comfort and a relaxing stay at SriKshetra Residency, Puri."
+      />
 
-export default RoomAndSuits
+      {/* Room Sections */}
+      <RoomandSuitsSecond />
+      <RoomandSuitsThird />
+      <RoomandSuitsFourth />
+    </>
+  );
+};
+
+export default RoomAndSuits;

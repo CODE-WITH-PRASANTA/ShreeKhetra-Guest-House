@@ -1,21 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 /* =========================================================
-   SriKshetra Residency - Navbar (simple, premium)
+   SriKshetra Residency - Navbar
+   Palette taken from the logo: cream, temple gold,
+   sun orange, ocean teal, deep navy.
    ========================================================= */
 
 .navbar,
 .navbar__drawer,
 .navbar__overlay {
-  --sk-navy: #020f2e;
-  --sk-navy-2: #061a45;
-  --sk-navy-3: #0b2a63;
-  --sk-gold: #d19a2e;
-  --sk-gold-soft: #f0c868;
-  --sk-sage: #6e7d6a;
-  --sk-sage-2: #8a9a85;
-  --sk-cream: #fdf8ee;
-  --sk-teal: #1f8aa8;
+  --sk-ivory: #fffcf5;
+  --sk-cream: #fbf1dc;
+  --sk-cream-2: #f6e6c3;
+  --sk-gold: #b97a1c;
+  --sk-gold-light: #d9a441;
+  --sk-orange: #e8892b;
+  --sk-teal: #14839f;
+  --sk-teal-dark: #0c5c75;
+  --sk-navy: #0b2f45;
+  --sk-navy-soft: #1d4a63;
   --sk-white: #ffffff;
   --sk-height: 84px;
   --sk-ease: cubic-bezier(0.22, 0.8, 0.2, 1);
@@ -42,27 +45,39 @@
   inset: 0 0 auto 0;
   z-index: 1000;
   height: var(--sk-height);
-  background: linear-gradient(180deg, var(--sk-navy-2) 0%, var(--sk-navy) 100%);
-  border-bottom: 1px solid rgba(240, 200, 104, 0.18);
+  background: linear-gradient(180deg, var(--sk-ivory) 0%, var(--sk-cream) 100%);
+  border-bottom: 1px solid rgba(185, 122, 28, 0.28);
+  box-shadow: 0 8px 24px -16px rgba(11, 47, 69, 0.35);
   transition: height 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* thin gold line on top */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sk-teal) 0%, var(--sk-gold-light) 50%, var(--sk-orange) 100%);
 }
 
 .navbar--scrolled {
   --sk-height: 70px;
-  background: rgba(2, 15, 46, 0.92);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  box-shadow: 0 12px 32px -14px rgba(0, 6, 24, 0.75);
+  background: rgba(255, 250, 238, 0.92);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 14px 34px -16px rgba(11, 47, 69, 0.45);
 }
 
-/* scroll progress (thin gold line) */
+/* scroll progress */
 .navbar__progress {
   position: absolute;
   left: 0;
   bottom: -1px;
-  height: 2px;
+  height: 3px;
   width: 100%;
-  background: linear-gradient(90deg, var(--sk-teal), var(--sk-gold-soft), var(--sk-gold));
+  background: linear-gradient(90deg, var(--sk-teal), var(--sk-gold-light), var(--sk-orange));
   transform-origin: left center;
   transform: scaleX(var(--progress, 0));
   transition: transform 0.15s linear;
@@ -91,11 +106,12 @@
   display: block;
   width: 144px;
   height: 62px;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--sk-cream);
-  border: 1px solid rgba(240, 200, 104, 0.7);
-  transition: width 0.35s ease, height 0.35s ease, border-color 0.3s ease;
+  border: 1.5px solid rgba(185, 122, 28, 0.55);
+  box-shadow: 0 6px 16px -8px rgba(185, 122, 28, 0.55);
+  transition: width 0.35s ease, height 0.35s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .navbar--scrolled .navbar__logo {
@@ -104,7 +120,9 @@
 }
 
 .navbar__brand:hover .navbar__logo {
-  border-color: var(--sk-gold-soft);
+  border-color: var(--sk-gold);
+  box-shadow: 0 10px 22px -8px rgba(185, 122, 28, 0.7);
+  transform: translateY(-1px);
 }
 
 .navbar__logo-img {
@@ -138,7 +156,7 @@
   position: relative;
   display: inline-block;
   padding: 10px 12px;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--sk-navy);
   font-family: var(--sk-font);
   font-size: 13.5px;
   font-weight: 600;
@@ -148,16 +166,16 @@
   transition: color 0.3s ease;
 }
 
-/* gold underline that grows from the centre */
+/* underline grows from centre */
 .navbar__link::after {
   content: '';
   position: absolute;
   left: 12px;
   right: 12px;
   bottom: 3px;
-  height: 2px;
+  height: 2.5px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--sk-gold), var(--sk-gold-soft));
+  background: linear-gradient(90deg, var(--sk-gold), var(--sk-orange));
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.35s var(--sk-ease);
@@ -165,7 +183,7 @@
 
 .navbar__link:hover,
 .navbar__link--active {
-  color: var(--sk-gold-soft);
+  color: var(--sk-gold);
 }
 
 .navbar__link:hover::after,
@@ -183,7 +201,7 @@
 .navbar__drawer-link:focus-visible,
 .navbar__drawer-close:focus-visible,
 .navbar__brand:focus-visible {
-  outline: 2px solid var(--sk-gold-soft);
+  outline: 2px solid var(--sk-teal);
   outline-offset: 3px;
   border-radius: 8px;
 }
@@ -208,10 +226,10 @@
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  background: linear-gradient(135deg, var(--sk-sage-2) 0%, var(--sk-sage) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 10px 20px -10px rgba(110, 125, 106, 0.8);
-  transition: transform 0.3s var(--sk-ease), box-shadow 0.3s ease, filter 0.3s ease;
+  background: linear-gradient(135deg, var(--sk-teal) 0%, var(--sk-teal-dark) 100%);
+  border: 1.5px solid var(--sk-gold-light);
+  box-shadow: 0 10px 22px -10px rgba(12, 92, 117, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: transform 0.3s var(--sk-ease), box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .navbar__cta-arrow {
@@ -220,8 +238,10 @@
 
 .navbar__cta:hover {
   transform: translateY(-2px);
-  filter: brightness(1.06);
-  box-shadow: 0 16px 26px -12px rgba(138, 154, 133, 0.9);
+  background: linear-gradient(135deg, var(--sk-gold-light) 0%, var(--sk-orange) 100%);
+  border-color: var(--sk-gold-light);
+  color: var(--sk-navy);
+  box-shadow: 0 16px 28px -12px rgba(232, 137, 43, 0.85);
 }
 
 .navbar__cta:hover .navbar__cta-arrow {
@@ -243,15 +263,15 @@
   height: 44px;
   padding: 0;
   border-radius: 12px;
-  border: 1px solid rgba(240, 200, 104, 0.4);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(185, 122, 28, 0.55);
+  background: var(--sk-white);
   cursor: pointer;
   transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .navbar__toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--sk-gold-soft);
+  background: var(--sk-cream);
+  border-color: var(--sk-gold);
 }
 
 .navbar__toggle-line {
@@ -260,12 +280,12 @@
   width: 20px;
   height: 2px;
   border-radius: 2px;
-  background: var(--sk-white);
+  background: var(--sk-navy);
   transition: transform 0.35s var(--sk-ease), opacity 0.2s ease, top 0.35s ease;
 }
 
 .navbar__toggle-line:nth-child(1) { top: 14px; }
-.navbar__toggle-line:nth-child(2) { top: 21px; background: var(--sk-gold-soft); }
+.navbar__toggle-line:nth-child(2) { top: 21px; background: var(--sk-gold); }
 .navbar__toggle-line:nth-child(3) { top: 28px; }
 
 .navbar__toggle--active .navbar__toggle-line:nth-child(1) { top: 21px; transform: rotate(45deg); }
@@ -279,7 +299,7 @@
   position: fixed;
   inset: 0;
   z-index: 1001;
-  background: rgba(1, 8, 26, 0.65);
+  background: rgba(8, 30, 44, 0.55);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   opacity: 0;
@@ -303,9 +323,9 @@
   display: flex;
   flex-direction: column;
   padding: 18px 22px 24px;
-  background: linear-gradient(180deg, var(--sk-navy-2), var(--sk-navy));
-  border-left: 1px solid rgba(240, 200, 104, 0.25);
-  box-shadow: -30px 0 60px -20px rgba(0, 4, 20, 0.8);
+  background: linear-gradient(180deg, var(--sk-ivory), var(--sk-cream));
+  border-left: 3px solid var(--sk-gold-light);
+  box-shadow: -30px 0 60px -20px rgba(8, 30, 44, 0.55);
   transform: translateX(105%);
   visibility: hidden;
   transition: transform 0.5s var(--sk-ease), visibility 0.5s;
@@ -324,7 +344,7 @@
   justify-content: space-between;
   padding-bottom: 14px;
   margin-bottom: 6px;
-  border-bottom: 1px solid rgba(240, 200, 104, 0.2);
+  border-bottom: 1px solid rgba(185, 122, 28, 0.3);
 }
 
 .navbar__drawer-logo {
@@ -334,7 +354,7 @@
   border-radius: 12px;
   overflow: hidden;
   background: var(--sk-cream);
-  border: 1px solid rgba(240, 200, 104, 0.6);
+  border: 1.5px solid rgba(185, 122, 28, 0.55);
 }
 
 .navbar__drawer-logo-img {
@@ -351,16 +371,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--sk-white);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(240, 200, 104, 0.3);
+  color: var(--sk-navy);
+  background: var(--sk-white);
+  border: 1.5px solid rgba(185, 122, 28, 0.5);
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .navbar__drawer-close:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--sk-cream-2);
+  color: var(--sk-gold);
 }
 
 .navbar__drawer-list {
@@ -371,7 +392,7 @@
 }
 
 .navbar__drawer-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(11, 47, 69, 0.09);
   opacity: 0;
   transform: translateX(20px);
   transition: opacity 0.45s ease, transform 0.45s var(--sk-ease);
@@ -380,7 +401,7 @@
 .navbar__drawer--open .navbar__drawer-item {
   opacity: 1;
   transform: translateX(0);
-  transition-delay: calc(var(--i) * 45ms + 150ms);
+  transition-delay: calc(var(--i, 0) * 45ms + 150ms);
 }
 
 .navbar__drawer-link {
@@ -388,7 +409,7 @@
   align-items: center;
   gap: 14px;
   padding: 14px 4px;
-  color: var(--sk-white);
+  color: var(--sk-navy);
   font-family: var(--sk-font);
   font-size: 16.5px;
   font-weight: 600;
@@ -408,7 +429,7 @@
 
 .navbar__drawer-link:hover,
 .navbar__drawer-item--active .navbar__drawer-link {
-  color: var(--sk-gold-soft);
+  color: var(--sk-gold);
   padding-left: 10px;
 }
 
@@ -431,8 +452,7 @@
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-size: 14px;
-  color: var(--sk-gold-soft);
-  opacity: 0.9;
+  color: var(--sk-teal-dark);
 }
 
 /* =========================================================
@@ -462,6 +482,7 @@
   .navbar__nav { display: none; }
   .navbar__toggle { display: inline-block; }
   .navbar__actions .navbar__cta { display: none; }
+  .navbar__drawer .navbar__cta { display: inline-flex; }
   .navbar__logo { width: 134px; height: 58px; }
   .navbar--scrolled .navbar__logo { width: 120px; height: 52px; }
 }

@@ -1,16 +1,59 @@
-/* ========================================= HERO TENTH SECTION ========================================= */
+/* =========================================
+   HERO TENTH - TEAL + SUNSET ORANGE THEME
+   (matches navbar, footer & other sections)
+========================================= */
+
 .hero-tenth-section {
+  --teal: #0b7a9a;
+  --teal-deep: #0a5a78;
+  --orange: #e8892a;
+  --gold: #d9a441;
+  --ink: #12303f;
+
+  --grad-teal: linear-gradient(135deg, #0e86a8 0%, #0a5a78 100%);
+  --grad-orange: linear-gradient(135deg, #e0a93f 0%, #e8892a 100%);
+
   position: relative;
+
   width: 100%;
-  min-height: 750px;
+  min-height: 700px;
+
   display: flex;
   align-items: center;
+
   overflow: hidden;
   box-sizing: border-box;
-  background-color: #121513;
+
+  background-color: #062f42;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ========================================= BACKGROUND IMAGE & OVERLAY ========================================= */
+.hero-tenth-section * {
+  box-sizing: border-box;
+}
+
+/* gradient line on top like navbar/footer */
+
+.hero-tenth-section::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--orange));
+
+  z-index: 3;
+}
+
+/* =========================================
+   BACKGROUND IMAGE & OVERLAY
+========================================= */
+
 .hero-tenth-bg {
   position: absolute;
   inset: 0;
@@ -24,45 +67,60 @@
   object-position: center;
   display: block;
   transform: scale(1.05);
-  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.3, 1);
+  transition: transform 1.6s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
 .hero-visible .hero-tenth-bg img {
   transform: scale(1);
 }
 
+/* teal -> orange tint */
+
 .hero-tenth-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(14, 18, 15, 0.85) 0%,
-    rgba(14, 18, 15, 0.55) 55%,
-    rgba(14, 18, 15, 0.35) 100%
-  );
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(5, 40, 56, 0.92) 0%,
+      rgba(10, 90, 120, 0.7) 50%,
+      rgba(232, 137, 42, 0.38) 100%
+    );
 }
 
-/* ========================================= CONTAINER & LAYOUT ========================================= */
+/* =========================================
+   CONTAINER & LAYOUT
+========================================= */
+
 .hero-tenth-container {
   position: relative;
   z-index: 2;
+
   width: 100%;
   max-width: 1600px;
+
   margin: 0 auto;
   padding: 80px 6%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 50px;
-  box-sizing: border-box;
 }
 
-/* ========================================= LEFT CONTENT ========================================= */
+/* =========================================
+   LEFT CONTENT
+========================================= */
+
 .hero-tenth-content {
   max-width: 750px;
+
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 1s cubic-bezier(0.2, 0.7, 0.3, 1),
+
+  transition:
+    opacity 1s cubic-bezier(0.2, 0.7, 0.3, 1),
     transform 1s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
@@ -75,15 +133,17 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #b5c2b0;
-  margin-bottom: 18px;
+
+  color: var(--gold);
+
+  margin-bottom: 20px;
 }
 
 .hero-tenth-ornament i {
   display: block;
-  width: 55px;
+  width: 60px;
   height: 1px;
-  background: #b5c2b0;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
 }
 
 .hero-tenth-ornament span {
@@ -91,78 +151,205 @@
 }
 
 .hero-tenth-title {
-  margin: 0 0 24px;
+  position: relative;
+
+  margin: 0 0 40px;
+  padding-bottom: 26px;
+
   color: #ffffff;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(40px, 4.5vw, 68px);
-  font-weight: 400;
-  line-height: 1.15;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(42px, 4.6vw, 70px);
+  font-weight: 500;
+  line-height: 1.1;
   letter-spacing: -1px;
 }
 
+.hero-tenth-title::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 70px;
+  height: 4px;
+
+  border-radius: 4px;
+
+  background: var(--grad-orange);
+}
+
 .hero-tenth-title span {
-  color: #d1dcce;
+  color: #ffd98a;
   font-style: italic;
 }
 
 .hero-tenth-description {
-  margin: 0 0 38px;
-  color: #d8dad7;
-  font-family: Arial, sans-serif;
-  font-size: 17px;
-  line-height: 1.9;
+  margin: 0 0 36px;
+
   max-width: 620px;
+
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 17px;
   font-weight: 400;
+  line-height: 1.9;
 }
 
-/* ========================================= BOOK NOW BUTTON ========================================= */
+/* =========================================
+   BOOK NOW BUTTON (teal -> orange on hover)
+========================================= */
+
 .hero-tenth-btn {
-  min-width: 210px;
-  min-height: 60px;
-  padding: 0 32px;
+  position: relative;
+
+  min-width: 230px;
+  min-height: 64px;
+  padding: 0 34px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  background: #788574;
+  gap: 16px;
+
+  background: var(--grad-teal);
   color: #ffffff;
-  border: 1px solid #788574;
-  border-radius: 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 40px;
+
   text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: background 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
-  box-shadow: 0 10px 30px rgba(120, 133, 116, 0.3);
+  letter-spacing: 0.8px;
+
+  overflow: hidden;
+
+  box-shadow: 0 14px 32px rgba(4, 38, 54, 0.45);
+
+  transition:
+    color 0.4s ease,
+    translate 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
-.hero-tenth-btn span {
-  font-size: 20px;
-  transition: transform 0.35s ease;
+.hero-tenth-btn::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: var(--grad-orange);
+
+  opacity: 0;
+
+  transition: opacity 0.4s ease;
+}
+
+.hero-btn-text,
+.hero-btn-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-btn-arrow {
+  font-size: 22px;
+  transition: transform 0.4s ease;
 }
 
 .hero-tenth-btn:hover {
-  background: #647160;
-  border-color: #647160;
-  transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(120, 133, 116, 0.45);
+  color: var(--ink);
+
+  translate: 0 -5px;
+
+  box-shadow: 0 18px 38px rgba(232, 137, 42, 0.5);
 }
 
-.hero-tenth-btn:hover span {
-  transform: translateX(6px);
+.hero-tenth-btn:hover::before {
+  opacity: 1;
 }
 
-/* ========================================= RIGHT ANIMATED PLAY BUTTON ========================================= */
+.hero-tenth-btn:hover .hero-btn-arrow {
+  transform: translateX(7px);
+}
+
+.hero-tenth-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   QUICK STATS (glass strip)
+========================================= */
+
+.hero-tenth-stats {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-top: 46px;
+}
+
+.hero-stat {
+  min-width: 140px;
+  padding: 14px 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 4px solid var(--orange);
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+
+  transition:
+    translate 0.4s ease,
+    background 0.4s ease;
+}
+
+.hero-stat:hover {
+  translate: 0 -5px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.hero-stat strong {
+  color: #ffd98a;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hero-stat span {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+/* =========================================
+   RIGHT PLAY BUTTON
+========================================= */
+
 .hero-tenth-right {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 22px;
+
   flex-shrink: 0;
+
+  padding-right: 4%;
+
   opacity: 0;
   transform: scale(0.8);
-  transition: opacity 1s cubic-bezier(0.2, 0.7, 0.3, 1) 0.3s,
+
+  transition:
+    opacity 1s cubic-bezier(0.2, 0.7, 0.3, 1) 0.3s,
     transform 1s cubic-bezier(0.2, 0.7, 0.3, 1) 0.3s;
 }
 
@@ -173,32 +360,51 @@
 
 .hero-tenth-play-btn {
   position: relative;
-  width: 90px;
-  height: 90px;
+
+  width: 104px;
+  height: 104px;
+
   border-radius: 50%;
+
   background: #ffffff;
-  border: none;
+  border: 5px solid rgba(255, 255, 255, 0.35);
+  background-clip: padding-box;
+
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
-  transition: transform 0.35s ease, background 0.35s ease;
+
+  box-shadow: 0 14px 40px rgba(4, 38, 54, 0.5);
+
+  transition:
+    scale 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .hero-tenth-play-btn:hover {
-  transform: scale(1.08);
-  background: #f0f2ed;
+  scale: 1.1;
+  box-shadow: 0 18px 46px rgba(232, 137, 42, 0.55);
 }
 
-/* Pulsing Ripple Animations */
+.hero-tenth-play-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 6px;
+}
+
+/* Pulsing ripples (orange) */
+
 .play-pulse-ring,
 .play-pulse-ring-two {
   position: absolute;
-  inset: -10px;
+  inset: -14px;
+
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.6);
-  animation: pulseRipple 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+  border: 2px solid rgba(232, 137, 42, 0.8);
+
+  animation: heroPulse 3s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+
   pointer-events: none;
 }
 
@@ -206,11 +412,12 @@
   animation-delay: 1.5s;
 }
 
-@keyframes pulseRipple {
+@keyframes heroPulse {
   0% {
     transform: scale(1);
     opacity: 0.9;
   }
+
   100% {
     transform: scale(1.55);
     opacity: 0;
@@ -218,39 +425,179 @@
 }
 
 .play-icon-wrapper {
-  width: 45px;
-  height: 45px;
-  background: #788574;
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: var(--grad-teal);
   color: #ffffff;
-  transition: background 0.35s ease, transform 0.35s ease;
+
+  border-radius: 50%;
+
+  box-shadow: 0 8px 18px rgba(10, 90, 120, 0.4);
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease;
 }
 
 .hero-tenth-play-btn:hover .play-icon-wrapper {
-  background: #5d6a59;
+  background: var(--grad-orange);
+  color: var(--ink);
   transform: scale(1.1);
 }
 
 .play-icon-wrapper svg {
-  width: 20px;
-  height: 20px;
-  margin-left: 2px;
+  width: 24px;
+  height: 24px;
+  margin-left: 3px;
 }
 
 .hero-play-label {
+  padding: 8px 18px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+
   color: #ffffff;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  letter-spacing: 1.5px;
+  font-size: 12px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   font-weight: 500;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* ========================================= RESPONSIVE DESIGN ========================================= */
+/* =========================================
+   VIDEO MODAL
+========================================= */
+
+.hero-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: rgba(5, 36, 50, 0.94);
+  backdrop-filter: blur(8px);
+
+  animation: heroModalIn 0.3s ease;
+}
+
+@keyframes heroModalIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-modal-box {
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 16 / 9;
+
+  border-radius: 20px;
+  border-bottom: 4px solid var(--orange);
+
+  overflow: hidden;
+
+  background: #031f2c;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.hero-modal-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.hero-modal-empty {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.hero-modal-empty h3 {
+  margin: 0 0 10px;
+
+  color: #ffd98a;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.hero-modal-empty p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 30px;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+
+  font-size: 32px;
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    scale 0.3s ease;
+}
+
+.hero-modal-close:hover {
+  background: var(--grad-orange);
+  color: var(--ink);
+  scale: 1.08;
+}
+
+.hero-modal-close:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
 @media (max-width: 1024px) {
   .hero-tenth-container {
     flex-direction: column;
@@ -261,17 +608,22 @@
 
   .hero-tenth-right {
     align-self: center;
-    margin-top: 10px;
+    padding-right: 0;
   }
 }
 
 @media (max-width: 768px) {
   .hero-tenth-section {
-    min-height: 650px;
+    min-height: 620px;
   }
 
   .hero-tenth-title {
-    font-size: 36px;
+    font-size: 40px;
+    margin-bottom: 32px;
+  }
+
+  .hero-tenth-title br {
+    display: none;
   }
 
   .hero-tenth-description {
@@ -279,18 +631,80 @@
     line-height: 1.8;
   }
 
+  .hero-tenth-btn {
+    width: 100%;
+    min-height: 58px;
+  }
+
+  .hero-tenth-stats {
+    gap: 10px;
+    margin-top: 34px;
+  }
+
+  .hero-stat {
+    flex: 1 1 calc(33% - 10px);
+    min-width: 0;
+    padding: 12px 14px;
+  }
+
+  .hero-stat strong {
+    font-size: 26px;
+  }
+
+  .hero-stat span {
+    font-size: 11px;
+  }
+
   .hero-tenth-play-btn {
-    width: 75px;
-    height: 75px;
+    width: 84px;
+    height: 84px;
   }
 
   .play-icon-wrapper {
-    width: 38px;
-    height: 38px;
+    width: 46px;
+    height: 46px;
   }
 
   .play-icon-wrapper svg {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero-modal {
+    padding: 16px;
+  }
+
+  .hero-modal-close {
+    top: 14px;
+    right: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-tenth-title {
+    font-size: 34px;
+  }
+
+  .hero-stat {
+    flex: 1 1 100%;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-tenth-section *,
+  .hero-tenth-section *::before,
+  .hero-tenth-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .hero-tenth-content,
+  .hero-tenth-right {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

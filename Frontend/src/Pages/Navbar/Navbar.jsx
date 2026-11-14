@@ -26,7 +26,7 @@ const CloseIcon = () => (
 );
 
 const ArrowIcon = () => (
-  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+  <svg className="navbar__cta-arrow" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
     <path d="M5 12h14m-7-7l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
@@ -48,10 +48,23 @@ const Navbar = () => {
 
   /* ---------- Scroll: shrink + progress line ---------- */
   useEffect(() => {
-    const onScroll = () => setScrolled((window.scrollY || 0) > 24);
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      setScrolled(y > 24);
+
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(y / max, 1) : 0;
+      if (navRef.current) {
+        navRef.current.style.setProperty('--progress', progress.toFixed(3));
+      }
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, [pathname]);
 
   /* Lock body scroll when drawer is open */
@@ -131,6 +144,9 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+
+        {/* Scroll progress line */}
+        <span className="navbar__progress" aria-hidden="true" />
       </header>
 
       {/* Mobile overlay */}
@@ -161,9 +177,10 @@ const Navbar = () => {
         </div>
 
         <ul className="navbar__drawer-list">
-          {NAV_ITEMS.map((item) => (
+          {NAV_ITEMS.map((item, i) => (
             <li
               key={item.label}
+              style={{ '--i': i }}
               className={`navbar__drawer-item ${isActive(item.href) ? 'navbar__drawer-item--active' : ''}`}
             >
               <Link
@@ -194,4 +211,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar;  

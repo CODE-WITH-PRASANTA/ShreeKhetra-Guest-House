@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./HomepageSixth.css";
 
@@ -30,7 +29,6 @@ const HomepageSixth = () => {
       ref={sectionRef}
     >
       <div className="offers-container">
-
         {/* SECTION HEADER */}
         <div className="offers-header">
           <div className="offers-heading">
@@ -47,22 +45,20 @@ const HomepageSixth = () => {
             <h2>
               Uncover unbeatable deals,
               <br />
-              curated packages,
+              curated packages
             </h2>
           </div>
 
           <a href="/offers" className="all-offers-button">
-            VIEW ALL OFFERS
-            <span>→</span>
+            <span className="btn-text">VIEW ALL OFFERS</span>
+            <span className="btn-arrow">→</span>
           </a>
         </div>
 
         {/* MAIN CONTENT */}
         <div className="offers-content">
-
           {/* LEFT OFFER CONTENT */}
           <div className="offers-left">
-
             <p className="offers-description">
               Get 1 night free when you book 3 nights or more.
               Includes welcome drink &amp; pool access.
@@ -70,20 +66,21 @@ const HomepageSixth = () => {
 
             {/* OFFER COUPON */}
             <div className="offer-coupon">
-
               <div className="offer-details">
                 <p className="offer-discount">30% off</p>
 
                 <h3>Standard rooms</h3>
 
                 <div className="offer-price">
-                  <span>$250</span>
-                  <small>Expiry: 31 Aug</small>
+                  <span>₹2,900</span>
+                  <em>/ night</em>
                 </div>
 
+                <small className="offer-expiry">Valid till 31 Dec</small>
+
                 <a href="/booking" className="book-offer-button">
-                  BOOK NOW
-                  <span>→</span>
+                  <span className="btn-text">BOOK NOW</span>
+                  <span className="btn-arrow">→</span>
                 </a>
               </div>
 
@@ -92,22 +89,22 @@ const HomepageSixth = () => {
                 <svg viewBox="0 0 70 100" fill="none">
                   <path
                     d="M28 27C10 15 17 3 33 4C49 5 55 21 40 35L31 45"
-                    stroke="#9b8876"
+                    stroke="#0a5a78"
                     strokeWidth="3"
                     strokeLinecap="round"
                   />
                   <path
                     d="M23 34L52 29L65 87L13 96L3 43L23 34Z"
-                    fill="#d9c5a9"
-                    stroke="#b39c80"
+                    fill="#f4c776"
+                    stroke="#e8892a"
                     strokeWidth="2"
                   />
-                  <circle cx="27" cy="39" r="4" fill="#8b7660" />
+                  <circle cx="27" cy="39" r="4" fill="#0a5a78" />
                   <text
                     x="37"
                     y="59"
                     textAnchor="middle"
-                    fill="#bd3f30"
+                    fill="#0a5a78"
                     fontSize="10"
                     fontWeight="bold"
                     transform="rotate(-12 37 59)"
@@ -118,7 +115,7 @@ const HomepageSixth = () => {
                     x="37"
                     y="70"
                     textAnchor="middle"
-                    fill="#292929"
+                    fill="#12303f"
                     fontSize="9"
                     fontWeight="bold"
                     transform="rotate(-12 37 70)"
@@ -127,42 +124,7 @@ const HomepageSixth = () => {
                   </text>
                 </svg>
               </div>
-
-              <div className="coupon-corner"></div>
             </div>
-
-            {/* SOCIAL PROOF */}
-            <div className="offers-social-proof">
-
-              <div className="guest-avatars">
-                <img
-                  src="https://i.pravatar.cc/100?img=11"
-                  alt="Hotel guest"
-                  loading="lazy"
-                />
-                <img
-                  src="https://i.pravatar.cc/100?img=47"
-                  alt="Hotel guest"
-                  loading="lazy"
-                />
-                <img
-                  src="https://i.pravatar.cc/100?img=12"
-                  alt="Hotel guest"
-                  loading="lazy"
-                />
-
-                <div className="guest-count">50+</div>
-              </div>
-
-              <div className="guest-rating">
-                <div className="rating-stars" aria-label="5 out of 5 stars">
-                  ★★★★★
-                </div>
-                <p>Guest reviews</p>
-              </div>
-
-            </div>
-
           </div>
 
           {/* RIGHT IMAGE */}
@@ -188,7 +150,6 @@ const HomepageSixth = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

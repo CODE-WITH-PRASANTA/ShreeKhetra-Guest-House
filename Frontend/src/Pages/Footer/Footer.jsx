@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from "../../assets/SriKshetra Residency 03.png"; // adjust path if your assets folder differs
 import "./Footer.css";
 
@@ -41,11 +42,6 @@ const CONTACTS = [
     href: '#',
     icon: 'pin',
   },
-];
-
-const RECENT_POSTS = [
-  { title: 'Rath Yatra stay guide: book early and plan your darshan', date: '08 August, 2026', href: '/news' },
-  { title: 'A sunrise walk on Puri Beach before temple darshan', date: '21 July, 2026', href: '/news' },
 ];
 
 const SOCIALS = [
@@ -95,13 +91,6 @@ const Icon = ({ name }) => {
           <path d="M21 3L10 14M21 3l-7 18-4-7-7-4 18-7z" />
         </svg>
       );
-    case 'calendar':
-      return (
-        <svg {...common} width={14} height={14}>
-          <rect x="3.5" y="5" width="17" height="15" rx="2.5" />
-          <path d="M8 3v4M16 3v4M3.5 10h17" />
-        </svg>
-      );
     case 'arrow':
       return (
         <svg {...common} width={16} height={16} strokeWidth={2.2}>
@@ -141,23 +130,6 @@ const Icon = ({ name }) => {
   }
 };
 
-/* ---------- Section: contact strip ---------- */
-const FooterContactStrip = () => (
-  <div className="footer__contact" role="list">
-    {CONTACTS.map((c) => (
-      <a key={c.key} href={c.href} className="footer__contact-item" role="listitem">
-        <span className="footer__contact-icon">
-          <Icon name={c.icon} />
-        </span>
-        <span className="footer__contact-text">
-          <span className="footer__contact-label">{c.label}</span>
-          <span className="footer__contact-value">{c.value}</span>
-        </span>
-      </a>
-    ))}
-  </div>
-);
-
 /* ---------- Section: brand + subscribe ---------- */
 const FooterBrand = () => {
   const [email, setEmail] = useState('');
@@ -177,9 +149,9 @@ const FooterBrand = () => {
 
   return (
     <div className="footer__brand">
-      <a href="/" className="footer__logo" aria-label="SriKshetra Residency, Puri - Home">
+      <Link to="/" className="footer__logo" aria-label="SriKshetra Residency, Puri - Home">
         <img src={logo} alt="SriKshetra Residency Puri" className="footer__logo-img" draggable="false" />
-      </a>
+      </Link>
 
       <p className="footer__about">
         Pure-veg stay just minutes from Shree Jagannath Temple. Clean rooms, warm service and a calm place to
@@ -225,10 +197,10 @@ const FooterBrand = () => {
           ))}
         </ul>
 
-        <a href="/rooms" className="footer__cta">
+        <Link to="/booking" className="footer__cta">
           <span>Book Your Stay</span>
           <Icon name="arrow" />
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -241,31 +213,30 @@ const FooterLinks = ({ title, links }) => (
     <ul className="footer__list">
       {links.map((l) => (
         <li key={l.label}>
-          <a href={l.href} className="footer__link">
+          <Link to={l.href} className="footer__link">
             <span className="footer__link-dash" aria-hidden="true" />
             <span>{l.label}</span>
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
   </nav>
 );
 
-/* ---------- Section: recent posts ---------- */
-const FooterPosts = () => (
-  <div className="footer__col footer__col--posts">
-    <h3 className="footer__title">Recent Posts</h3>
-    <ul className="footer__posts">
-      {RECENT_POSTS.map((p, i) => (
-        <li key={p.title}>
-          <a href={p.href} className="footer__post">
-            <span className={`footer__post-thumb footer__post-thumb--${i + 1}`} aria-hidden="true" />
-            <span className="footer__post-body">
-              <span className="footer__post-date">
-                <Icon name="calendar" />
-                {p.date}
-              </span>
-              <span className="footer__post-title">{p.title}</span>
+/* ---------- Section: contact column (replaces Recent Posts) ---------- */
+const FooterContact = () => (
+  <div className="footer__col footer__col--contact">
+    <h3 className="footer__title">Contact Us</h3>
+    <ul className="footer__contact-list">
+      {CONTACTS.map((c) => (
+        <li key={c.key}>
+          <a href={c.href} className="footer__contact-card">
+            <span className="footer__contact-icon">
+              <Icon name={c.icon} />
+            </span>
+            <span className="footer__contact-text">
+              <span className="footer__contact-label">{c.label}</span>
+              <span className="footer__contact-value">{c.value}</span>
             </span>
           </a>
         </li>
@@ -293,8 +264,8 @@ const FooterBottom = () => (
       </a>
     </p>
     <ul className="footer__legal">
-      <li><a href="/privacy" className="footer__legal-link">Privacy Policy</a></li>
-      <li><a href="/terms" className="footer__legal-link">Terms &amp; Conditions</a></li>
+      <li><Link to="/privacy" className="footer__legal-link">Privacy Policy</Link></li>
+      <li><Link to="/terms" className="footer__legal-link">Terms &amp; Conditions</Link></li>
     </ul>
   </div>
 );
@@ -305,24 +276,23 @@ const Footer = () => (
     <div className="footer__bg" aria-hidden="true">
       <span className="footer__glow footer__glow--teal" />
       <span className="footer__glow footer__glow--gold" />
-      <span className="footer__grid" />
+      <span className="footer__pattern" />
     </div>
 
-    <div className="footer__container">
-      <FooterContactStrip />
-
+    <div className="footer__container footer__container--main">
       <div className="footer__main">
         <FooterBrand />
         <FooterLinks title="Quick Links" links={QUICK_LINKS} />
         <FooterLinks title="Useful Links" links={USEFUL_LINKS} />
-        <FooterPosts />
+        <FooterContact />
       </div>
     </div>
 
-    <div className="footer__divider" />
-
-    <div className="footer__container">
-      <FooterBottom />
+    {/* Bottom bar: leaves safe space for the floating Enquire / Call / WhatsApp buttons */}
+    <div className="footer__bottom-wrap">
+      <div className="footer__container">
+        <FooterBottom />
+      </div>
     </div>
   </footer>
 );

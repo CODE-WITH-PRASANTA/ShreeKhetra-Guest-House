@@ -24,12 +24,16 @@ const Breadcrumb = ({
         backgroundImage: `url(${breadcrumbImage})`,
       }}
     >
+      {/* Dark Background Overlay */}
       <div className="hotel-breadcrumb-overlay"></div>
 
+      {/* Breadcrumb Content */}
       <div className="hotel-breadcrumb-content">
 
         <span className="hotel-breadcrumb-tag">
+          <span className="breadcrumb-tag-line"></span>
           SHRIKSHETRA RESIDENCY
+          <span className="breadcrumb-tag-line"></span>
         </span>
 
         <h1>{title}</h1>
@@ -42,9 +46,10 @@ const Breadcrumb = ({
 
         <p>{subtitle}</p>
 
+        {/* Breadcrumb Navigation */}
         <nav className="hotel-breadcrumb-nav">
           {breadcrumbItems.map((item, index) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={`${item.label}-${index}`}>
 
               {index !== 0 && (
                 <FaChevronRight className="hotel-breadcrumb-arrow" />
@@ -69,6 +74,10 @@ const Breadcrumb = ({
         </nav>
 
       </div>
+
+      {/* Bottom Decorative Border */}
+      <div className="hotel-breadcrumb-bottom"></div>
+
     </section>
   );
 };

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./HomepageFour.css";
 
@@ -30,12 +29,14 @@ const HomepageFour = () => {
       ref={sectionRef}
     >
       <div className="why-container">
-
         {/* LEFT CONTENT */}
         <div className="why-content">
-
           <div className="why-subtitle">
-            <span className="ornament">❧ ───────── ❧</span>
+            <div className="why-ornament">
+              <span></span>
+              <div>❧</div>
+              <span></span>
+            </div>
             <p>WHY CHOOSE US</p>
           </div>
 
@@ -53,9 +54,8 @@ const HomepageFour = () => {
 
           {/* FEATURES */}
           <div className="why-features">
-
             <div className="why-feature">
-              <div className="feature-icon">
+              <div className="why-feature-icon">
                 <svg viewBox="0 0 64 64" fill="none">
                   <path d="M8 55h48M15 55V31l17-13 17 13v24" />
                   <path d="M23 55V40h18v15M27 13l5-7 5 7M32 6v11" />
@@ -71,7 +71,7 @@ const HomepageFour = () => {
             </div>
 
             <div className="why-feature">
-              <div className="feature-icon">
+              <div className="why-feature-icon">
                 <svg viewBox="0 0 64 64" fill="none">
                   <path d="M6 29L32 7l26 22M11 25v32h42V25" />
                   <path d="M18 39h28v12H18zM23 39v-5h18v5" />
@@ -80,29 +80,30 @@ const HomepageFour = () => {
                   <path d="M22 45h5M37 45h5" />
                 </svg>
               </div>
-              <span>Private Island</span>
+              <span>
+                Private
+                <br />
+                Island
+              </span>
             </div>
-
           </div>
 
           <div className="why-divider"></div>
 
           <div className="why-highlight">
             <span className="highlight-arrow">→</span>
-            <p>
-              These characteristics prioritize comfort and quality.
-            </p>
+            <p>These characteristics prioritize comfort and quality.</p>
           </div>
 
           <a href="/about" className="why-button">
-            DISCOVER MORE
-            <span>→</span>
+            <span className="why-button-text">DISCOVER MORE</span>
+            <span className="why-button-arrow">→</span>
           </a>
-
         </div>
 
         {/* RIGHT IMAGE CARDS */}
         <div className="why-visuals">
+          <div className="why-circle"></div>
 
           <div className="why-image-card why-image-one">
             <img
@@ -116,19 +117,17 @@ const HomepageFour = () => {
               src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85"
               alt="Luxury hotel interior"
             />
-
-            <div className="customer-badge">
-              <h3>4k+</h3>
-              <p>
-                Happy
-                <br />
-                Customer
-              </p>
-            </div>
           </div>
 
+          <div className="customer-badge">
+            <h3>4k+</h3>
+            <p>
+              Happy
+              <br />
+              Customers
+            </p>
+          </div>
         </div>
-
       </div>
     </section>
   );
