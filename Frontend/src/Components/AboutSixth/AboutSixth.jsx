@@ -1,44 +1,29 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./AboutSixth.css";
 
 const statistics = [
-  {
-    id: 1,
-    value: 635,
-    suffix: "+",
-    label: "Luxury Rooms",
-    duration: 2200,
-  },
-  {
-    id: 2,
-    value: 85,
-    suffix: "k+",
-    label: "Happy Guest",
-    duration: 2400,
-  },
-  {
-    id: 3,
-    value: 2.3,
-    suffix: "k+",
-    label: "Five Star Ratings",
-    duration: 2600,
-  },
-  {
-    id: 4,
-    value: 2.8,
-    suffix: "m",
-    label: "Served Breakfast",
-    duration: 2800,
-  },
+  { id: 1, value: 635, decimals: 0, suffix: "+", label: "Luxury Rooms", duration: 2200 },
+  { id: 2, value: 85, decimals: 0, suffix: "k+", label: "Happy Guests", duration: 2400 },
+  { id: 3, value: 2.3, decimals: 1, suffix: "k+", label: "Five Star Ratings", duration: 2600 },
+  { id: 4, value: 2.8, decimals: 1, suffix: "m", label: "Served Breakfast", duration: 2800 },
 ];
+
+const formatNumber = (value, decimals) =>
+  Number(value).toLocaleString("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
 
 const AboutSixth = () => {
   const sectionRef = useRef(null);
   const [started, setStarted] = useState(false);
   const [counts, setCounts] = useState(statistics.map(() => 0));
 
+  /* Start when the section scrolls into view */
   useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return undefined;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -46,69 +31,47 @@ const AboutSixth = () => {
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.3,
-      }
+      { threshold: 0.3 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
+  /* Count-up animation */
   useEffect(() => {
-    if (!started) return;
+    if (!started) return undefined;
 
-    const animationFrames = [];
-
-    statistics.forEach((item, index) => {
-      const startTime = performance.now();
-      const duration = item.duration;
-
-      const animate = (currentTime) => {
-        const progress = Math.min(
-          (currentTime - startTime) / duration,
-          1
-        );
-
-        // Smooth ease-out animation
-        const easedProgress = 1 - Math.pow(1 - progress, 4);
-
-        const currentValue = item.value * easedProgress;
-
-        setCounts((previous) => {
-          const updated = [...previous];
-          updated[index] = currentValue;
-          return updated;
-        });
-
-        if (progress < 1) {
-          animationFrames[index] = requestAnimationFrame(animate);
-        }
-      };
-
-      animationFrames[index] = requestAnimationFrame(animate);
-    });
-
-    return () => {
-      animationFrames.forEach((frame) => cancelAnimationFrame(frame));
-    };
-  }, [started]);
-
-  const formatNumber = (value, index) => {
-    if (index === 0) {
-      return Math.floor(value).toLocaleString("en-US");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCounts(statistics.map((s) => s.value));
+      return undefined;
     }
 
-    return value.toFixed(1);
-  };
+    const startTime = performance.now();
+    const longest = Math.max(...statistics.map((s) => s.duration));
+    let frame;
+
+    const tick = (now) => {
+      const elapsed = now - startTime;
+
+      setCounts(
+        statistics.map((s) => {
+          const progress = Math.min(elapsed / s.duration, 1);
+          return s.value * (1 - Math.pow(1 - progress, 4)); // smooth ease-out
+        })
+      );
+
+      if (elapsed < longest) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [started]);
 
   return (
     <section className="about-sixth" ref={sectionRef}>
-      <div className="about-sixth__background"></div>
-      <div className="about-sixth__overlay"></div>
+      <div className="about-sixth__background" aria-hidden="true"></div>
+      <div className="about-sixth__overlay" aria-hidden="true"></div>
 
       <div className="about-sixth__container">
         {statistics.map((item, index) => (
@@ -119,9 +82,14 @@ const AboutSixth = () => {
             key={item.id}
             style={{ "--item-index": index }}
           >
-            <h2 className="about-sixth__number">
-              {formatNumber(counts[index], index)}
-              {item.suffix}
+            <h2
+              className="about-sixth__number"
+              aria-label={`${formatNumber(item.value, item.decimals)}${item.suffix}`}
+            >
+              <span aria-hidden="true">
+                {formatNumber(counts[index], item.decimals)}
+                <span className="about-sixth__suffix">{item.suffix}</span>
+              </span>
             </h2>
 
             <p className="about-sixth__label">{item.label}</p>

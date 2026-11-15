@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AboutThird.css";
 
 const features = [
@@ -67,16 +66,45 @@ const FeatureIcon = ({ type }) => {
 };
 
 const AboutThird = () => {
-  return (
-    <section className="about-third">
-      <div className="about-third__container">
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
 
+  // Start the card animation only when the section is on screen
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      className={`about-third ${visible ? "about-third--visible" : ""}`}
+      ref={sectionRef}
+    >
+      <div className="about-third__container">
         {features.map((feature, index) => (
           <article
             className="about-third__card"
             key={feature.id}
             style={{ "--card-index": index }}
           >
+            <span className="about-third__number" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+
             <div className="about-third__icon-wrap">
               <div className="about-third__icon">
                 <FeatureIcon type={feature.type} />
@@ -84,21 +112,15 @@ const AboutThird = () => {
               <span className="about-third__icon-decoration"></span>
             </div>
 
-            <h3 className="about-third__title">
-              {feature.title}
-            </h3>
+            <h3 className="about-third__title">{feature.title}</h3>
 
             <div className="about-third__divider">
               <span></span>
             </div>
 
-            <p className="about-third__description">
-              {feature.description}
-            </p>
-
+            <p className="about-third__description">{feature.description}</p>
           </article>
         ))}
-
       </div>
     </section>
   );

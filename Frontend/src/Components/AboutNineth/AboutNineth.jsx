@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./AboutNineth.css";
 
@@ -21,19 +20,27 @@ const InstagramIcon = ({ size = 24 }) => {
       aria-hidden="true"
     >
       <rect x="3" y="3" width="18" height="18" rx="5" />
-
       <circle cx="12" cy="12" r="4" />
-
-      <circle
-        cx="17.5"
-        cy="6.5"
-        r="0.8"
-        fill="currentColor"
-        stroke="none"
-      />
+      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
     </svg>
   );
 };
+
+const ArrowIcon = ({ size = 16 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
 
 /* =========================================
    GALLERY IMAGES
@@ -78,34 +85,74 @@ const galleryImages = [
   },
 ];
 
+/* Replace with your real Instagram page link */
+const INSTAGRAM_LINK = "https://www.instagram.com/";
+
+/* =========================================
+   SINGLE PHOTO CARD
+========================================= */
+
+const GalleryCard = ({ item, hidden = false }) => (
+  <a
+    href={INSTAGRAM_LINK}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="about-nineth-card"
+    aria-label={`View ${item.alt} on Instagram`}
+    tabIndex={hidden ? -1 : undefined}
+  >
+    <div className="about-nineth-frame">
+      <img
+        src={item.image}
+        alt={item.alt}
+        width="340"
+        height="240"
+        loading={hidden ? "lazy" : "eager"}
+        draggable="false"
+      />
+
+      {/* Always-visible label */}
+      <span className="about-nineth-tag" aria-hidden="true">
+        <InstagramIcon size={13} />
+        CURATED LIVING
+      </span>
+
+      {/* Hover overlay */}
+      <div className="about-nineth-overlay" aria-hidden="true">
+        <span className="about-nineth-instagram-button">
+          <InstagramIcon size={24} />
+        </span>
+
+        <span className="about-nineth-overlay-text">VIEW ON INSTAGRAM</span>
+      </div>
+    </div>
+  </a>
+);
+
 /* =========================================
    ABOUT NINETH COMPONENT
 ========================================= */
 
 const AboutNineth = () => {
-  const instagramLink = "https://www.instagram.com/";
-
-  // Duplicate images to create continuous animation.
-  const duplicatedImages = [
-    ...galleryImages,
-    ...galleryImages,
-  ];
-
   return (
     <section className="about-nineth">
+      {/* Decorative background */}
+      <div className="about-nineth-pattern" aria-hidden="true"></div>
+      <span className="about-nineth-glow about-nineth-glow--teal" aria-hidden="true"></span>
+      <span className="about-nineth-glow about-nineth-glow--gold" aria-hidden="true"></span>
 
       {/* =====================================
           HEADER
       ===================================== */}
 
       <div className="about-nineth-heading">
-
         <span className="about-nineth-eyebrow">
+          <span className="about-nineth-eyebrow-dot" aria-hidden="true"></span>
           OUR LIFESTYLE
         </span>
 
         <a
-          href={instagramLink}
+          href={INSTAGRAM_LINK}
           target="_blank"
           rel="noopener noreferrer"
           className="about-nineth-title"
@@ -113,93 +160,44 @@ const AboutNineth = () => {
           <span>Follow Instagram</span>
 
           <span className="about-nineth-title-icon">
-            <InstagramIcon size={15} />
+            <InstagramIcon size={22} />
           </span>
         </a>
 
-        <p className="about-nineth-subtitle">
-          Discover our world of beautiful spaces and
-          timeless luxury.
-        </p>
+        <span className="about-nineth-title-line" aria-hidden="true"></span>
 
+        <p className="about-nineth-subtitle">
+          Discover our world of beautiful spaces and timeless luxury.
+        </p>
       </div>
 
       {/* =====================================
           INFINITE GALLERY
       ===================================== */}
 
-      <div className="about-nineth-gallery">
-
+      <div className="about-nineth-gallery" aria-label="Instagram gallery">
         <div className="about-nineth-track">
+          {/* First group */}
+          <div className="about-nineth-group">
+            {galleryImages.map((item) => (
+              <GalleryCard key={item.id} item={item} />
+            ))}
+          </div>
 
-          {duplicatedImages.map((item, index) => (
-
-            <a
-              href={instagramLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="about-nineth-card"
-              key={`${item.id}-${index}`}
-              aria-label={`View ${item.alt} on Instagram`}
-            >
-
-              {/* IMAGE */}
-
-              <img
-                src={item.image}
-                alt={item.alt}
-                loading={index < galleryImages.length ? "eager" : "lazy"}
-                draggable="false"
-              />
-
-              {/* =================================
-                  HOVER OVERLAY
-              ================================= */}
-
-              <div className="about-nineth-overlay">
-
-                <span className="about-nineth-instagram-button">
-
-                  <InstagramIcon size={24} />
-
-                </span>
-
-                <span className="about-nineth-overlay-text">
-                  VIEW ON INSTAGRAM
-                </span>
-
-              </div>
-
-              {/* =================================
-                  IMAGE BOTTOM DETAILS
-              ================================= */}
-
-              <div className="about-nineth-image-detail">
-
-                <span>
-                  CURATED LIVING
-                </span>
-
-                <span className="about-nineth-detail-icon">
-                  <InstagramIcon size={13} />
-                </span>
-
-              </div>
-
-            </a>
-
-          ))}
-
+          {/* Duplicate group for a seamless loop */}
+          <div className="about-nineth-group" aria-hidden="true">
+            {galleryImages.map((item) => (
+              <GalleryCard key={`dup-${item.id}`} item={item} hidden />
+            ))}
+          </div>
         </div>
-
       </div>
 
       {/* =====================================
-          BOTTOM LUXURY DETAIL
+          BOTTOM DETAIL + BUTTON
       ===================================== */}
 
       <div className="about-nineth-bottom">
-
         <span className="about-nineth-bottom-line" />
 
         <span className="about-nineth-bottom-text">
@@ -207,9 +205,9 @@ const AboutNineth = () => {
         </span>
 
         <span className="about-nineth-bottom-line" />
-
       </div>
 
+     
     </section>
   );
 };
