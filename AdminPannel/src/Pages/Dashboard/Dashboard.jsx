@@ -1,8 +1,19 @@
-import React from 'react'
+
+import DashboardOne from '../../Components/DashboardOne/DashboardOne'
+import DashboardThree from '../../Components/DashboardThree/DashboardThree'
+import DashboardTwo from '../../Components/DashboardTwo/DashboardTwo'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      
+  <DashboardOne />
+  <DashboardTwo />
+  <DashboardThree />
+    
+    
+    </div>
+   
   )
 }
 
