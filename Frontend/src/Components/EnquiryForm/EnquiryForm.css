@@ -1,0 +1,923 @@
+/* ==========================================
+   SRIKSHETRA RESIDENCY - ENQUIRY FORM
+   Same palette as the navbar + footer:
+   cream, temple gold, sun orange, ocean teal, deep navy.
+========================================== */
+
+.EnquiryForm {
+  --ef-ivory: #fffcf5;
+  --ef-cream: #fbf1dc;
+  --ef-cream-2: #f6e6c3;
+  --ef-gold: #b97a1c;
+  --ef-gold-light: #d9a441;
+  --ef-orange: #e8892b;
+  --ef-teal: #14839f;
+  --ef-teal-dark: #0c5c75;
+  --ef-navy: #0b2f45;
+  --ef-navy-deep: #071f2f;
+  --ef-text: #0b2f45;
+  --ef-muted: #6f8594;
+  --ef-border: rgba(185, 122, 28, 0.28);
+  --ef-ease: cubic-bezier(0.22, 0.8, 0.2, 1);
+  font-family: "Plus Jakarta Sans", "Poppins", "Segoe UI", sans-serif;
+}
+
+.EnquiryForm *,
+.EnquiryForm *::before,
+.EnquiryForm *::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   HIDE FLOATING CALL / WHATSAPP ICONS
+   While the form is open, <body> gets the class "enquiry-open".
+========================================== */
+
+body.enquiry-open .call-float,
+body.enquiry-open .whatsapp-float,
+body.enquiry-open .floating-call,
+body.enquiry-open .floating-whatsapp,
+body.enquiry-open .floating-contact,
+body.enquiry-open .contact-float,
+body.enquiry-open .call-btn,
+body.enquiry-open .whatsapp-btn,
+body.enquiry-open [class*="whatsapp"],
+body.enquiry-open [class*="WhatsApp"],
+body.enquiry-open [class*="floating-call"],
+body.enquiry-open [class*="FloatingCall"],
+body.enquiry-open [class*="FloatingContact"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease;
+}
+
+/* ==========================================
+   LEFT SIDE FLOATING TRIGGER BUTTON
+========================================== */
+
+.EnquiryForm-trigger {
+  position: fixed;
+  bottom: 26px;
+  left: 26px;
+  z-index: 9995;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-teal) 0%, var(--ef-teal-dark) 100%);
+  border: 2px solid var(--ef-gold-light);
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 12px 26px -8px rgba(12, 92, 117, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  animation:
+    efBtnAppear 0.35s var(--ef-ease),
+    efPulse 2.8s ease-out 1s infinite;
+  transition: transform 0.3s var(--ef-ease), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.EnquiryForm-trigger:hover {
+  transform: translateY(-3px);
+  color: var(--ef-navy);
+  background: linear-gradient(135deg, var(--ef-gold-light) 0%, var(--ef-orange) 100%);
+  box-shadow: 0 16px 30px -10px rgba(232, 137, 43, 0.8);
+}
+
+.EnquiryForm-trigger:focus-visible {
+  outline: 2px solid var(--ef-gold-light);
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   RIGHT SIDE FLOATING ENQUIRY CARD
+========================================== */
+
+.EnquiryForm-panel {
+  position: fixed;
+  top: 50%;
+  right: 26px;
+  transform: translateY(-50%);
+  z-index: 99999;
+  width: 385px;
+  max-width: calc(100vw - 28px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--ef-ivory) 0%, var(--ef-cream) 100%);
+  border: 1.5px solid rgba(217, 164, 65, 0.7);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow:
+    0 30px 70px -18px rgba(7, 31, 47, 0.55),
+    0 8px 22px rgba(7, 31, 47, 0.14),
+    0 0 0 6px rgba(217, 164, 65, 0.1);
+  animation: efOpen 0.55s var(--ef-ease);
+}
+
+/* ---------- Header ---------- */
+.EnquiryForm-header {
+  position: relative;
+  flex-shrink: 0;
+  padding: 20px 22px 18px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(232, 137, 43, 0.32), transparent 45%),
+    linear-gradient(145deg, var(--ef-navy) 0%, var(--ef-teal-dark) 100%);
+  overflow: hidden;
+}
+
+/* tri-colour line on top */
+.EnquiryForm-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ef-teal), var(--ef-gold-light), var(--ef-orange));
+}
+
+/* gold shine sweep when the panel opens */
+.EnquiryForm-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 236, 190, 0.28), transparent);
+  transform: skewX(-20deg);
+  animation: efShine 1.4s ease 0.35s 1 both;
+  pointer-events: none;
+}
+
+.EnquiryForm-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 236, 190, 0.45);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.3s var(--ef-ease), color 0.25s ease;
+}
+
+.EnquiryForm-close:hover {
+  color: var(--ef-navy);
+  background: var(--ef-gold-light);
+  transform: rotate(90deg);
+}
+
+.EnquiryForm-headerIcon {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ef-navy);
+  background: linear-gradient(135deg, var(--ef-gold-light), var(--ef-orange));
+  border-radius: 12px;
+  box-shadow: 0 8px 16px -6px rgba(232, 137, 43, 0.7);
+}
+
+.EnquiryForm-header h2 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 5px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.EnquiryForm-header p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-right: 18px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.EnquiryForm-headerLine {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, var(--ef-gold-light), var(--ef-orange));
+  border-radius: 3px;
+}
+
+/* ==========================================
+   CARD BODY & WHITE FIELD BOXES
+========================================== */
+
+.EnquiryForm-body {
+  padding: 16px 16px 16px;
+}
+
+.EnquiryForm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* fields fade up one after another when the panel opens */
+.EnquiryForm-form > * {
+  animation: efFieldIn 0.5s var(--ef-ease) backwards;
+}
+.EnquiryForm-form > *:nth-child(1) { animation-delay: 0.15s; }
+.EnquiryForm-form > *:nth-child(2) { animation-delay: 0.21s; }
+.EnquiryForm-form > *:nth-child(3) { animation-delay: 0.27s; }
+.EnquiryForm-form > *:nth-child(4) { animation-delay: 0.33s; }
+.EnquiryForm-form > *:nth-child(5) { animation-delay: 0.39s; }
+.EnquiryForm-form > *:nth-child(6) { animation-delay: 0.45s; }
+.EnquiryForm-form > *:nth-child(7) { animation-delay: 0.51s; }
+.EnquiryForm-form > *:nth-child(8) { animation-delay: 0.57s; }
+
+.EnquiryForm-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.EnquiryForm-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1.5px solid var(--ef-border);
+  border-radius: 13px;
+  box-shadow: 0 8px 16px -14px rgba(11, 47, 69, 0.5);
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s var(--ef-ease);
+}
+
+.EnquiryForm-box:hover {
+  border-color: rgba(185, 122, 28, 0.55);
+}
+
+.EnquiryForm-box:focus-within,
+.EnquiryForm-box.is-active,
+.EnquiryForm-box.is-open {
+  border-color: var(--ef-teal);
+  box-shadow: 0 0 0 3.5px rgba(20, 131, 159, 0.14);
+}
+
+/* keep an open dropdown above the boxes that follow it */
+.EnquiryForm-selectBox.is-open {
+  z-index: 30;
+}
+
+.EnquiryForm-boxIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-teal), var(--ef-teal-dark));
+  border-radius: 10px;
+  box-shadow: 0 6px 12px -6px rgba(12, 92, 117, 0.8);
+}
+
+.EnquiryForm-boxIcon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.EnquiryForm-boxContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.EnquiryForm-boxContent label,
+.EnquiryForm-fieldLabel {
+  margin-bottom: 1px;
+  color: var(--ef-gold);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.EnquiryForm-boxContent input {
+  width: 100%;
+  padding: 0;
+  color: var(--ef-text);
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.EnquiryForm-boxContent input::placeholder {
+  color: var(--ef-muted);
+  font-weight: 400;
+}
+
+/* Fix browser autofill blue background */
+.EnquiryForm-boxContent input:-webkit-autofill,
+.EnquiryForm-boxContent input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ef-text);
+  box-shadow: 0 0 0 40px #ffffff inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* ==========================================
+   PREMIUM ROOM TYPE DROPDOWN
+========================================== */
+
+.EnquiryForm-selectTrigger {
+  padding: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.EnquiryForm-selectBox {
+  cursor: pointer;
+}
+
+.EnquiryForm-chevron {
+  display: flex;
+  color: var(--ef-gold);
+  pointer-events: none;
+  transition: transform 0.3s var(--ef-ease), color 0.2s ease;
+}
+
+.EnquiryForm-selectBox.is-open .EnquiryForm-chevron {
+  color: var(--ef-teal);
+  transform: rotate(180deg);
+}
+
+.EnquiryForm-menu {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  right: 0;
+  z-index: 30;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: linear-gradient(180deg, #ffffff, var(--ef-ivory));
+  border: 1.5px solid rgba(217, 164, 65, 0.7);
+  border-radius: 16px;
+  box-shadow:
+    0 22px 42px -14px rgba(7, 31, 47, 0.5),
+    0 4px 10px rgba(7, 31, 47, 0.08),
+    inset 0 1px 0 #ffffff;
+  transform-origin: top center;
+  animation: efMenuIn 0.25s var(--ef-ease);
+}
+
+.EnquiryForm-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  color: var(--ef-text);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, padding 0.2s ease;
+}
+
+.EnquiryForm-option:hover {
+  color: var(--ef-gold);
+  background: var(--ef-cream);
+  padding-left: 17px;
+}
+
+.EnquiryForm-option.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-teal), var(--ef-teal-dark));
+  box-shadow: 0 8px 16px -8px rgba(12, 92, 117, 0.8);
+}
+
+/* ==========================================
+   DATE BOXES
+========================================== */
+
+.EnquiryForm-dateBox {
+  cursor: pointer;
+}
+
+.EnquiryForm-dateText {
+  color: var(--ef-muted);
+  font-size: 12.5px;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.EnquiryForm-dateText.filled {
+  color: var(--ef-text);
+  font-weight: 600;
+}
+
+/* ==========================================
+   OVERLAY (SCRIM) - lives inside the panel
+========================================== */
+
+.EnquiryForm-scrim {
+  position: absolute;
+  inset: 0;
+}
+
+.EnquiryForm-scrim--clear {
+  position: fixed;
+  z-index: 25;
+  background: transparent;
+}
+
+.EnquiryForm-scrim--dim {
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 31, 47, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: efFade 0.25s ease;
+}
+
+/* ==========================================
+   PREMIUM CALENDAR
+========================================== */
+
+.EnquiryForm-calendar {
+  width: 326px;
+  max-width: calc(100vw - 52px);
+  padding: 14px 14px 16px;
+  background: linear-gradient(160deg, #ffffff 0%, var(--ef-cream) 100%);
+  border: 1.5px solid rgba(217, 164, 65, 0.8);
+  border-radius: 20px;
+  box-shadow:
+    0 28px 56px -12px rgba(7, 31, 47, 0.6),
+    0 6px 14px rgba(7, 31, 47, 0.18),
+    inset 0 1px 0 #ffffff;
+  animation: efPop 0.32s var(--ef-ease);
+}
+
+.EnquiryForm-calTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 10px 10px 10px 13px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-navy), var(--ef-teal-dark));
+  border-bottom: 2px solid var(--ef-gold-light);
+  border-radius: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  box-shadow: 0 10px 18px -10px rgba(12, 92, 117, 0.8);
+}
+
+.EnquiryForm-calTitle span {
+  flex: 1;
+}
+
+.EnquiryForm-calClose {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.EnquiryForm-calClose:hover {
+  color: var(--ef-navy);
+  background: var(--ef-gold-light);
+}
+
+.EnquiryForm-calNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: var(--ef-navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 17px;
+}
+
+.EnquiryForm-calArrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ef-teal-dark);
+  background: #ffffff;
+  border: 1.5px solid var(--ef-border);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px -8px rgba(11, 47, 69, 0.6);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.EnquiryForm-calArrow:hover:not(:disabled) {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-teal), var(--ef-teal-dark));
+  border-color: var(--ef-gold-light);
+}
+
+.EnquiryForm-calArrow:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.EnquiryForm-calArrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.EnquiryForm-calGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.EnquiryForm-calWeek {
+  margin-bottom: 6px;
+}
+
+.EnquiryForm-calWeek span {
+  text-align: center;
+  color: var(--ef-gold);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+/* Day tile */
+.EnquiryForm-day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ef-text);
+  background: #ffffff;
+  border: 1px solid rgba(185, 122, 28, 0.14);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px -6px rgba(11, 47, 69, 0.5);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.EnquiryForm-day:hover:not(:disabled):not(.is-selected) {
+  color: var(--ef-gold);
+  background: var(--ef-cream);
+  border-color: var(--ef-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 14px -8px rgba(185, 122, 28, 0.7);
+}
+
+.EnquiryForm-day.is-today {
+  color: var(--ef-gold);
+  font-weight: 800;
+  border-color: var(--ef-gold-light);
+  box-shadow: inset 0 0 0 1.5px var(--ef-gold-light);
+}
+
+/* Days between check-in and check-out */
+.EnquiryForm-day.is-range {
+  color: var(--ef-navy);
+  background: var(--ef-cream-2);
+  border-color: rgba(217, 164, 65, 0.5);
+  box-shadow: none;
+}
+
+/* Selected day */
+.EnquiryForm-day.is-selected {
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--ef-teal), var(--ef-teal-dark));
+  border-color: var(--ef-gold-light);
+  box-shadow: 0 10px 16px -8px rgba(12, 92, 117, 0.85);
+}
+
+.EnquiryForm-day:disabled {
+  color: #b7c3cb;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   SUBMIT, ERROR & NOTE
+========================================== */
+
+.EnquiryForm-error {
+  margin: 0;
+  padding: 8px 12px;
+  color: #9b2c2c;
+  background: #fdecec;
+  border: 1px solid #f3c6c6;
+  border-left: 4px solid #d9534f;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.EnquiryForm-submit {
+  width: 100%;
+  height: 46px;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-teal) 0%, var(--ef-teal-dark) 100%);
+  border: 1.5px solid var(--ef-gold-light);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow:
+    0 12px 22px -10px rgba(12, 92, 117, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: transform 0.3s var(--ef-ease), background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.EnquiryForm-submit svg {
+  transition: transform 0.3s ease;
+}
+
+.EnquiryForm-submit:hover {
+  transform: translateY(-2px);
+  color: var(--ef-navy);
+  background: linear-gradient(135deg, var(--ef-gold-light) 0%, var(--ef-orange) 100%);
+  box-shadow: 0 16px 28px -12px rgba(232, 137, 43, 0.85);
+}
+
+.EnquiryForm-submit:hover svg {
+  transform: translateX(4px);
+}
+
+.EnquiryForm-submit:focus-visible {
+  outline: 2px solid var(--ef-teal);
+  outline-offset: 3px;
+}
+
+.EnquiryForm-note {
+  margin: 3px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--ef-muted);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.EnquiryForm-note svg {
+  color: var(--ef-gold);
+}
+
+/* ==========================================
+   SUCCESS VIEW
+========================================== */
+
+.EnquiryForm-success {
+  padding: 14px 6px 4px;
+  text-align: center;
+  animation: efPop 0.45s var(--ef-ease);
+}
+
+.EnquiryForm-successBadge {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--ef-teal), var(--ef-teal-dark));
+  border: 4px solid var(--ef-cream-2);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px var(--ef-gold-light),
+    0 14px 24px -10px rgba(12, 92, 117, 0.8);
+}
+
+.EnquiryForm-success h3 {
+  margin: 0 0 5px;
+  color: var(--ef-navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.EnquiryForm-success > p {
+  margin: 0 0 16px;
+  color: var(--ef-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.EnquiryForm-success > p strong {
+  color: var(--ef-navy);
+}
+
+.EnquiryForm-summary {
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  background: #ffffff;
+  border: 1.5px solid var(--ef-border);
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 12px 22px -18px rgba(11, 47, 69, 0.55);
+}
+
+.EnquiryForm-summary > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px dashed rgba(185, 122, 28, 0.3);
+  font-size: 12.5px;
+}
+
+.EnquiryForm-summary > div:last-child {
+  border-bottom: none;
+}
+
+.EnquiryForm-summary span {
+  color: var(--ef-gold);
+  font-weight: 700;
+}
+
+.EnquiryForm-summary strong {
+  color: var(--ef-navy);
+  text-align: right;
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+/* premium open: slide in from the right + gentle scale, blur to clear */
+@keyframes efOpen {
+  0% {
+    opacity: 0;
+    transform: translate(46px, -50%) scale(0.94);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, -50%) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes efFieldIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes efShine {
+  from { left: -60%; }
+  to   { left: 140%; }
+}
+
+@keyframes efBtnAppear {
+  from { opacity: 0; transform: translateY(14px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes efPulse {
+  0%   { box-shadow: 0 12px 26px -8px rgba(12, 92, 117, 0.65), 0 0 0 0 rgba(217, 164, 65, 0.55); }
+  70%  { box-shadow: 0 12px 26px -8px rgba(12, 92, 117, 0.65), 0 0 0 16px rgba(217, 164, 65, 0); }
+  100% { box-shadow: 0 12px 26px -8px rgba(12, 92, 117, 0.65), 0 0 0 0 rgba(217, 164, 65, 0); }
+}
+
+@keyframes efMenuIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes efPop {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes efFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+/* short screens: tighten spacing and let the body scroll */
+@media (max-height: 760px) {
+  .EnquiryForm-panel {
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+  .EnquiryForm-body {
+    overflow-y: auto;
+    padding: 12px 14px 14px;
+  }
+  .EnquiryForm-header {
+    padding: 14px 20px 12px;
+  }
+  .EnquiryForm-headerIcon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 6px;
+  }
+  .EnquiryForm-header h2 {
+    font-size: 23px;
+  }
+  .EnquiryForm-form {
+    gap: 7px;
+  }
+  .EnquiryForm-box {
+    padding: 6px 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .EnquiryForm-panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+  }
+
+  .EnquiryForm-trigger {
+    bottom: 18px;
+    left: 16px;
+    padding: 11px 20px;
+    font-size: 13px;
+  }
+
+  .EnquiryForm-calendar {
+    width: calc(100% - 28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .EnquiryForm-panel,
+  .EnquiryForm-trigger,
+  .EnquiryForm-menu,
+  .EnquiryForm-calendar,
+  .EnquiryForm-scrim--dim,
+  .EnquiryForm-success,
+  .EnquiryForm-form > *,
+  .EnquiryForm-header::after {
+    animation: none !important;
+  }
+}

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+
 import {
   BedDouble,
   Users,
@@ -234,3 +235,4 @@ const DashboardOne = () => {
 };
 
 export default DashboardOne;
+

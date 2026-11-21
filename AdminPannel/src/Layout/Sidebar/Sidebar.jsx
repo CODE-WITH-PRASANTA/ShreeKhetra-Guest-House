@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import {
@@ -13,69 +12,103 @@ import {
   X,
   FilePenLine,
   FolderKanban,
-  Leaf,
+  Wallet,
+  Star,
+  TicketPercent,
+  UserRound,
+  Settings,
+  LogOut,
+  BedDouble,
+  ClipboardList,
 } from "lucide-react";
 
 import logo from "../../assets/SriKshetra Residency 03.png";
 import "./Sidebar.css";
 
-// =========================================================
-// NAVIGATION ITEMS
-// =========================================================
-
-export const NAV_ITEMS = [
+const NAV_ITEMS = [
   {
     label: "Dashboard",
     icon: LayoutDashboard,
     path: "/admin/dashboard",
   },
   {
-    label: "Blog",
-    icon: BookOpen,
-    path: "/admin/blog",
+    label: "Room Management",
+    icon: BedDouble,
     children: [
       {
-        label: "Blog Posting",
+        label: "Add Rooms",
+        icon: Hotel,
+        path: "/admin/rooms/add",
+      },
+      {
+        label: "Manage Rooms",
+        icon: ClipboardList,
+        path: "/admin/rooms/manage",
+      },
+    ],
+  },
+  {
+    label: "Enquiry Management",
+    icon: MessageSquareText,
+    path: "/admin/enquiry",
+  },
+  {
+    label: "Daily Booking Management",
+    icon: CalendarCheck,
+    path: "/admin/daily-booking",
+  },
+  {
+    label: "Review Management",
+    icon: Star,
+    path: "/admin/reviews",
+  },
+  {
+    label: "Blog Management",
+    icon: BookOpen,
+    children: [
+      {
+        label: "Add Blog",
         icon: FilePenLine,
         path: "/admin/blog/posting",
       },
       {
-        label: "Blog Management",
+        label: "Manage Blog",
         icon: FolderKanban,
         path: "/admin/blog/management",
       },
     ],
   },
   {
-    label: "Gallery",
+    label: "Wallet Management",
+    icon: Wallet,
+    path: "/admin/wallet",
+  },
+  {
+    label: "Gallery Management",
     icon: Images,
     path: "/admin/gallery",
   },
   {
-    label: "Explores",
-    icon: Leaf,
-    path: "/admin/explores",
+    label: "Booking Management",
+    icon: ClipboardList,
+    path: "/admin/booking-management",
   },
   {
-    label: "Tour Booking",
-    icon: CalendarCheck,
-    path: "/admin/tour-booking",
+    label: "Discount Coupon",
+    icon: TicketPercent,
+    path: "/admin/discount-coupon",
   },
   {
-    label: "Hotel Booking",
-    icon: Hotel,
-    path: "/admin/hotel-booking",
+    label: "Profile",
+    icon: UserRound,
+    path: "/admin/profile",
   },
   {
-    label: "Enquiry",
-    icon: MessageSquareText,
-    path: "/admin/enquiry",
+    label: "Settings",
+    icon: Settings,
+    path: "/admin/settings",
   },
 ];
-
-// =========================================================
-// SIDEBAR COMPONENT
-// =========================================================
 
 const Sidebar = ({
   isCollapsed = false,
@@ -85,130 +118,72 @@ const Sidebar = ({
   onLogout = () => {},
   brandName = "Srikhetra Guest House",
   brandTagline = "ADMIN PANEL",
-
-  user = {
-    name: "Admin",
-    role: "Super Administrator",
-    initials: "AD",
-    avatarUrl: "",
-  },
-
   version = "v2.5.0",
 }) => {
   const location = useLocation();
   const currentPath = location.pathname.toLowerCase();
 
-  // =======================================================
-  // BLOG DROPDOWN
-  // =======================================================
+  const getDropdownForPath = (pathname) => {
+    if (pathname.startsWith("/admin/rooms")) return "Room Management";
+    if (pathname.startsWith("/admin/blog")) return "Blog Management";
+    return null;
+  };
 
-  const [blogOpen, setBlogOpen] = useState(
-    currentPath.startsWith("/admin/blog")
+  const [openDropdown, setOpenDropdown] = useState(() =>
+    getDropdownForPath(currentPath)
   );
 
-  // Automatically open Blog dropdown when a blog page is active.
   useEffect(() => {
-    if (currentPath.startsWith("/admin/blog")) {
-      setBlogOpen(true);
-    }
+    setOpenDropdown(getDropdownForPath(currentPath));
   }, [currentPath]);
-
-  // =======================================================
-  // ACTIVE PATH CHECK
-  // =======================================================
 
   const isPathActive = (path) => {
     const normalizedPath = path.toLowerCase();
-
     return (
       currentPath === normalizedPath ||
       currentPath.startsWith(`${normalizedPath}/`)
     );
   };
 
-  // =======================================================
-  // ACTIVE MENU CHECK
-  // =======================================================
-
   const isItemActive = (item) => {
     if (item.children) {
-      return item.children.some((child) =>
-        isPathActive(child.path)
-      );
+      return item.children.some((child) => isPathActive(child.path));
     }
-
     return isPathActive(item.path);
   };
 
-  // =======================================================
-  // CLOSE MOBILE SIDEBAR
-  // =======================================================
-
   const handleLinkClick = (callback) => (event) => {
-    if (callback) {
-      callback(event);
-    }
-
-    if (window.innerWidth <= 992) {
-      onMobileClose();
-    }
+    callback?.(event);
+    if (window.innerWidth <= 992) onMobileClose();
   };
 
-  // =======================================================
-  // BLOG DROPDOWN TOGGLE
-  // =======================================================
-
-  const handleBlogToggle = () => {
-    setBlogOpen((previous) => !previous);
+  const toggleDropdown = (label) => {
+    setOpenDropdown((previous) => (previous === label ? null : label));
   };
-
-  // =======================================================
-  // PROFILE CLICK
-  // =======================================================
 
   const handleProfileClick = (event) => {
-    if (onProfileClick) {
-      onProfileClick(event);
-    }
-
-    if (window.innerWidth <= 992) {
-      onMobileClose();
-    }
+    onProfileClick?.(event);
+    if (window.innerWidth <= 992) onMobileClose();
   };
-
-  // =======================================================
-  // RENDER
-  // =======================================================
 
   return (
     <>
-      {/* MOBILE BACKDROP */}
-
       <div
-        className={`HealthySidebar-backdrop ${
-          isMobileOpen ? "is-visible" : ""
-        }`}
+        className={`HealthySidebar-backdrop ${isMobileOpen ? "is-visible" : ""}`}
         onClick={onMobileClose}
         aria-hidden="true"
       />
 
-      {/* SIDEBAR */}
-
       <aside
-        className={`HealthySidebar ${
-          isCollapsed ? "is-collapsed" : ""
-        } ${
+        className={`HealthySidebar ${isCollapsed ? "is-collapsed" : ""} ${
           isMobileOpen ? "is-mobile-open" : ""
         }`}
-        aria-label="Admin Sidebar"
+        aria-label="Main Sidebar"
       >
-        {/* DECORATIVE BACKGROUND */}
-
         <div className="HealthySidebar-glow HealthySidebar-glow-top" />
         <div className="HealthySidebar-glow HealthySidebar-glow-bottom" />
 
         {/* BRAND HEADER */}
-
         <div className="HealthySidebar-header">
           <div className="HealthySidebar-brand">
             <div className="HealthySidebar-logo-ring">
@@ -225,8 +200,6 @@ const Sidebar = ({
             </div>
           </div>
 
-          {/* MOBILE CLOSE */}
-
           <button
             type="button"
             className="HealthySidebar-mobile-close"
@@ -237,94 +210,30 @@ const Sidebar = ({
           </button>
         </div>
 
-        {/* ADMIN PROFILE */}
-
-        <div
-          className="HealthySidebar-profile-card"
-          role="button"
-          tabIndex={0}
-          onClick={handleProfileClick}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              handleProfileClick(event);
-            }
-          }}
-          title={
-            isCollapsed
-              ? `${user.name} (${user.role})`
-              : undefined
-          }
-        >
-          <div className="HealthySidebar-avatar-wrap">
-            {user.avatarUrl ? (
-              <img
-                src={user.avatarUrl}
-                alt={user.name}
-                className="HealthySidebar-avatar-img"
-              />
-            ) : (
-              <div className="HealthySidebar-avatar-fallback">
-                {user.initials ||
-                  user.name
-                    ?.split(" ")
-                    .map((word) => word[0])
-                    .join("")
-                    .slice(0, 2)
-                    .toUpperCase()}
-              </div>
-            )}
-
-            <span className="HealthySidebar-status-beacon" />
-          </div>
-
-          <div className="HealthySidebar-profile-details">
-            <span className="HealthySidebar-profile-name">
-              {user.name}
-            </span>
-
-            <span className="HealthySidebar-profile-role">
-              {user.role}
-            </span>
-          </div>
-        </div>
-
         {/* MAIN NAVIGATION */}
-
-        <nav
-          className="HealthySidebar-nav"
-          aria-label="Main Navigation"
-        >
-          {!isCollapsed && (
-            <div className="HealthySidebar-nav-heading">
-              MAIN MENU
-            </div>
-          )}
+        <nav className="HealthySidebar-nav" aria-label="Main Navigation">
+          <div className="HealthySidebar-section-title">MAIN MENU</div>
 
           <div className="HealthySidebar-nav-list">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
               const active = isItemActive(item);
-
-              // BLOG DROPDOWN
+              const isOpen = openDropdown === item.label;
 
               if (item.children) {
                 return (
                   <div
                     key={item.label}
-                    className={`HealthySidebar-group ${
-                      active ? "is-active" : ""
-                    }`}
+                    className={`HealthySidebar-group ${active ? "is-active" : ""}`}
                   >
                     <button
                       type="button"
                       className={`HealthySidebar-link HealthySidebar-dropdown-toggle ${
                         active ? "active" : ""
                       }`}
-                      onClick={handleBlogToggle}
-                      title={
-                        isCollapsed ? item.label : undefined
-                      }
-                      aria-expanded={blogOpen}
+                      onClick={() => toggleDropdown(item.label)}
+                      title={isCollapsed ? item.label : undefined}
+                      aria-expanded={isOpen}
                     >
                       <span className="HealthySidebar-icon-box">
                         <Icon size={20} strokeWidth={2.2} />
@@ -338,15 +247,13 @@ const Sidebar = ({
                         <ChevronDown
                           size={17}
                           className={`HealthySidebar-chevron ${
-                            blogOpen ? "is-open" : ""
+                            isOpen ? "is-open" : ""
                           }`}
                         />
                       )}
                     </button>
 
-                    {/* BLOG SUBMENU */}
-
-                    {blogOpen && !isCollapsed && (
+                    {isOpen && !isCollapsed && (
                       <div className="HealthySidebar-submenu">
                         {item.children.map((child) => {
                           const ChildIcon = child.icon;
@@ -355,21 +262,17 @@ const Sidebar = ({
                             <NavLink
                               key={child.path}
                               to={child.path}
-                              className={({ isActive }) =>
+                              end
+                              className={({ isActive: childActive }) =>
                                 `HealthySidebar-sublink ${
-                                  isActive ? "active" : ""
+                                  childActive ? "active" : ""
                                 }`
                               }
-                              end
                               onClick={handleLinkClick()}
                             >
                               <span className="HealthySidebar-subicon">
-                                <ChildIcon
-                                  size={17}
-                                  strokeWidth={2}
-                                />
+                                <ChildIcon size={17} strokeWidth={2} />
                               </span>
-
                               <span className="HealthySidebar-link-title">
                                 {child.label}
                               </span>
@@ -382,27 +285,20 @@ const Sidebar = ({
                 );
               }
 
-              // NORMAL NAVIGATION
-
               return (
                 <NavLink
                   key={item.path}
                   to={item.path}
                   end
                   className={({ isActive }) =>
-                    `HealthySidebar-link ${
-                      isActive ? "active" : ""
-                    }`
+                    `HealthySidebar-link ${isActive ? "active" : ""}`
                   }
                   onClick={handleLinkClick()}
-                  title={
-                    isCollapsed ? item.label : undefined
-                  }
+                  title={isCollapsed ? item.label : undefined}
                 >
                   <span className="HealthySidebar-icon-box">
                     <Icon size={20} strokeWidth={2.2} />
                   </span>
-
                   <span className="HealthySidebar-link-title">
                     {item.label}
                   </span>
@@ -413,16 +309,21 @@ const Sidebar = ({
         </nav>
 
         {/* SIDEBAR FOOTER */}
-
         {!isCollapsed && (
           <div className="HealthySidebar-footer">
-            <span className="HealthySidebar-footer-version">
-              {version}
+            <span className="HealthySidebar-footer-version">{version}</span>
+            <span className="HealthySidebar-footer-caption">
+              Guest House Administration
             </span>
 
-            <span className="HealthySidebar-footer-caption">
-              Admin Dashboard
-            </span>
+            <button
+              type="button"
+              className="HealthySidebar-logout-btn"
+              onClick={handleLinkClick(onLogout)}
+            >
+              <LogOut size={18} />
+              <span>Logout</span>
+            </button>
           </div>
         )}
       </aside>

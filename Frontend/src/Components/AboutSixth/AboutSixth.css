@@ -1,34 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap');
 
-/* ================================
+/* =========================================================
    ABOUT SIXTH - HOTEL STATISTICS
-================================ */
+   Navy / teal overlay with gold accents (same palette as the site)
+========================================================= */
 
 .about-sixth {
+  --as-gold: #b97a1c;
+  --as-gold-light: #d9a441;
+  --as-orange: #e8892b;
+  --as-teal: #14839f;
+  --as-navy: #0b2f45;
+  --as-navy-deep: #071f2f;
+
+  /* space kept free for the floating call / WhatsApp buttons */
+  --as-pad: clamp(18px, 4vw, 60px);
+  --as-safe-right: var(--as-pad);
+
   position: relative;
   width: 100%;
-  min-height: 330px;
+  min-height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   isolation: isolate;
-  background-color: #17191d;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--as-navy-deep);
+  font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
 }
 
-/* Background Image */
+@media (min-width: 1280px) {
+  .about-sixth {
+    --as-safe-right: 100px;
+  }
+}
 
+/* tri-colour lines on the top and bottom edge */
+.about-sixth::before,
+.about-sixth::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 1;
+  background: linear-gradient(90deg, var(--as-teal), var(--as-gold-light), var(--as-orange));
+}
+
+.about-sixth::before { top: 0; }
+.about-sixth::after  { bottom: 0; }
+
+/* ---------- Background image ---------- */
 .about-sixth__background {
   position: absolute;
   inset: 0;
   z-index: -2;
-
   background-image: url("https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=2200&q=90");
-
   background-position: center 55%;
   background-repeat: no-repeat;
   background-size: cover;
-
   transform: scale(1.04);
   transition: transform 8s ease;
 }
@@ -37,50 +67,39 @@
   transform: scale(1.09);
 }
 
-/* Dark Overlay */
-
+/* ---------- Navy / teal overlay ---------- */
 .about-sixth__overlay {
   position: absolute;
   inset: 0;
   z-index: -1;
-
   background: linear-gradient(
-    90deg,
-    rgba(12, 14, 19, 0.88),
-    rgba(12, 14, 19, 0.76),
-    rgba(12, 14, 19, 0.83)
+    100deg,
+    rgba(7, 31, 47, 0.92) 0%,
+    rgba(11, 47, 69, 0.84) 50%,
+    rgba(12, 92, 117, 0.78) 100%
   );
 }
 
-/* Main Container */
-
+/* ---------- Container ---------- */
 .about-sixth__container {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 55px 25px;
-
+  padding: 64px var(--as-safe-right) 64px var(--as-pad);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
-  justify-items: center;
-
-  gap: 25px;
 }
 
-/* Individual Statistics */
-
+/* ---------- Single stat ---------- */
 .about-sixth__item {
-  width: 100%;
-  text-align: left;
-
+  padding: 8px 20px;
+  text-align: center;
   opacity: 0;
   transform: translateY(25px);
-
   transition:
     opacity 0.9s ease,
     transform 0.9s cubic-bezier(0.2, 0.7, 0.3, 1);
-
   transition-delay: calc(var(--item-index) * 150ms);
 }
 
@@ -89,117 +108,163 @@
   transform: translateY(0);
 }
 
-/* Numbers */
+/* thin gold dividers between the stats */
+.about-sixth__item + .about-sixth__item {
+  border-left: 1px solid rgba(217, 164, 65, 0.4);
+}
 
+/* ---------- Numbers ---------- */
 .about-sixth__number {
-  margin: 0 0 12px;
-
+  margin: 0 0 14px;
   color: #ffffff;
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(42px, 3.1vw, 60px);
-  font-weight: 400;
-  line-height: 1.1;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(46px, 4vw, 68px);
+  font-weight: 700;
+  line-height: 1.05;
   letter-spacing: 0.5px;
-
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* Labels */
+.about-sixth__suffix {
+  margin-left: 2px;
+  color: var(--as-gold-light);
+  font-size: 0.72em;
+}
 
+/* ---------- Labels ---------- */
 .about-sixth__label {
+  position: relative;
   margin: 0;
-
-  color: #ffffff;
-
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 19px;
-  font-weight: 600;
+  padding-top: 16px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   line-height: 1.4;
+  text-transform: uppercase;
 }
 
-/* ================================
-   TABLET RESPONSIVE
-================================ */
+/* small gold line above the label */
+.about-sixth__label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 40px;
+  height: 3px;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--as-gold-light), var(--as-orange));
+  transition: width 0.4s ease;
+}
 
+.about-sixth__item:hover .about-sixth__label::before {
+  width: 64px;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
 @media (max-width: 900px) {
   .about-sixth {
-    min-height: 360px;
+    min-height: 380px;
   }
 
   .about-sixth__container {
-    max-width: 700px;
+    max-width: 720px;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 45px;
-    column-gap: 35px;
-    padding: 55px 35px;
+    row-gap: 46px;
+    column-gap: 20px;
+    padding: 60px 30px;
   }
 
-  .about-sixth__item {
-    text-align: center;
+  .about-sixth__item + .about-sixth__item {
+    border-left: none;
+  }
+
+  /* divider between the two columns only */
+  .about-sixth__item:nth-child(even) {
+    border-left: 1px solid rgba(217, 164, 65, 0.4);
   }
 
   .about-sixth__number {
-    font-size: 52px;
+    font-size: 54px;
   }
 
   .about-sixth__label {
-    font-size: 17px;
+    font-size: 14px;
   }
 }
 
-/* ================================
-   MOBILE RESPONSIVE
-================================ */
-
+/* =========================================================
+   MOBILE
+========================================================= */
 @media (max-width: 520px) {
   .about-sixth {
     min-height: 420px;
   }
 
   .about-sixth__container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 45px 12px;
-    padding: 55px 18px;
+    gap: 42px 8px;
+    padding: 54px 16px;
+  }
+
+  .about-sixth__item {
+    padding: 6px 8px;
   }
 
   .about-sixth__number {
-    font-size: clamp(35px, 9vw, 45px);
-    margin-bottom: 10px;
+    font-size: clamp(36px, 10vw, 46px);
+    margin-bottom: 12px;
   }
 
   .about-sixth__label {
-    font-size: 14px;
-    font-weight: 600;
+    padding-top: 14px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  .about-sixth__label::before {
+    width: 32px;
   }
 
   .about-sixth__overlay {
-    background: rgba(12, 14, 19, 0.78);
+    background: linear-gradient(
+      160deg,
+      rgba(7, 31, 47, 0.92),
+      rgba(12, 92, 117, 0.82)
+    );
   }
 }
 
-/* Small Mobile */
-
+/* Small mobile */
 @media (max-width: 360px) {
   .about-sixth__container {
-    padding: 45px 12px;
-    gap: 38px 8px;
+    padding: 46px 10px;
+    gap: 36px 6px;
   }
 
   .about-sixth__number {
-    font-size: 33px;
+    font-size: 34px;
   }
 
   .about-sixth__label {
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
-/* Reduced Motion Accessibility */
-
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .about-sixth__item,
-  .about-sixth__background {
+  .about-sixth__background,
+  .about-sixth__label::before {
     transition: none;
+  }
+
+  .about-sixth__item {
+    opacity: 1;
+    transform: none;
   }
 }

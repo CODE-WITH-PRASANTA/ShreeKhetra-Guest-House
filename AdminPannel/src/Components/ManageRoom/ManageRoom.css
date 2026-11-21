@@ -1,0 +1,1579 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =====================================
+   MAIN
+===================================== */
+
+.ManageRoom {
+  --ManageRoom-primary: #0867e9;
+  --ManageRoom-primary-dark: #064db8;
+  --ManageRoom-text: #102b61;
+  --ManageRoom-border: #dce7f6;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+
+  margin: 0;
+  padding: 18px;
+
+  box-sizing: border-box;
+
+  background: linear-gradient(135deg, #f3f8ff, #edf5ff);
+  color: var(--ManageRoom-text);
+
+  font-family: "Inter", sans-serif;
+
+  overflow-x: hidden;
+
+  animation: ManageRoom__pageReveal 0.65s ease both;
+}
+
+.ManageRoom *,
+.ManageRoom *::before,
+.ManageRoom *::after {
+  box-sizing: border-box;
+}
+
+@keyframes ManageRoom__pageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+.ManageRoom__header {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  width: 100%;
+  min-height: 72px; /* was 105px */
+
+  display: flex;
+  align-items: center;
+  gap: 14px; /* was 20px */
+
+  padding: 12px 24px; /* was 22px 28px */
+
+  border-radius: 17px;
+
+  background: linear-gradient(
+    115deg,
+    #0869ed 0%,
+    #2584fa 48%,
+    #b9d9ff 100%
+  );
+
+  color: #ffffff;
+
+  box-shadow: 0 9px 28px rgba(0, 94, 220, 0.17);
+
+  /* opens from the top-left corner */
+  animation: ManageRoom__headerOpen 1.1s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.ManageRoom__header::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 280px;
+  height: 280px;
+
+  top: -175px;
+  right: 15%;
+
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow:
+    0 0 0 35px rgba(255, 255, 255, 0.06),
+    0 0 0 70px rgba(255, 255, 255, 0.04);
+}
+
+/* light that travels from one corner to the opposite corner and back */
+.ManageRoom__header::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 300px;
+  height: 300px;
+
+  left: -150px;
+  top: -150px;
+
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.2) 35%,
+    rgba(255, 255, 255, 0) 68%
+  );
+
+  animation: ManageRoom__headerLight 6s 0.15s ease-in-out infinite alternate;
+}
+
+@keyframes ManageRoom__headerLight {
+  from {
+    left: -150px;
+    top: -150px;
+  }
+
+  to {
+    left: calc(100% - 150px);
+    top: calc(100% - 150px);
+  }
+}
+
+@keyframes ManageRoom__headerOpen {
+  from {
+    clip-path: circle(0% at 0% 0%);
+    opacity: 0.5;
+  }
+
+  to {
+    clip-path: circle(150% at 0% 0%);
+    opacity: 1;
+  }
+}
+
+.ManageRoom__headerIcon {
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  animation: ManageRoom__iconFloat 3s ease-in-out infinite;
+}
+
+.ManageRoom__headerIcon svg {
+  width: 30px;
+  height: 30px;
+}
+
+@keyframes ManageRoom__iconFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.ManageRoom__headerContent {
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.ManageRoom__headerContent h2 {
+  margin: 0 0 3px; /* was 7px */
+
+  font-size: clamp(19px, 1.8vw, 24px);
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.ManageRoom__headerContent p {
+  margin: 0;
+
+  font-size: 12.5px;
+  line-height: 1.5;
+
+  opacity: 0.95;
+}
+
+.ManageRoom__addButton {
+  position: relative;
+  z-index: 2;
+
+  flex-shrink: 0;
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 18px; /* was 14px 22px */
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #0868ed, #004fc9);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(0, 55, 160, 0.24);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.ManageRoom__addButton:hover {
+  transform: translateY(-4px);
+
+  background: linear-gradient(135deg, #0059dc, #003fae);
+
+  box-shadow: 0 12px 25px rgba(0, 55, 160, 0.34);
+}
+
+.ManageRoom__addButton:active {
+  transform: scale(0.96);
+}
+
+/* =====================================
+   SEARCH AND FILTER
+===================================== */
+
+.ManageRoom__toolbar {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 18px 4px 16px;
+}
+
+.ManageRoom__search {
+  width: min(420px, 100%);
+  min-width: 0;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d6e2f3;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #1455a3;
+
+  box-shadow: 0 3px 10px rgba(30, 79, 140, 0.035);
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ManageRoom__search:focus-within {
+  border-color: #3789f8;
+
+  box-shadow:
+    0 0 0 4px rgba(35, 126, 245, 0.09),
+    0 5px 15px rgba(30, 79, 140, 0.06);
+
+  transform: translateY(-1px);
+}
+
+.ManageRoom__search input {
+  width: 100%;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: #17366e;
+
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.ManageRoom__search input::placeholder {
+  color: #7a8ca9;
+}
+
+.ManageRoom__search button {
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: none;
+  background: transparent;
+  color: #7185a5;
+
+  cursor: pointer;
+}
+
+.ManageRoom__filter {
+  position: relative;
+
+  width: 155px;
+  min-width: 125px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #d6e2f3;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #102e65;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ManageRoom__filter:hover {
+  border-color: #8bbaff;
+  box-shadow: 0 4px 12px rgba(30, 79, 140, 0.07);
+}
+
+.ManageRoom__filter select {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 35px 0 14px;
+
+  appearance: none;
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: inherit;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.ManageRoom__filter svg {
+  position: absolute;
+  right: 12px;
+
+  pointer-events: none;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.ManageRoom__tableWrapper {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  border: 1px solid #dbe6f5;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 7px 24px rgba(31, 82, 151, 0.07);
+
+  scrollbar-width: thin;
+  scrollbar-color: #a9c9f1 #f3f8ff;
+}
+
+.ManageRoom__table {
+  width: 100%;
+  min-width: 1120px;
+
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  text-align: left;
+  font-size: 12px;
+}
+
+/* Column widths */
+
+.ManageRoom__table th:nth-child(1),
+.ManageRoom__table td:nth-child(1) {
+  width: 4%;
+}
+
+.ManageRoom__table th:nth-child(2),
+.ManageRoom__table td:nth-child(2) {
+  width: 10%;
+}
+
+.ManageRoom__table th:nth-child(3),
+.ManageRoom__table td:nth-child(3) {
+  width: 12%;
+}
+
+.ManageRoom__table th:nth-child(4),
+.ManageRoom__table td:nth-child(4) {
+  width: 9%;
+}
+
+.ManageRoom__table th:nth-child(5),
+.ManageRoom__table td:nth-child(5) {
+  width: 8%;
+}
+
+.ManageRoom__table th:nth-child(6),
+.ManageRoom__table td:nth-child(6) {
+  width: 7%;
+}
+
+.ManageRoom__table th:nth-child(7),
+.ManageRoom__table td:nth-child(7) {
+  width: 9%;
+}
+
+.ManageRoom__table th:nth-child(8),
+.ManageRoom__table td:nth-child(8) {
+  width: 10%;
+}
+
+.ManageRoom__table th:nth-child(9),
+.ManageRoom__table td:nth-child(9) {
+  width: 9%;
+}
+
+.ManageRoom__table th:nth-child(10),
+.ManageRoom__table td:nth-child(10) {
+  width: 9%;
+}
+
+.ManageRoom__table th:nth-child(11),
+.ManageRoom__table td:nth-child(11) {
+  width: 13%;
+}
+
+/* Heading */
+
+.ManageRoom__table th {
+  height: 66px;
+
+  padding: 12px 8px;
+
+  color: #102e69;
+  background: #e5f0ff;
+
+  border-right: 1px solid #d5e3f5;
+  border-bottom: 1px solid #d5e3f5;
+
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.5;
+
+  text-align: center;
+
+  overflow-wrap: anywhere;
+}
+
+.ManageRoom__table th:first-child {
+  border-top-left-radius: 13px;
+}
+
+.ManageRoom__table th:last-child {
+  border-top-right-radius: 13px;
+  border-right: none;
+}
+
+/* Rows */
+
+.ManageRoom__table td {
+  height: 78px;
+
+  padding: 12px 8px;
+
+  border-right: 1px solid #e0e9f5;
+  border-bottom: 1px solid #e0e9f5;
+
+  color: #17336b;
+  background: #ffffff;
+
+  vertical-align: middle;
+  text-align: center;
+
+  overflow-wrap: anywhere;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ManageRoom__table tbody tr {
+  animation: ManageRoom__rowReveal 0.45s ease both;
+}
+
+@keyframes ManageRoom__rowReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ManageRoom__table tbody tr:hover td {
+  background: #f0f7ff;
+
+  box-shadow:
+    inset 0 1px 0 #d7eaff,
+    inset 0 -1px 0 #d7eaff;
+}
+
+.ManageRoom__table tbody tr:hover td:first-child {
+  box-shadow:
+    inset 3px 0 0 #1680ff,
+    inset 0 1px 0 #d7eaff,
+    inset 0 -1px 0 #d7eaff;
+}
+
+.ManageRoom__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ManageRoom__table td:last-child {
+  border-right: none;
+}
+
+/* Cell content */
+
+.ManageRoom__numberCell {
+  font-weight: 700;
+}
+
+.ManageRoom__titleCell {
+  font-weight: 800;
+  text-align: left !important;
+}
+
+.ManageRoom__descriptionCell {
+  line-height: 1.6;
+  text-align: left !important;
+}
+
+.ManageRoom__locationCell {
+  font-weight: 700;
+}
+
+.ManageRoom__location {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.ManageRoom__location svg {
+  flex-shrink: 0;
+  color: #4389e9;
+}
+
+.ManageRoom__priceCell,
+.ManageRoom__finalPriceCell {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* =====================================
+   AMENITIES
+===================================== */
+
+.ManageRoom__amenities {
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+
+  padding: 9px 6px;
+
+  border: 1px solid #e4edf9;
+  border-radius: 10px;
+
+  background: #f5f9ff;
+  color: #18376d;
+
+  font-size: 9px;
+  line-height: 1.5;
+  text-align: center;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.ManageRoom__amenity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  white-space: nowrap;
+}
+
+.ManageRoom__amenity svg {
+  color: #4788df;
+}
+
+.ManageRoom__table tbody tr:hover .ManageRoom__amenities {
+  background: #e7f2ff;
+  border-color: #c3ddff;
+  transform: translateY(-1px);
+}
+
+/* =====================================
+   ROOM IMAGE
+===================================== */
+
+.ManageRoom__roomImage {
+  width: 100%;
+  max-width: 105px;
+  height: 56px;
+
+  display: block;
+  margin: 0 auto;
+
+  object-fit: cover;
+
+  border-radius: 9px;
+  border: 1px solid #e2eaf5;
+
+  box-shadow: 0 3px 8px rgba(20, 50, 90, 0.1);
+
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.ManageRoom__roomImage:hover {
+  transform: scale(1.12);
+
+  border-color: #80b8ff;
+
+  box-shadow: 0 8px 18px rgba(20, 80, 160, 0.2);
+}
+
+/* =====================================
+   STATUS
+===================================== */
+
+.ManageRoom__status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 7px 10px;
+
+  border-radius: 30px;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+.ManageRoom__statusDot {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.ManageRoom__status--active {
+  background: #e2f9e9;
+  color: #16813a;
+}
+
+.ManageRoom__status--active .ManageRoom__statusDot {
+  background: #15ad48;
+  box-shadow: 0 0 0 3px rgba(21, 173, 72, 0.1);
+}
+
+.ManageRoom__status--inactive {
+  background: #ffebed;
+  color: #d3293b;
+}
+
+.ManageRoom__status--inactive .ManageRoom__statusDot {
+  background: #ed3445;
+}
+
+/* =====================================
+   ACTION BUTTONS
+===================================== */
+
+.ManageRoom__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.ManageRoom__action {
+  width: 35px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: 1.5px solid;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ManageRoom__action:hover {
+  transform: translateY(-4px) scale(1.07);
+
+  box-shadow: 0 7px 15px rgba(20, 70, 140, 0.16);
+}
+
+.ManageRoom__action:active {
+  transform: scale(0.94);
+}
+
+.ManageRoom__action--view,
+.ManageRoom__action--edit {
+  color: #0871ed;
+  border-color: #4b98f9;
+}
+
+.ManageRoom__action--view:hover,
+.ManageRoom__action--edit:hover {
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #1682ff, #075bd7);
+  border-color: #0871ed;
+}
+
+.ManageRoom__action--delete {
+  color: #e52b3b;
+  border-color: #f06470;
+}
+
+.ManageRoom__action--delete:hover {
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #ff5263, #d91f32);
+  border-color: #e52b3b;
+}
+
+/* Empty search */
+
+.ManageRoom__empty {
+  height: 160px !important;
+
+  display: table-cell;
+
+  text-align: center;
+  color: #7285a5 !important;
+  font-weight: 700;
+}
+
+.ManageRoom__empty svg {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* =====================================
+   FOOTER AND PAGINATION
+===================================== */
+
+.ManageRoom__footer {
+  width: 100%;
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 17px 8px;
+}
+
+.ManageRoom__footer p {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: #18366d;
+}
+
+.ManageRoom__pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ManageRoom__pagination button {
+  min-height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  padding: 0 13px;
+
+  border: 1px solid #d6e3f5;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #42669e;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ManageRoom__pagination button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  border-color: #0872f9;
+  color: #0872f9;
+
+  box-shadow: 0 4px 10px rgba(8, 114, 249, 0.1);
+}
+
+.ManageRoom__pagination button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ManageRoom__pagination .ManageRoom__pageActive {
+  width: 39px;
+  padding: 0;
+
+  border-color: #0872f9;
+
+  background: linear-gradient(135deg, #1682ff, #075bd7);
+  color: #ffffff;
+
+  box-shadow: 0 4px 10px rgba(8, 114, 249, 0.2);
+}
+
+/* =====================================
+   MODAL
+===================================== */
+
+.ManageRoom__modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(12, 31, 66, 0.48);
+  backdrop-filter: blur(7px);
+
+  animation: ManageRoom__fadeIn 0.25s ease;
+}
+
+@keyframes ManageRoom__fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.ManageRoom__modal {
+  width: min(560px, 100%);
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 28px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 21px;
+
+  background: #ffffff;
+
+  box-shadow: 0 25px 80px rgba(7, 34, 85, 0.25);
+
+  animation: ManageRoom__modalReveal 0.35s ease;
+}
+
+@keyframes ManageRoom__modalReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ManageRoom__modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding-bottom: 20px;
+  margin-bottom: 22px;
+
+  border-bottom: 1px solid #e6edf8;
+}
+
+.ManageRoom__modalHeader h3 {
+  margin: 0 0 6px;
+
+  font-size: 23px;
+  font-weight: 800;
+
+  color: #12336e;
+}
+
+.ManageRoom__modalHeader p {
+  margin: 0;
+
+  color: #7a8ca9;
+  font-size: 12px;
+}
+
+.ManageRoom__modalHeader button {
+  width: 36px;
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #e1eaf6;
+  border-radius: 10px;
+
+  background: #f5f9ff;
+  color: #45618e;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.ManageRoom__modalHeader button:hover {
+  color: #ffffff;
+  background: #0872f9;
+  border-color: #0872f9;
+  transform: rotate(90deg);
+}
+
+/* Form */
+
+.ManageRoom__form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.ManageRoom__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  color: #17376f;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ManageRoom__form input,
+.ManageRoom__form textarea,
+.ManageRoom__form select {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border: 1px solid #dce6f5;
+  border-radius: 11px;
+
+  outline: none;
+
+  background: #fbfdff;
+  color: #17376f;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ManageRoom__form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.ManageRoom__form input:focus,
+.ManageRoom__form textarea:focus,
+.ManageRoom__form select:focus {
+  border-color: #2582f7;
+
+  box-shadow: 0 0 0 4px rgba(37, 130, 247, 0.09);
+}
+
+.ManageRoom__formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Amenity checkbox section */
+
+.ManageRoom__amenitySelect {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ManageRoom__formLabel {
+  color: #17376f;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ManageRoom__amenityOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.ManageRoom__amenityOptions label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #dce8f8;
+  border-radius: 9px;
+
+  background: #f6faff;
+  color: #365b94;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.ManageRoom__amenityOptions label:hover {
+  border-color: #8bbaff;
+  background: #eaf4ff;
+}
+
+.ManageRoom__amenityOptions input {
+  width: 15px;
+  height: 15px;
+
+  margin: 0;
+
+  accent-color: #0872f9;
+}
+
+/* Form buttons */
+
+.ManageRoom__formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 11px;
+
+  padding-top: 9px;
+}
+
+.ManageRoom__cancel,
+.ManageRoom__save {
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 0 18px;
+
+  border-radius: 11px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.ManageRoom__cancel {
+  border: 1px solid #dce6f5;
+  background: #ffffff;
+  color: #536c96;
+}
+
+.ManageRoom__cancel:hover {
+  border-color: #9db8dc;
+  background: #f5f9ff;
+}
+
+.ManageRoom__save {
+  border: 1px solid #0872f9;
+
+  background: linear-gradient(135deg, #0878fa, #0759d5);
+  color: #ffffff;
+
+  box-shadow: 0 5px 14px rgba(8, 114, 249, 0.2);
+}
+
+.ManageRoom__save:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(8, 114, 249, 0.27);
+}
+
+/* =====================================
+   VIEW DETAILS
+===================================== */
+
+.ManageRoom__viewModal {
+  width: min(520px, 100%);
+}
+
+.ManageRoom__details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ManageRoom__details > img {
+  width: 100%;
+  height: 220px;
+
+  object-fit: cover;
+
+  border-radius: 15px;
+
+  box-shadow: 0 6px 20px rgba(20, 50, 90, 0.12);
+}
+
+.ManageRoom__details h3 {
+  margin: 5px 0 0;
+
+  color: #12336e;
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.ManageRoom__details > p {
+  margin: 0 0 7px;
+
+  color: #7588a7;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.ManageRoom__details > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #edf2fa;
+
+  font-size: 12px;
+}
+
+.ManageRoom__details > div span {
+  color: #7285a5;
+}
+
+.ManageRoom__details > div strong {
+  color: #16366d;
+  text-align: right;
+}
+
+.ManageRoom__details .ManageRoom__detailAmenities {
+  align-items: flex-start;
+}
+
+.ManageRoom__detailAmenities strong {
+  max-width: 65%;
+  line-height: 1.7;
+}
+
+/* =====================================
+   DELETE CONFIRMATION
+===================================== */
+
+.ManageRoom__deleteOverlay {
+  z-index: 1100;
+}
+
+.ManageRoom__deleteModal {
+  width: min(440px, 100%);
+
+  padding: 35px 28px;
+
+  text-align: center;
+
+  border: 1px solid #edf1f8;
+  border-radius: 23px;
+
+  background: #ffffff;
+
+  box-shadow: 0 25px 70px rgba(15, 40, 90, 0.25);
+
+  animation: ManageRoom__deleteReveal 0.35s ease;
+}
+
+@keyframes ManageRoom__deleteReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ManageRoom__deleteIcon {
+  width: 72px;
+  height: 72px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: #fff0f1;
+  color: #e52b3b;
+
+  box-shadow: 0 0 0 9px rgba(229, 43, 59, 0.05);
+
+  animation: ManageRoom__deletePulse 2s ease-in-out infinite;
+}
+
+@keyframes ManageRoom__deletePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 9px rgba(229, 43, 59, 0.05);
+  }
+
+  50% {
+    box-shadow: 0 0 0 14px rgba(229, 43, 59, 0.025);
+  }
+}
+
+.ManageRoom__deleteModal h3 {
+  margin: 0 0 13px;
+
+  color: #142e63;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.ManageRoom__deleteModal p {
+  margin: 0;
+
+  color: #7183a2;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.ManageRoom__deleteModal p strong {
+  color: #18366e;
+}
+
+.ManageRoom__deleteActions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.ManageRoom__confirmDelete {
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(135deg, #ff5363, #d91e32);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(217, 30, 50, 0.2);
+
+  transition: all 0.25s ease;
+}
+
+.ManageRoom__confirmDelete:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 10px 22px rgba(217, 30, 50, 0.3);
+}
+
+.ManageRoom__confirmDelete:active {
+  transform: scale(0.96);
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 1200px) {
+  .ManageRoom {
+    padding: 14px;
+  }
+
+  .ManageRoom__table {
+    min-width: 1120px;
+  }
+
+  .ManageRoom__header {
+    padding: 12px 18px; /* was 20px */
+  }
+}
+
+@media (max-width: 900px) {
+  .ManageRoom {
+    padding: 12px;
+  }
+
+  .ManageRoom__header {
+    min-height: 66px; /* was 95px */
+    gap: 12px;
+  }
+
+  .ManageRoom__headerIcon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ManageRoom__table {
+    min-width: 1120px;
+  }
+
+  .ManageRoom__footer {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .ManageRoom {
+    padding: 9px;
+  }
+
+  .ManageRoom__header {
+    min-height: 60px; /* was 85px */
+
+    gap: 10px;
+    padding: 10px 12px;
+
+    border-radius: 12px;
+  }
+
+  .ManageRoom__headerIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ManageRoom__headerContent h2 {
+    font-size: 17px;
+  }
+
+  .ManageRoom__headerContent p {
+    max-width: 170px;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .ManageRoom__addButton {
+    gap: 5px;
+    padding: 10px;
+
+    font-size: 10px;
+    border-radius: 8px;
+  }
+
+  .ManageRoom__addButton svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ManageRoom__toolbar {
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .ManageRoom__search {
+    height: 41px;
+    gap: 7px;
+    padding: 0 8px;
+  }
+
+  .ManageRoom__search svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .ManageRoom__search input {
+    font-size: 11px;
+  }
+
+  .ManageRoom__filter {
+    width: 112px;
+    min-width: 112px;
+    height: 41px;
+  }
+
+  .ManageRoom__filter select {
+    padding-left: 8px;
+    font-size: 10px;
+  }
+
+  .ManageRoom__footer {
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding: 14px 2px;
+  }
+
+  .ManageRoom__footer p {
+    font-size: 11px;
+  }
+
+  .ManageRoom__pagination {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .ManageRoom__pagination button {
+    min-height: 34px;
+    padding: 0 8px;
+    font-size: 10px;
+  }
+
+  .ManageRoom__pagination .ManageRoom__pageActive {
+    width: 34px;
+  }
+
+  .ManageRoom__modal {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .ManageRoom__formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ManageRoom__deleteModal {
+    padding: 28px 18px;
+  }
+
+  .ManageRoom__deleteActions {
+    gap: 8px;
+  }
+
+  .ManageRoom__cancel,
+  .ManageRoom__confirmDelete {
+    padding: 0 13px;
+    font-size: 11px;
+  }
+}
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .ManageRoom *,
+  .ManageRoom *::before,
+  .ManageRoom *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

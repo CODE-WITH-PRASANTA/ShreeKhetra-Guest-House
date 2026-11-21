@@ -54,32 +54,62 @@ const testimonials = [
   },
 ];
 
+/* ---------- Icons ---------- */
+const StarIcon = () => (
+  <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+    <path
+      d="m12 2.8 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.6l-5.8 3.1 1.1-6.5L2.6 9.6l6.5-.9L12 2.8z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+const QuoteIcon = () => (
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+    <path
+      d="M7.2 6C4.9 7.2 3.5 9.4 3.5 12.3V18h6.1v-6H6.4c.1-1.6.9-2.7 2.3-3.4L7.2 6zm9.5 0c-2.3 1.2-3.7 3.4-3.7 6.3V18h6.1v-6h-3.2c.1-1.6.9-2.7 2.3-3.4L16.7 6z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+/* ---------- Single card ---------- */
 const TestimonialCard = ({ testimonial }) => {
   return (
     <article className="about-eight-card">
+      {/* big faint quote in the corner */}
+      <span className="about-eight-ghost" aria-hidden="true">
+        ”
+      </span>
+
       <div className="about-eight-card-top">
         <span className="about-eight-quote" aria-hidden="true">
-          “
+          <QuoteIcon />
         </span>
 
         <div
           className="about-eight-stars"
+          role="img"
           aria-label={`${testimonial.rating} out of 5 stars`}
         >
           {Array.from({ length: testimonial.rating }, (_, index) => (
-            <span key={index}>★</span>
+            <span key={index}>
+              <StarIcon />
+            </span>
           ))}
         </div>
       </div>
 
-      <p className="about-eight-message">
-        {testimonial.message}
-      </p>
+      <p className="about-eight-message">{testimonial.message}</p>
+
+      <span className="about-eight-divider" aria-hidden="true"></span>
 
       <div className="about-eight-author">
         <img
           src={testimonial.image}
           alt={testimonial.name}
+          width="52"
+          height="52"
           loading="lazy"
         />
 
@@ -92,22 +122,25 @@ const TestimonialCard = ({ testimonial }) => {
   );
 };
 
-const AboutEgiht = () => {
+/* ---------- Section ---------- */
+const AboutEight = () => {
   return (
     <section className="about-eight-section">
+      {/* Decorative background */}
+      <div className="about-eight-pattern" aria-hidden="true"></div>
+      <span className="about-eight-glow about-eight-glow--teal" aria-hidden="true"></span>
+      <span className="about-eight-glow about-eight-glow--gold" aria-hidden="true"></span>
+
       {/* Section Heading */}
       <div className="about-eight-heading">
-        <div className="about-eight-decoration">
-          <span></span>
-          <i aria-hidden="true">❧</i>
-          <span></span>
-        </div>
-
         <span className="about-eight-subtitle">
+          <span className="about-eight-subtitle-dot" aria-hidden="true"></span>
           TESTIMONIAL
         </span>
 
         <h2>Check Our Client Feedback</h2>
+
+        <span className="about-eight-title-line" aria-hidden="true"></span>
 
         <p className="about-eight-heading-description">
           Discover the unforgettable experiences of our valued guests.
@@ -115,26 +148,17 @@ const AboutEgiht = () => {
       </div>
 
       {/* Infinite Testimonial Slider */}
-      <div
-        className="about-eight-slider"
-        aria-label="Guest testimonials"
-      >
+      <div className="about-eight-slider" aria-label="Guest testimonials">
         <div className="about-eight-track">
           {/* First group */}
           <div className="about-eight-group">
             {testimonials.map((testimonial) => (
-              <TestimonialCard
-                key={testimonial.id}
-                testimonial={testimonial}
-              />
+              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
             ))}
           </div>
 
           {/* Duplicate group for seamless infinite scrolling */}
-          <div
-            className="about-eight-group"
-            aria-hidden="true"
-          >
+          <div className="about-eight-group" aria-hidden="true">
             {testimonials.map((testimonial) => (
               <TestimonialCard
                 key={`duplicate-${testimonial.id}`}
@@ -148,4 +172,4 @@ const AboutEgiht = () => {
   );
 };
 
-export default AboutEgiht;
+export default AboutEight;

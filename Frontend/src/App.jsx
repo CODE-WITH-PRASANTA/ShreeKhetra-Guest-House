@@ -12,11 +12,12 @@ import News from "./Pages/News/News";
 import Service from "./Pages/Service/Service";
 import OurHappyClients from "./Pages/OurHappyClients/OurHappyClients";
 import FandQ from "./Pages/FandQ/FandQ";
-import Offers from "./Components/Offers/Offers";
 import OfferdetailsMain from "./Components/OfferdetailsMain/OfferdetailsMain";
 import Homepage from "./Pages/Homepage/Homepage";
 import Contact from "./Components/Contact/Contact";
 import FloatingIcons from "./Components/FloatingIcons/FloatingIcons";
+import EnquiryForm from "./Components/EnquiryForm/EnquiryForm";
+import Offer from "./Pages/Offer/Offer";
 
   
 
@@ -32,17 +33,18 @@ const App = () => {
          <Route path="/gallery" element={<Gallary/>} />
          <Route path="/clients" element={<OurHappyClients/>}/>
         <Route path="/faq" element={<FandQ/> }/>
-         <Route path="news" element={<News/>}/>
-         <Route path="services" element={<Service/>}/>
-         <Route path="offer" element={<Offers/>}/>
-         <Route path="offer-details" element={<OfferdetailsMain/>}/>
+         <Route path="/news" element={<News/>}/>
+         <Route path="/services" element={<Service/>}/>
+         <Route path="/offer-details" element={<OfferdetailsMain/>}/>
          <Route path="/" element={<Homepage/>}/>
-         <Route path="contact" element={<Contact/>}/>
+         <Route path="/contact" element={<Contact/>}/>
+         <Route path="/offer" element={<Offer/>}/>
          
 
       </Routes>
 
       <Footer />
+      <EnquiryForm/>
       <FloatingIcons/>
     </BrowserRouter>
   );

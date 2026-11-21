@@ -1,5 +1,5 @@
 
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   BarChart3,
   BedDouble,
@@ -130,14 +130,12 @@ const DashboardTwo = ({
 
   const [liveConnected, setLiveConnected] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const displayedData = apiUrl || wsUrl ? dashboardData : sampleData;
+  const isLiveConnected = Boolean((apiUrl || wsUrl) && liveConnected);
 
   // API LIVE DATA
   useEffect(() => {
-    if (!apiUrl) {
-      setDashboardData(sampleData);
-      setLiveConnected(false);
-      return;
-    }
+    if (!apiUrl) return;
 
     let active = true;
 
@@ -262,8 +260,8 @@ const DashboardTwo = ({
 
   // GRAPH DATA
   const graph = useMemo(
-    () => getGraphData(dashboardData.overview),
-    [dashboardData.overview]
+    () => getGraphData(displayedData.overview),
+    [displayedData.overview]
   );
 
   const selectedPoint =
@@ -272,7 +270,7 @@ const DashboardTwo = ({
       : null;
 
   // BOOKING STATUS DATA
-  const status = dashboardData.bookingStatus;
+  const status = displayedData.bookingStatus;
 
   const totalBookings = statusConfig.reduce(
     (sum, item) => sum + Number(status[item.key] || 0),
@@ -365,7 +363,7 @@ const DashboardTwo = ({
 
           <div className="panel-header-right">
 
-            {liveConnected && (
+            {isLiveConnected && (
               <div className="live-indicator connected">
                 <span></span>
                 LIVE
@@ -572,7 +570,7 @@ const DashboardTwo = ({
             <h2>Booking Status</h2>
           </div>
 
-          {liveConnected && (
+          {isLiveConnected && (
             <div className="live-indicator connected">
               <span></span>
               LIVE
@@ -638,14 +636,16 @@ const DashboardTwo = ({
                 {(() => {
                   const radius = 76;
                   const circumference = 2 * Math.PI * radius;
-                  let offset = 0;
-
-                  return statusDetails.map((item) => {
+                  return statusDetails.map((item, index) => {
                     const segmentLength =
                       (item.percentage / 100) * circumference;
 
-                    const currentOffset = offset;
-                    offset += segmentLength;
+                    const currentOffset =
+                      (statusDetails
+                        .slice(0, index)
+                        .reduce((sum, segment) => sum + segment.percentage, 0) /
+                        100) *
+                      circumference;
 
                     return (
                       <circle

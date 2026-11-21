@@ -1,4 +1,3 @@
-
 /* =========================================================
    HEALTHY HEAVEN - PREMIUM WHITE & BLUE TOPBAR THEME
 ========================================================= */
@@ -624,6 +623,12 @@
 }
 
 .Topbar-dropdown-item.logout {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
   color: #ef4444;
 }
 

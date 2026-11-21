@@ -1,16 +1,27 @@
-
 /* =====================================
-   HOTEL SERVICES SECTION
+   HOTEL SERVICES - TEAL + SUNSET ORANGE THEME
+   (matches navbar, footer, About, Rooms & Why)
 ===================================== */
 
 .hotel-services-section {
+  --teal: #0b7a9a;
+  --teal-deep: #0a5a78;
+  --teal-soft: #e4f2f5;
+  --orange: #e8892a;
+  --gold: #d9a441;
+  --ink: #12303f;
+  --muted: #55646d;
+
+  --grad-teal: linear-gradient(135deg, #0e86a8 0%, #0a5a78 100%);
+  --grad-orange: linear-gradient(135deg, #e0a93f 0%, #e8892a 100%);
+
   width: 100%;
-  min-height: 800px;
+  min-height: 0;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 75px 3%;
+  justify-content: center;
+  padding: 70px 4%;
   box-sizing: border-box;
   overflow: hidden;
 
@@ -21,18 +32,36 @@
   background-repeat: no-repeat;
 }
 
-/* Dark overlay */
+.hotel-services-section * {
+  box-sizing: border-box;
+}
+
+/* Teal -> orange tinted overlay */
 
 .services-background-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(14, 12, 12, 0.58) 0%,
-    rgba(14, 12, 12, 0.48) 45%,
-    rgba(14, 12, 12, 0.62) 100%
-  );
+  background:
+    linear-gradient(
+      120deg,
+      rgba(6, 52, 72, 0.82) 0%,
+      rgba(10, 90, 120, 0.62) 55%,
+      rgba(232, 137, 42, 0.5) 100%
+    );
   z-index: 0;
+}
+
+/* gradient line on top like navbar/footer */
+
+.hotel-services-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--orange));
+  z-index: 2;
 }
 
 /* =====================================
@@ -44,22 +73,23 @@
   max-width: 1600px;
   margin: 0 auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   position: relative;
   z-index: 1;
 }
 
 .services-panel {
-  width: 56%;
-  max-width: 850px;
-  padding: 75px 75px 55px;
-  background: #fff;
-  border-radius: 38px;
-  box-sizing: border-box;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1050px;
+  padding: 45px 50px 32px;
+
+  background: linear-gradient(145deg, #ffffff 0%, #fff8ee 100%);
+  border-radius: 34px;
+  border-bottom: 5px solid var(--orange);
+  box-shadow: 0 30px 80px rgba(4, 38, 54, 0.4);
 
   opacity: 0;
-  transform: translateX(90px);
+  transform: translateY(70px);
   transition:
     opacity 1s ease,
     transform 1s cubic-bezier(0.22, 1, 0.36, 1);
@@ -67,7 +97,7 @@
 
 .services-visible .services-panel {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 /* =====================================
@@ -75,7 +105,8 @@
 ===================================== */
 
 .services-heading {
-  margin-bottom: 32px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .services-ornament {
@@ -85,15 +116,15 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: #788574;
-  margin-bottom: 12px;
+  color: var(--orange);
+  margin: 0 auto 8px;
 }
 
 .services-ornament i {
   display: block;
   width: 65px;
   height: 1px;
-  background: #788574;
+  background: linear-gradient(90deg, var(--teal), var(--orange));
   position: relative;
 }
 
@@ -105,7 +136,7 @@
   top: -2px;
   right: 0;
   border-radius: 50%;
-  background: #788574;
+  background: var(--teal);
 }
 
 .services-ornament span {
@@ -113,123 +144,159 @@
 }
 
 .services-subtitle {
-  margin: 0 0 15px;
-  color: #788574;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: 0.2px;
+  margin: 0 0 8px;
+  color: var(--orange);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
 .services-heading h2 {
+  position: relative;
   margin: 0;
-  color: #202027;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(42px, 3.5vw, 62px);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -1.5px;
+  padding-bottom: 20px;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(38px, 3.4vw, 56px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.services-heading h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 70px;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  background: var(--grad-orange);
 }
 
 /* =====================================
-   SERVICE ITEMS
+   SERVICE ITEMS - 2 x 2 GRID (shorter section)
 ===================================== */
 
 .services-list {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 8px;
 }
 
-.service-item {
+.hotel-service-item {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 18px;
+
+  padding: 22px 24px;
+
+  border: 1px solid rgba(11, 122, 154, 0.15);
+  border-left: 4px solid var(--orange);
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 26px rgba(10, 90, 120, 0.08);
 
   opacity: 0;
-  transform: translateY(35px);
 
   transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--item-index) * 180ms + 350ms);
+    translate 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s ease,
+    border-color 0.4s ease,
+    background 0.4s ease;
 }
 
-.services-visible .service-item {
-  opacity: 1;
-  transform: translateY(0);
+/* keyframe entrance so hover effects stay instant */
+
+.services-visible .hotel-service-item {
+  animation: serviceUp 0.8s cubic-bezier(0.22, 1, 0.36, 1)
+    calc(var(--item-index) * 160ms + 350ms) both;
 }
 
-/* Icon circle */
+@keyframes serviceUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
 
-.service-icon {
-  width: 76px;
-  height: 76px;
-  min-width: 76px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hotel-service-item:hover {
+  translate: 0 -8px;
+  background: #ffffff;
+  border-color: var(--teal);
+  border-left-color: var(--orange);
+  box-shadow: 0 20px 40px rgba(10, 90, 120, 0.2);
+}
+
+/* Icon */
+
+.hotel-service-icon {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #d9dfe1;
   border-radius: 50%;
-  background: #fff;
+  background: var(--grad-teal);
+  box-shadow: 0 10px 20px rgba(10, 90, 120, 0.28);
 
   transition:
     background 0.4s ease,
-    border-color 0.4s ease,
     transform 0.4s ease,
     box-shadow 0.4s ease;
 }
 
-.service-icon svg {
-  width: 48px;
-  height: 48px;
-  stroke: #62666a;
-  stroke-width: 1.8;
+.hotel-service-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: #ffffff;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: stroke 0.4s ease;
 }
 
-.service-item:hover .service-icon {
-  background: #788574;
-  border-color: #788574;
+.hotel-service-item:hover .hotel-service-icon {
+  background: var(--grad-orange);
   transform: rotate(-8deg) scale(1.08);
-  box-shadow: 0 10px 25px rgba(120, 133, 116, 0.25);
+  box-shadow: 0 12px 24px rgba(232, 137, 42, 0.4);
 }
 
-.service-item:hover .service-icon svg {
-  stroke: #fff;
-}
+/* Text */
 
-/* Service text */
-
-.service-info {
+.hotel-service-info {
   flex: 1;
-  padding-top: 0;
 }
 
-.service-info h3 {
-  margin: 0 0 15px;
-  color: #222127;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 29px;
-  font-weight: 400;
-  line-height: 1.25;
+.hotel-service-info h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.2;
   transition: color 0.3s ease;
 }
 
-.service-item:hover .service-info h3 {
-  color: #788574;
+.hotel-service-item:hover .hotel-service-info h3 {
+  color: var(--teal);
 }
 
-.service-info p {
-  max-width: 510px;
+.hotel-service-info p {
   margin: 0;
-  color: #68666b;
-  font-size: 17px;
-  line-height: 1.85;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
   font-weight: 400;
 }
 
@@ -242,40 +309,27 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin-top: 42px;
+  margin-top: 28px;
 }
 
 .services-bottom-line span {
-  width: 35px;
+  width: 55px;
   height: 1px;
-  background: #d7dcd6;
+  background: linear-gradient(90deg, transparent, var(--orange));
+}
+
+.services-bottom-line span:last-child {
+  background: linear-gradient(90deg, var(--orange), transparent);
 }
 
 .services-bottom-line p {
   margin: 0;
-  color: #788574;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 14px;
+  color: var(--teal-deep);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
   font-style: italic;
   text-align: center;
-}
-
-/* =====================================
-   LARGE SCREEN
-===================================== */
-
-@media (min-width: 1600px) {
-  .hotel-services-section {
-    min-height: 850px;
-  }
-
-  .services-panel {
-    padding: 85px 75px 60px;
-  }
-
-  .services-list {
-    gap: 38px;
-  }
 }
 
 /* =====================================
@@ -284,18 +338,16 @@
 
 @media (max-width: 1100px) {
   .hotel-services-section {
-    min-height: 720px;
     padding: 60px 4%;
   }
 
   .services-panel {
-    width: 68%;
-    padding: 55px 45px 45px;
-    border-radius: 30px;
+    padding: 40px 30px 28px;
+    border-radius: 28px;
   }
 
   .services-heading h2 {
-    font-size: 46px;
+    font-size: 42px;
   }
 
   .services-subtitle {
@@ -303,27 +355,32 @@
   }
 
   .services-list {
-    gap: 28px;
+    gap: 16px;
   }
 
-  .service-icon {
-    width: 65px;
-    height: 65px;
-    min-width: 65px;
+  .hotel-service-item {
+    padding: 18px 16px;
+    gap: 13px;
   }
 
-  .service-icon svg {
-    width: 42px;
-    height: 42px;
+  .hotel-service-icon {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
   }
 
-  .service-info h3 {
-    font-size: 25px;
+  .hotel-service-icon svg {
+    width: 34px;
+    height: 34px;
   }
 
-  .service-info p {
-    font-size: 15px;
-    line-height: 1.7;
+  .hotel-service-info h3 {
+    font-size: 23px;
+  }
+
+  .hotel-service-info p {
+    font-size: 14px;
+    line-height: 1.6;
   }
 }
 
@@ -333,70 +390,40 @@
 
 @media (max-width: 768px) {
   .hotel-services-section {
-    min-height: auto;
-    padding: 55px 5%;
-    background-position: center;
-  }
-
-  .services-background-overlay {
-    background: rgba(15, 13, 13, 0.58);
-  }
-
-  .services-layout {
-    justify-content: center;
+    padding: 50px 5%;
   }
 
   .services-panel {
-    width: 100%;
     max-width: 600px;
-    padding: 45px 30px 35px;
+    padding: 35px 22px 26px;
     border-radius: 25px;
   }
 
   .services-heading {
-    margin-bottom: 25px;
+    margin-bottom: 22px;
   }
 
   .services-heading h2 {
-    font-size: 39px;
-  }
-
-  .services-subtitle {
-    font-size: 17px;
+    font-size: 36px;
   }
 
   .services-list {
-    gap: 28px;
-    margin-top: 25px;
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .service-item {
-    gap: 15px;
+  .hotel-service-item {
+    padding: 16px;
+    border-radius: 20px;
   }
 
-  .service-icon {
-    width: 58px;
-    height: 58px;
-    min-width: 58px;
-  }
-
-  .service-icon svg {
-    width: 36px;
-    height: 36px;
-  }
-
-  .service-info h3 {
-    font-size: 23px;
-    margin-bottom: 8px;
-  }
-
-  .service-info p {
-    font-size: 14px;
-    line-height: 1.7;
+  .hotel-service-info h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
   }
 
   .services-bottom-line {
-    margin-top: 32px;
+    margin-top: 22px;
   }
 }
 
@@ -410,7 +437,7 @@
   }
 
   .services-panel {
-    padding: 35px 20px 30px;
+    padding: 30px 16px 22px;
     border-radius: 22px;
   }
 
@@ -423,42 +450,39 @@
   }
 
   .services-heading h2 {
-    font-size: 34px;
+    font-size: 31px;
   }
 
   .services-subtitle {
     font-size: 15px;
+    letter-spacing: 1px;
   }
 
-  .services-list {
-    gap: 25px;
-  }
-
-  .service-item {
+  .hotel-service-item {
     gap: 12px;
   }
 
-  .service-icon {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
+  .hotel-service-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
   }
 
-  .service-icon svg {
-    width: 31px;
-    height: 31px;
+  .hotel-service-icon svg {
+    width: 30px;
+    height: 30px;
   }
 
-  .service-info h3 {
-    font-size: 21px;
+  .hotel-service-info h3 {
+    font-size: 20px;
   }
 
-  .service-info p {
+  .hotel-service-info p {
     font-size: 13px;
   }
 
   .services-bottom-line p {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -472,6 +496,10 @@
   .hotel-services-section *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  .services-panel,
+  .hotel-service-item {
     opacity: 1 !important;
     transform: none !important;
   }

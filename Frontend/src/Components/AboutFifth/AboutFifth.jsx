@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./AboutFifth.css";
 
@@ -49,6 +48,28 @@ const rooms = [
   },
 ];
 
+/* Small line icons for the room details */
+
+const SizeIcon = () => (
+  <svg viewBox="0 0 24 24" className="about-fifth__detail-icon" aria-hidden="true">
+    <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+  </svg>
+);
+
+const BedIcon = () => (
+  <svg viewBox="0 0 24 24" className="about-fifth__detail-icon" aria-hidden="true">
+    <path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5" />
+    <circle cx="7" cy="11" r="1.6" />
+  </svg>
+);
+
+const GuestIcon = () => (
+  <svg viewBox="0 0 24 24" className="about-fifth__detail-icon" aria-hidden="true">
+    <circle cx="9" cy="8" r="3.2" />
+    <path d="M3 20c0-3.6 2.7-6 6-6s6 2.4 6 6M16 5.2a3.2 3.2 0 0 1 0 5.6M18 14.4c1.8.8 3 2.7 3 5.6" />
+  </svg>
+);
+
 const AboutFifth = () => {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -73,53 +94,39 @@ const AboutFifth = () => {
 
   return (
     <section
-      className={`about-fifth ${
-        isVisible ? "about-fifth--visible" : ""
-      }`}
+      className={`about-fifth ${isVisible ? "about-fifth--visible" : ""}`}
       ref={sectionRef}
     >
       <div className="about-fifth__container">
-
         {/* SECTION HEADING */}
-
         <div className="about-fifth__heading">
-
           <div className="about-fifth__ornament">
             <span></span>
             <span className="about-fifth__ornament-icon">✧</span>
             <span></span>
           </div>
 
-          <span className="about-fifth__eyebrow">
-            LUXURY COMFORT
-          </span>
+          <span className="about-fifth__eyebrow">LUXURY COMFORT</span>
 
           <h2>
-            Featured rooms <span>&</span> suites
+            Featured rooms <span>&amp;</span> suites
           </h2>
 
           <p>
             Discover exceptional comfort, timeless elegance and
             thoughtfully designed spaces for an unforgettable stay.
           </p>
-
-          <div className="about-fifth__heading-line"></div>
-
         </div>
 
         {/* ROOM CARDS */}
-
         <div className="about-fifth__grid">
-
           {rooms.map((room, index) => (
             <article
               className="about-fifth__card"
               key={room.id}
               style={{ "--card-index": index }}
             >
-
               {/* ROOM IMAGE */}
-
               <div className="about-fifth__image-wrap">
                 <img
                   src={room.image}
@@ -127,82 +134,70 @@ const AboutFifth = () => {
                   className="about-fifth__image"
                   loading="lazy"
                 />
+                <span className="about-fifth__image-tint"></span>
               </div>
 
+              <span className="about-fifth__tag">Luxury Stay</span>
+
               {/* INFORMATION PANEL */}
-
               <div className="about-fifth__content">
-
-                {/* ROOM TITLE */}
+                <span
+                  className="about-fifth__stars"
+                  role="img"
+                  aria-label="5 out of 5 stars"
+                >
+                  ★★★★★
+                </span>
 
                 <h3>{room.title}</h3>
 
-                {/* PRICE */}
-
-                <div className="about-fifth__price">
-                  <strong>{room.price}</strong>
-                  <small>/ NIGHT</small>
-                </div>
-
                 {/* ROOM DETAILS */}
-
                 <div className="about-fifth__details">
-
                   <span>
-                    <span className="about-fifth__detail-icon">
-                      ◇
-                    </span>
+                    <SizeIcon />
                     {room.size}
                   </span>
 
                   <span>
-                    <span className="about-fifth__detail-icon">
-                      ♙
-                    </span>
+                    <BedIcon />
                     {room.beds}
                   </span>
 
                   <span>
-                    <span className="about-fifth__detail-icon">
-                      ♧
-                    </span>
+                    <GuestIcon />
                     {room.guests}
                   </span>
-
                 </div>
 
-                {/* BUTTON */}
-
+                {/* PRICE + BUTTON */}
                 <div className="about-fifth__card-bottom">
+                  <div className="about-fifth__price">
+                    <strong>{room.price}</strong>
+                    <small>/ NIGHT</small>
+                  </div>
 
                   <a
                     href={room.link}
                     className="about-fifth__button"
+                    aria-label={`View details of ${room.title}`}
                   >
-                    VIEW DETAILS
-
-                    <span className="about-fifth__arrow">
-                      →
+                    <span className="about-fifth__button-text">
+                      VIEW DETAILS
                     </span>
+                    <span className="about-fifth__arrow">→</span>
                   </a>
-
                 </div>
-
               </div>
-
             </article>
           ))}
-
         </div>
 
         {/* SECTION FOOTER */}
-
         <div className="about-fifth__footer">
           <span></span>
           <p>EXPERIENCE THE ART OF LUXURY HOSPITALITY</p>
           <span></span>
         </div>
-
       </div>
     </section>
   );

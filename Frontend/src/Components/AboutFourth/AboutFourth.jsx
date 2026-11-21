@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AboutFourth.css";
 
 const hotelBenefits = [
@@ -10,13 +9,37 @@ const hotelBenefits = [
 ];
 
 const AboutFourth = () => {
-  return (
-    <section className="about-fourth">
-      <div className="about-fourth__container">
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
 
+  // Start the animations only when the section is on screen
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      className={`about-fourth ${visible ? "about-fourth--visible" : ""}`}
+      ref={sectionRef}
+    >
+      <div className="about-fourth__container">
         {/* Left Content */}
         <div className="about-fourth__content">
-
           {/* Decorative Ornament */}
           <div className="about-fourth__ornament">
             <span></span>
@@ -24,12 +47,10 @@ const AboutFourth = () => {
             <span></span>
           </div>
 
-          <p className="about-fourth__eyebrow">
-            WHY CHOOSE US
-          </p>
+          <p className="about-fourth__eyebrow">WHY CHOOSE US</p>
 
           <h2 className="about-fourth__heading">
-            Luxury & Comfort Our
+            Luxury &amp; Comfort Our
             <br className="about-fourth__desktop-break" />
             service always satisfaction
           </h2>
@@ -45,18 +66,10 @@ const AboutFourth = () => {
           {/* Benefits */}
           <div className="about-fourth__benefits">
             {hotelBenefits.map((benefit, index) => (
-              <div
-                className="about-fourth__benefit"
-                key={index}
-              >
+              <div className="about-fourth__benefit" key={index}>
                 <span className="about-fourth__check">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 2.5L14.7 4.1L17.8 4.2L19 7.1L21.5 9L20.9 12L21.5 15L19 16.9L17.8 19.8L14.7 19.9L12 21.5L9.3 19.9L6.2 19.8L5 16.9L2.5 15L3.1 12L2.5 9L5 7.1L6.2 4.2L9.3 4.1L12 2.5Z" />
-                    <path d="M8.5 12L10.7 14.2L15.5 9.5" />
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12.5L10 17.5L19 7.5" />
                   </svg>
                 </span>
 
@@ -66,27 +79,18 @@ const AboutFourth = () => {
           </div>
 
           {/* Read More Button */}
-          <a
-            href="/about"
-            className="about-fourth__button"
-          >
-            <span>READ MORE</span>
+          <a href="/about" className="about-fourth__button">
+            <span className="about-fourth__button-text">READ MORE</span>
 
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
-            >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 12H19M13 6L19 12L13 18" />
             </svg>
           </a>
-
         </div>
 
         {/* Right Image */}
         <div className="about-fourth__visual">
           <div className="about-fourth__image-frame">
-
             <img
               src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1400&q=90"
               alt="Elegant luxury hotel lobby and reception"
@@ -99,15 +103,13 @@ const AboutFourth = () => {
             <div className="about-fourth__image-caption">
               <span>THE LUXURY EXPERIENCE</span>
               <p>Where comfort meets elegance.</p>
+              <i className="about-fourth__caption-line"></i>
             </div>
-
           </div>
 
-          {/* Decorative Corner */}
+          {/* Decorative frame behind the image */}
           <div className="about-fourth__corner"></div>
-
         </div>
-
       </div>
     </section>
   );

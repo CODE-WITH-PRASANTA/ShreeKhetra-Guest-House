@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import "./HomepageFifth.css";
 
@@ -98,9 +97,7 @@ const HomepageFifth = () => {
               <span>✦</span>
             </div>
 
-            <p className="services-subtitle">
-              HOTEL SERVICE &amp; FACILITIES
-            </p>
+            <p className="services-subtitle">HOTEL SERVICE &amp; FACILITIES</p>
 
             <h2>Our Hotel Services</h2>
           </div>
@@ -108,15 +105,13 @@ const HomepageFifth = () => {
           <div className="services-list">
             {services.map((service, index) => (
               <div
-                className="service-item"
+                className="hotel-service-item"
                 key={service.title}
                 style={{ "--item-index": index }}
               >
-                <div className="service-icon">
-                  {service.icon}
-                </div>
+                <div className="hotel-service-icon">{service.icon}</div>
 
-                <div className="service-info">
+                <div className="hotel-service-info">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
                 </div>

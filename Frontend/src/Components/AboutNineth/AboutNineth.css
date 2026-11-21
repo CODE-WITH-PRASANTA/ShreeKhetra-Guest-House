@@ -1,28 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap');
 
-/* =========================================
-   ABOUT NINETH
-   LUXURY INSTAGRAM GALLERY
-========================================= */
+/* =========================================================
+   ABOUT NINETH - INSTAGRAM GALLERY
+   Same palette as the navbar / footer / enquiry form:
+   cream, temple gold, sun orange, ocean teal, deep navy.
+========================================================= */
 
 .about-nineth {
-  --nineth-bg: #fcf8f4;
-  --nineth-dark: #171714;
-  --nineth-muted: #8c8178;
-  --nineth-accent: #c6a77d;
-
-  width: 100%;
+  --nineth-ivory: #fffcf5;
+  --nineth-cream: #fbf1dc;
+  --nineth-gold: #b97a1c;
+  --nineth-gold-light: #d9a441;
+  --nineth-orange: #e8892b;
+  --nineth-teal: #14839f;
+  --nineth-teal-dark: #0c5c75;
+  --nineth-navy: #0b2f45;
+  --nineth-navy-deep: #071f2f;
+  --nineth-muted: #4f6676;
+  --nineth-ease: cubic-bezier(0.22, 0.8, 0.2, 1);
 
   position: relative;
-
+  width: 100%;
+  padding: 56px 0 80px;
   overflow: hidden;
+  isolation: isolate;
 
-  padding: 88px 0 42px;
-
-  background: var(--nineth-bg);
-
-  font-family: inherit;
-
+  font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   box-sizing: border-box;
+
+  background: linear-gradient(
+    115deg,
+    #d3e7ee 0%,
+    #eaf3f3 26%,
+    var(--nineth-ivory) 52%,
+    #fdeedb 82%,
+    #fbe3c4 100%
+  );
 }
 
 .about-nineth *,
@@ -31,660 +44,607 @@
   box-sizing: border-box;
 }
 
-/* =========================================
-   HEADING
-========================================= */
-
-.about-nineth-heading {
-  width: 100%;
-
-  text-align: center;
-
-  padding: 0 20px;
-
-  margin-bottom: 43px;
+/* ---------- Background decoration ---------- */
+.about-nineth-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: radial-gradient(rgba(185, 122, 28, 0.2) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 25%, #000 75%, transparent);
 }
 
-/* Small luxury heading */
+.about-nineth-glow {
+  position: absolute;
+  z-index: -2;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
 
+.about-nineth-glow--teal {
+  top: -140px;
+  left: -120px;
+  width: 460px;
+  height: 460px;
+  background: rgba(20, 131, 159, 0.2);
+}
+
+.about-nineth-glow--gold {
+  right: -140px;
+  bottom: -120px;
+  width: 460px;
+  height: 460px;
+  background: rgba(232, 137, 43, 0.2);
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.about-nineth-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  text-align: center;
+  animation: ninethReveal 1s ease both;
+}
+
+@keyframes ninethReveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* eyebrow pill */
 .about-nineth-eyebrow {
-  display: block;
-
-  font-size: 10px;
-
-  font-weight: 500;
-
-  letter-spacing: 4px;
-
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px 8px 16px;
+  color: var(--nineth-gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1.5px solid rgba(217, 164, 65, 0.75);
+  border-radius: 999px;
+  box-shadow: 0 10px 20px -14px rgba(185, 122, 28, 0.7);
+}
 
-  color: var(--nineth-accent);
-
-  margin-bottom: 14px;
+.about-nineth-eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--nineth-gold-light), var(--nineth-orange));
+  box-shadow: 0 0 0 4px rgba(232, 137, 43, 0.2);
 }
 
 /* Instagram title */
-
 .about-nineth-title {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
-  gap: 9px;
-
-  color: var(--nineth-dark);
-
-  font-size: 13px;
-
-  font-weight: 500;
-
+  gap: 14px;
+  margin-top: 18px;
+  color: var(--nineth-navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
   text-decoration: none;
-
   transition: color 0.35s ease;
 }
 
 .about-nineth-title:hover {
-  color: var(--nineth-accent);
+  color: var(--nineth-gold);
 }
 
-/* Heading icon */
+.about-nineth-title:focus-visible {
+  outline: 2px solid var(--nineth-teal);
+  outline-offset: 6px;
+  border-radius: 12px;
+}
 
+/* teal + gold instagram badge */
 .about-nineth-title-icon {
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
-  transition:
-    transform 0.4s ease,
-    color 0.4s ease;
+  width: clamp(42px, 4vw, 56px);
+  height: clamp(42px, 4vw, 56px);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--nineth-teal), var(--nineth-teal-dark));
+  border: 2px solid var(--nineth-gold-light);
+  border-radius: 50%;
+  box-shadow:
+    0 14px 22px -10px rgba(12, 92, 117, 0.85),
+    0 0 0 5px rgba(217, 164, 65, 0.16);
+  transition: transform 0.45s var(--nineth-ease), background 0.35s ease, color 0.35s ease;
 }
 
-.about-nineth-title:hover
-.about-nineth-title-icon {
-  transform: translateY(-3px);
+.about-nineth-title:hover .about-nineth-title-icon {
+  transform: rotate(-10deg) scale(1.08);
+  color: var(--nineth-navy);
+  background: linear-gradient(135deg, var(--nineth-gold-light), var(--nineth-orange));
 }
 
-/* Subtitle */
+.about-nineth-title-line {
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 18px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--nineth-gold), var(--nineth-orange));
+}
 
 .about-nineth-subtitle {
-  margin: 12px 0 0;
-
+  max-width: 480px;
+  margin: 18px 0 0;
   color: var(--nineth-muted);
-
-  font-size: 11px;
-
-  font-weight: 400;
-
-  letter-spacing: 0.3px;
-
-  line-height: 1.7;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.8;
 }
 
-/* =========================================
-   GALLERY CONTAINER
-========================================= */
+/* =========================================================
+   GALLERY
+========================================================= */
 
 .about-nineth-gallery {
-  width: 100%;
-
   position: relative;
-
+  width: 100%;
   overflow: hidden;
+  padding: 24px 0 52px; /* room for hover lift + the staggered cards */
 
-  padding: 0;
+  /* fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
 }
-
-/* =========================================
-   INFINITE IMAGE TRACK
-========================================= */
 
 .about-nineth-track {
   display: flex;
-
-  align-items: center;
-
+  align-items: flex-start;
   width: max-content;
-
-  gap: 38px;
-
-  padding: 0 32px;
-
-  animation: aboutNinethMarquee 48s linear infinite;
-
+  animation: ninethMarquee 55s linear infinite;
   will-change: transform;
 }
 
-/* Pause animation when gallery hovered */
+@keyframes ninethMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
-.about-nineth-gallery:hover
-.about-nineth-track {
+/* pause on hover */
+.about-nineth-gallery:hover .about-nineth-track {
   animation-play-state: paused;
 }
 
-/* =========================================
-   IMAGE CARD
-========================================= */
+.about-nineth-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  gap: 32px;
+  padding-right: 32px;
+}
+
+/* =========================================================
+   PHOTO CARD (framed like a printed photo)
+========================================================= */
 
 .about-nineth-card {
   position: relative;
-
   display: block;
-
-  width: 292px;
-
-  height: 206px;
-
-  flex: 0 0 292px;
-
-  overflow: hidden;
-
-  border-radius: 23px;
-
-  background: #e9e2d9;
-
+  flex: 0 0 340px;
+  width: 340px;
+  padding: 8px;
   text-decoration: none;
-
-  isolation: isolate;
-
+  background: #ffffff;
+  border: 1.5px solid rgba(217, 164, 65, 0.65);
+  border-radius: 28px;
   box-shadow:
-    0 7px 22px rgba(55, 39, 23, 0.035),
-    0 1px 3px rgba(55, 39, 23, 0.04);
-
-  transition:
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.55s ease;
+    0 26px 44px -26px rgba(11, 47, 69, 0.5),
+    0 0 0 5px rgba(217, 164, 65, 0.1);
+  isolation: isolate;
+  transition: transform 0.55s var(--nineth-ease), box-shadow 0.55s ease, border-color 0.4s ease;
 }
 
-/* =========================================
-   IMAGE
-========================================= */
+/* stagger: every second card sits lower */
+.about-nineth-card:nth-child(even) {
+  margin-top: 30px;
+}
 
-.about-nineth-card img {
-  display: block;
+.about-nineth-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--nineth-gold-light);
+  box-shadow:
+    0 36px 54px -24px rgba(185, 122, 28, 0.55),
+    0 0 0 6px rgba(217, 164, 65, 0.2);
+}
 
+.about-nineth-card:focus-visible {
+  outline: 3px solid var(--nineth-teal);
+  outline-offset: 4px;
+}
+
+/* inner frame */
+.about-nineth-frame {
+  position: relative;
   width: 100%;
+  height: 236px;
+  overflow: hidden;
+  border-radius: 21px;
+  background: var(--nineth-navy);
+}
 
+.about-nineth-frame img {
+  display: block;
+  width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   transform: scale(1);
-
-  transition:
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.65s ease;
-
+  transition: transform 1.1s var(--nineth-ease), filter 0.6s ease;
   will-change: transform;
 }
 
-/* =========================================
-   INSTAGRAM HOVER OVERLAY
-========================================= */
+.about-nineth-card:hover .about-nineth-frame img {
+  transform: scale(1.1);
+  filter: brightness(0.78);
+}
 
-.about-nineth-overlay {
+/* soft dark gradient at the bottom for the label */
+.about-nineth-frame::after {
+  content: "";
   position: absolute;
-
   inset: 0;
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 12px;
-
-  background: rgba(20, 20, 20, 0.55);
-
-  opacity: 0;
-
-  backdrop-filter: blur(0px);
-
-  -webkit-backdrop-filter: blur(0px);
-
-  transition:
-    opacity 0.5s ease,
-    backdrop-filter 0.5s ease,
-    background 0.5s ease;
-
-  z-index: 2;
+  background: linear-gradient(180deg, transparent 55%, rgba(7, 31, 47, 0.62) 100%);
+  pointer-events: none;
 }
 
-/* =========================================
-   INSTAGRAM BUTTON
-========================================= */
-
-.about-nineth-instagram-button {
-  width: 58px;
-
-  height: 58px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 50%;
-
-  color: #ffffff;
-
-  border: 1px solid rgba(255, 255, 255, 0.75);
-
-  background: rgba(255, 255, 255, 0.08);
-
-  transform: translateY(18px) scale(0.82);
-
-  opacity: 0;
-
-  transition:
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.45s ease,
-    background 0.4s ease,
-    color 0.4s ease,
-    border-color 0.4s ease;
-}
-
-/* =========================================
-   OVERLAY TEXT
-========================================= */
-
-.about-nineth-overlay-text {
-  font-size: 9px;
-
-  font-weight: 500;
-
-  letter-spacing: 2px;
-
-  color: #ffffff;
-
-  transform: translateY(10px);
-
-  opacity: 0;
-
-  transition:
-    transform 0.5s ease 0.08s,
-    opacity 0.5s ease 0.08s;
-}
-
-/* =========================================
-   IMAGE BOTTOM DETAILS
-========================================= */
-
-.about-nineth-image-detail {
+/* ---------- Always-visible label ---------- */
+.about-nineth-tag {
   position: absolute;
-
-  left: 17px;
-
-  right: 17px;
-
-  bottom: 15px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  color: #ffffff;
-
-  font-size: 8px;
-
-  font-weight: 500;
-
-  letter-spacing: 1.6px;
-
-  opacity: 0;
-
-  transform: translateY(10px);
-
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
-
+  left: 14px;
+  bottom: 14px;
   z-index: 3;
-}
-
-/* Bottom Instagram icon */
-
-.about-nineth-detail-icon {
-  display: flex;
-
+  display: inline-flex;
   align-items: center;
-
-  justify-content: center;
-}
-
-/* =========================================
-   CARD HOVER
-========================================= */
-
-.about-nineth-card:hover {
-  transform: translateY(-5px);
-
-  box-shadow:
-    0 18px 40px rgba(55, 39, 23, 0.12),
-    0 3px 8px rgba(55, 39, 23, 0.06);
-}
-
-/* Image zoom */
-
-.about-nineth-card:hover img {
-  transform: scale(1.09);
-
-  filter: brightness(0.82);
-}
-
-/* Overlay appears */
-
-.about-nineth-card:hover
-.about-nineth-overlay {
-  opacity: 1;
-
-  background: rgba(20, 20, 20, 0.48);
-
-  backdrop-filter: blur(2px);
-
-  -webkit-backdrop-filter: blur(2px);
-}
-
-/* Instagram button appears */
-
-.about-nineth-card:hover
-.about-nineth-instagram-button {
-  opacity: 1;
-
-  transform: translateY(0) scale(1);
-
-  background: #ffffff;
-
-  color: #171714;
-
-  border-color: #ffffff;
-}
-
-/* Text appears */
-
-.about-nineth-card:hover
-.about-nineth-overlay-text {
-  opacity: 1;
-
-  transform: translateY(0);
-}
-
-/* Bottom detail appears */
-
-.about-nineth-card:hover
-.about-nineth-image-detail {
-  opacity: 1;
-
-  transform: translateY(0);
-}
-
-/* Instagram button hover */
-
-.about-nineth-card:hover
-.about-nineth-instagram-button:hover {
-  background: var(--nineth-accent);
-
+  gap: 7px;
+  padding: 7px 13px 7px 11px;
   color: #ffffff;
-
-  border-color: var(--nineth-accent);
-
-  transform: translateY(-3px) scale(1.05);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  background: rgba(7, 31, 47, 0.45);
+  border: 1px solid rgba(217, 164, 65, 0.8);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* =========================================
-   INFINITE RIGHT TO LEFT ANIMATION
-========================================= */
-
-@keyframes aboutNinethMarquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+.about-nineth-card:hover .about-nineth-tag {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
-/* =========================================
-   BOTTOM LUXURY DETAIL
-========================================= */
+/* ---------- Hover overlay ---------- */
+.about-nineth-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(232, 137, 43, 0.35), transparent 60%),
+    linear-gradient(160deg, rgba(7, 31, 47, 0.7), rgba(12, 92, 117, 0.6));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.about-nineth-card:hover .about-nineth-overlay {
+  opacity: 1;
+}
+
+.about-nineth-instagram-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  color: var(--nineth-navy);
+  background: #ffffff;
+  border: 2px solid var(--nineth-gold-light);
+  border-radius: 50%;
+  box-shadow: 0 16px 26px -10px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(18px) scale(0.82);
+  transition:
+    transform 0.55s var(--nineth-ease),
+    opacity 0.45s ease,
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.about-nineth-card:hover .about-nineth-instagram-button {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.about-nineth-card:hover .about-nineth-instagram-button:hover,
+.about-nineth-card:focus-visible .about-nineth-instagram-button {
+  color: var(--nineth-navy);
+  background: linear-gradient(135deg, var(--nineth-gold-light), var(--nineth-orange));
+}
+
+.about-nineth-overlay-text {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: transform 0.5s ease 0.08s, opacity 0.5s ease 0.08s;
+}
+
+.about-nineth-card:hover .about-nineth-overlay-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   BOTTOM DETAIL + BUTTON
+========================================================= */
 
 .about-nineth-bottom {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 18px;
-
-  margin-top: 48px;
-
   padding: 0 20px;
 }
 
-/* Decorative lines */
-
 .about-nineth-bottom-line {
   display: block;
-
-  width: 42px;
-
-  height: 1px;
-
-  background: rgba(198, 167, 125, 0.45);
+  width: 56px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(185, 122, 28, 0.7));
 }
 
-/* Bottom text */
+.about-nineth-bottom-line:last-child {
+  background: linear-gradient(90deg, rgba(185, 122, 28, 0.7), transparent);
+}
 
 .about-nineth-bottom-text {
-  color: #a19589;
-
-  font-size: 8px;
-
-  font-weight: 500;
-
-  letter-spacing: 2.5px;
-
+  color: var(--nineth-gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
   text-align: center;
 }
 
-/* =========================================
-   LARGE DESKTOP
-========================================= */
+.about-nineth-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+  padding: 0 20px;
+}
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (min-width: 1600px) {
   .about-nineth {
-    padding-top: 100px;
-
-    padding-bottom: 50px;
+    padding: 110px 0 100px;
   }
 
-  .about-nineth-track {
-    gap: 42px;
-
-    padding: 0 40px;
+  .about-nineth-group {
+    gap: 38px;
+    padding-right: 38px;
   }
 
   .about-nineth-card {
-    width: 320px;
+    flex-basis: 380px;
+    width: 380px;
+  }
 
-    height: 225px;
+  .about-nineth-frame {
+    height: 262px;
+  }
 
-    flex-basis: 320px;
-
-    border-radius: 25px;
+  .about-nineth-track {
+    animation-duration: 62s;
   }
 }
 
-/* =========================================
-   LAPTOP
-========================================= */
-
+/* Laptop */
 @media (max-width: 1200px) {
   .about-nineth {
-    padding-top: 75px;
+    padding: 82px 0 80px;
   }
 
-  .about-nineth-track {
-    gap: 28px;
+  .about-nineth-group {
+    gap: 26px;
+    padding-right: 26px;
   }
 
   .about-nineth-card {
-    width: 265px;
+    flex-basis: 300px;
+    width: 300px;
+  }
 
-    height: 190px;
+  .about-nineth-frame {
+    height: 208px;
+  }
 
-    flex-basis: 265px;
+  .about-nineth-track {
+    animation-duration: 48s;
   }
 }
 
-/* =========================================
-   TABLET
-========================================= */
-
+/* Tablet */
 @media (max-width: 768px) {
   .about-nineth {
-    padding-top: 65px;
-
-    padding-bottom: 35px;
+    padding: 70px 0 70px;
   }
 
   .about-nineth-heading {
-    margin-bottom: 32px;
+    margin-bottom: 30px;
+  }
+
+  .about-nineth-group {
+    gap: 20px;
+    padding-right: 20px;
+  }
+
+  .about-nineth-card {
+    flex-basis: 262px;
+    width: 262px;
+    padding: 7px;
+    border-radius: 24px;
+  }
+
+  .about-nineth-card:nth-child(even) {
+    margin-top: 22px;
+  }
+
+  .about-nineth-frame {
+    height: 182px;
+    border-radius: 18px;
+  }
+
+  .about-nineth-track {
+    animation-duration: 42s;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .about-nineth {
+    padding: 58px 0 60px;
+  }
+
+  .about-nineth-heading {
+    margin-bottom: 24px;
+    padding: 0 16px;
   }
 
   .about-nineth-eyebrow {
-    font-size: 9px;
+    padding: 7px 16px 7px 13px;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+  }
 
-    letter-spacing: 3px;
+  .about-nineth-title {
+    gap: 10px;
+    margin-top: 14px;
   }
 
   .about-nineth-subtitle {
+    max-width: 300px;
+    font-size: 13.5px;
+  }
+
+  .about-nineth-gallery {
+    padding-bottom: 44px;
+  }
+
+  .about-nineth-group {
+    gap: 16px;
+    padding-right: 16px;
+  }
+
+  .about-nineth-card {
+    flex-basis: 226px;
+    width: 226px;
+    padding: 6px;
+    border-radius: 21px;
+  }
+
+  .about-nineth-card:nth-child(even) {
+    margin-top: 18px;
+  }
+
+  .about-nineth-frame {
+    height: 160px;
+    border-radius: 16px;
+  }
+
+  .about-nineth-tag {
+    left: 10px;
+    bottom: 10px;
+    padding: 6px 11px 6px 9px;
+    font-size: 9px;
+  }
+
+  .about-nineth-instagram-button {
+    width: 52px;
+    height: 52px;
+  }
+
+  .about-nineth-overlay-text {
     font-size: 10px;
   }
 
   .about-nineth-track {
-    gap: 22px;
-
-    padding: 0 20px;
-
-    animation-duration: 38s;
-  }
-
-  .about-nineth-card {
-    width: 235px;
-
-    height: 175px;
-
-    flex-basis: 235px;
-
-    border-radius: 19px;
-  }
-
-  .about-nineth-bottom {
-    margin-top: 35px;
-  }
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 480px) {
-  .about-nineth {
-    padding-top: 55px;
-
-    padding-bottom: 28px;
-  }
-
-  .about-nineth-heading {
-    padding: 0 15px;
-
-    margin-bottom: 27px;
-  }
-
-  .about-nineth-title {
-    font-size: 12px;
-  }
-
-  .about-nineth-subtitle {
-    max-width: 280px;
-
-    margin: 10px auto 0;
-
-    font-size: 9px;
-  }
-
-  .about-nineth-track {
-    gap: 16px;
-
-    padding: 0 16px;
-
-    animation-duration: 32s;
-  }
-
-  .about-nineth-card {
-    width: 210px;
-
-    height: 155px;
-
-    flex-basis: 210px;
-
-    border-radius: 17px;
-  }
-
-  .about-nineth-instagram-button {
-    width: 48px;
-
-    height: 48px;
-  }
-
-  .about-nineth-overlay-text {
-    font-size: 8px;
-
-    letter-spacing: 1.5px;
+    animation-duration: 36s;
   }
 
   .about-nineth-bottom {
     gap: 12px;
-
-    margin-top: 30px;
   }
 
   .about-nineth-bottom-line {
-    width: 24px;
+    width: 28px;
   }
 
   .about-nineth-bottom-text {
-    font-size: 7px;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+  }
 
-    letter-spacing: 1.5px;
+  .about-nineth-cta-wrap {
+    margin-top: 24px;
+  }
+
+  .about-nineth-cta {
+    padding: 14px 26px;
+    font-size: 13px;
   }
 }
 
-/* =========================================
-   ACCESSIBILITY
-========================================= */
-
+/* Reduced motion: no auto-scroll, swipeable row instead */
 @media (prefers-reduced-motion: reduce) {
-  .about-nineth-track {
-    animation: none;
+  .about-nineth *,
+  .about-nineth *::before,
+  .about-nineth *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 
-  .about-nineth-card,
-  .about-nineth-card img,
-  .about-nineth-overlay,
-  .about-nineth-instagram-button {
-    transition: none;
+  .about-nineth-track {
+    animation: none !important;
+  }
+
+  .about-nineth-gallery {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .about-nineth-group[aria-hidden="true"] {
+    display: none;
   }
 }
