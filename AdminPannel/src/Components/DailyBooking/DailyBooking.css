@@ -19,7 +19,6 @@
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   color: var(--db-text);
   box-sizing: border-box;
-  animation: db-page-in 0.5s ease both;
 }
 .db-page *,
 .db-page *::before,
@@ -40,7 +39,6 @@
   overflow: hidden;
   background: linear-gradient(110deg, #2563eb 0%, #3b82f6 55%, #7fb0ff 100%);
   box-shadow: 0 10px 28px rgba(37, 99, 235, 0.22);
-  animation: db-banner-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .db-banner::before,
 .db-banner::after {
@@ -56,7 +54,6 @@
   right: 14%;
   top: -210px;
   background: rgba(255, 255, 255, 0.07);
-  animation: db-float 7s ease-in-out infinite;
 }
 .db-banner::after {
   width: 200px;
@@ -74,7 +71,6 @@
   place-items: center;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  animation: db-pop 0.6s 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 .db-banner-text {
   position: relative;
@@ -113,12 +109,8 @@
   border: 1px solid #e6edf8;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(37, 99, 235, 0.05);
-  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-  animation: db-rise 0.55s calc(0.25s + var(--i) * 0.08s) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .db-stat:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.14);
   border-color: #bcd0fa;
 }
 .db-stat-icon {
@@ -127,10 +119,6 @@
   border-radius: 12px;
   display: grid;
   place-items: center;
-  transition: transform 0.3s;
-}
-.db-stat:hover .db-stat-icon {
-  transform: rotate(-8deg) scale(1.1);
 }
 .db-stat strong {
   display: block;
@@ -160,7 +148,6 @@
   background: #fff;
   border: 1px solid #e6edf8;
   border-radius: 16px;
-  animation: db-rise 0.55s 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .db-search,
 .db-select {
@@ -173,7 +160,6 @@
   border-radius: 12px;
   color: #7a8bb0;
   background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .db-search { flex: 1; min-width: 220px; }
 .db-search:focus-within,
@@ -229,7 +215,6 @@
   background: transparent;
   color: #46567a;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
 }
 .db-view-toggle button:hover { background: #e3ecff; }
 .db-view-toggle button.is-active {
@@ -260,10 +245,9 @@
   z-index: 1;
 }
 .db-dd.is-open {
-  z-index: 60; /* keeps the open list above other fields */
+  z-index: 60;
 }
 
-/* ---------- Trigger (looks like the parent inputs) ---------- */
 .db-dd-trigger {
   width: 100%;
   height: 44px;
@@ -279,11 +263,9 @@
   font-size: 14px;
   text-align: left;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.25s, color 0.2s, transform 0.2s;
 }
 .db-dd-trigger:hover {
   border-color: #a9c0f5;
-  transform: translateY(-1px);
 }
 .db-dd-trigger:focus-visible,
 .db-dd.is-open .db-dd-trigger {
@@ -313,14 +295,12 @@
 .db-dd-chevron {
   flex-shrink: 0;
   color: #7a8bb0;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s;
 }
 .db-dd.is-open .db-dd-chevron {
   transform: rotate(180deg);
   color: var(--dd-blue);
 }
 
-/* ---------- Panel ---------- */
 .db-dd-panel {
   position: absolute;
   top: calc(100% + 8px);
@@ -332,16 +312,13 @@
   max-height: 252px;
   overflow-y: auto;
   background: #fff;
-  border: 1.5px solid var(--dd-blue); /* same blue as the focused trigger */
+  border: 1.5px solid var(--dd-blue);
   border-radius: 14px;
   box-shadow: 0 20px 44px rgba(37, 99, 235, 0.22), 0 4px 10px rgba(15, 27, 77, 0.06);
-  transform-origin: top center;
-  animation: db-dd-open 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
   scrollbar-width: thin;
   scrollbar-color: #b9cdf8 transparent;
 }
 .db-dd-panel.is-closing {
-  animation: db-dd-close 0.16s ease-in both;
   pointer-events: none;
 }
 .db-dd-panel::-webkit-scrollbar {
@@ -352,7 +329,6 @@
   border-radius: 99px;
 }
 
-/* ---------- Options ---------- */
 .db-dd-option {
   position: relative;
   display: flex;
@@ -364,8 +340,6 @@
   color: var(--dd-text);
   cursor: pointer;
   user-select: none;
-  transition: background 0.18s, color 0.18s, padding-left 0.2s;
-  animation: db-dd-item 0.28s calc(var(--i) * 28ms + 40ms) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .db-dd-option::before {
   content: "";
@@ -377,7 +351,6 @@
   border-radius: 99px;
   background: var(--dd-blue);
   transform: translateY(-50%);
-  transition: height 0.2s;
 }
 .db-dd-option.is-active {
   background: var(--dd-soft);
@@ -398,31 +371,6 @@
 }
 .db-dd-check {
   color: var(--dd-blue);
-  animation: db-dd-check 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-/* ---------- Animations ---------- */
-@keyframes db-dd-open {
-  from { opacity: 0; transform: translateY(-10px) scaleY(0.88); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-dd-close {
-  to { opacity: 0; transform: translateY(-8px) scaleY(0.92); }
-}
-@keyframes db-dd-item {
-  from { opacity: 0; transform: translateX(-10px); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-dd-check {
-  from { opacity: 0; transform: scale(0.3) rotate(-30deg); }
-  to { opacity: 1; transform: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .db-dd *, .db-dd-panel {
-    animation: none !important;
-    transition: none !important;
-  }
 }
 
 /* ---------- Pagination ---------- */
@@ -435,7 +383,6 @@
   margin-top: 16px;
   font-size: 13px;
   color: var(--db-muted);
-  animation: db-rise 0.5s 0.4s both;
 }
 .db-pager-btns { display: flex; gap: 6px; }
 .db-pager-btns button {
@@ -450,12 +397,10 @@
   font: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
 }
 .db-pager-btns button:hover:not(:disabled) {
   border-color: var(--db-blue);
   color: var(--db-blue);
-  transform: translateY(-2px);
 }
 .db-pager-btns button.is-active {
   background: var(--db-blue);
@@ -472,7 +417,6 @@
   background: #fff;
   border: 2px dashed #9dbaf7;
   border-radius: 20px;
-  animation: db-pop 0.5s both;
 }
 .db-empty-icon {
   width: 64px;
@@ -483,7 +427,6 @@
   border-radius: 50%;
   background: var(--db-blue-soft);
   color: var(--db-blue);
-  animation: db-float 3.5s ease-in-out infinite;
 }
 .db-empty h3 { margin: 0 0 4px; color: var(--db-navy); }
 .db-empty p { margin: 0 0 14px; color: var(--db-muted); font-size: 14px; }
@@ -505,10 +448,8 @@
   font-weight: 700;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.25s, background 0.25s, color 0.25s, border-color 0.25s;
 }
-.db-btn:hover { transform: translateY(-3px); }
-.db-btn:active { transform: scale(0.97); }
+.db-btn:active { opacity: 0.9; }
 .db-btn:focus-visible,
 .db-icon-btn:focus-visible,
 .db-view-toggle button:focus-visible,
@@ -521,23 +462,11 @@
   color: var(--db-blue-dark);
   box-shadow: 0 6px 16px rgba(15, 27, 77, 0.18);
 }
-.db-btn--white:hover { box-shadow: 0 12px 24px rgba(15, 27, 77, 0.28); }
-.db-btn--white svg { transition: transform 0.3s; }
-.db-btn--white:hover svg { transform: rotate(90deg); }
 .db-btn--primary {
   color: #fff;
   background: linear-gradient(110deg, #2563eb, #3b82f6);
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
-.db-btn--primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 0.6s;
-}
-.db-btn--primary:hover::after { transform: translateX(120%); }
 .db-btn--outline {
   background: #fff;
   color: var(--db-blue-dark);
@@ -550,17 +479,26 @@
   box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
 }
 
-/* ---------- Modal ---------- */
+/* ---------- Modal (blur covers the FULL page:
+   top bar + sidebar + everything) ---------- */
 .db-overlay {
   position: fixed;
-  inset: 0;
-  z-index: 9998;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 99999; /* above top bar and sidebar */
+
   display: grid;
   place-items: center;
   padding: 16px;
-  background: rgba(15, 27, 77, 0.45);
-  backdrop-filter: blur(4px);
-  animation: db-fade 0.25s both;
+
+  background: rgba(15, 27, 77, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 .db-modal {
   width: 100%;
@@ -569,7 +507,6 @@
   border-radius: 20px;
   box-shadow: 0 30px 70px rgba(15, 27, 77, 0.35);
   overflow: visible; /* lets dropdown lists open outside the popup */
-  animation: db-modal-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 .db-modal-head {
   display: flex;
@@ -597,9 +534,8 @@
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
   cursor: pointer;
-  transition: transform 0.25s, background 0.25s;
 }
-.db-modal-head button:hover { background: rgba(255, 255, 255, 0.35); transform: rotate(90deg); }
+.db-modal-head button:hover { background: rgba(255, 255, 255, 0.35); }
 .db-modal-body { padding: 16px 18px 6px; display: flex; flex-direction: column; gap: 12px; }
 .db-modal-body label,
 .db-modal-body .db-field {
@@ -622,7 +558,6 @@
   color: var(--db-text);
   outline: 0;
   resize: vertical;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .db-modal-body input:focus,
 .db-modal-body select:focus,
@@ -648,7 +583,6 @@
   border-radius: 50%;
   background: #fee2e2;
   color: var(--db-red);
-  animation: db-shake 0.5s 0.2s both;
 }
 .db-confirm h3 { margin: 4px 0 0; color: var(--db-navy); font-size: 19px; }
 .db-confirm p { margin: 0 0 4px; font-size: 14px; color: var(--db-muted); line-height: 1.5; }
@@ -658,7 +592,7 @@
   position: fixed;
   right: 24px;
   bottom: 24px;
-  z-index: 9999;
+  z-index: 100000; /* above the blur overlay */
   display: flex;
   align-items: center;
   gap: 12px;
@@ -669,7 +603,6 @@
   box-shadow: 0 16px 40px rgba(15, 27, 77, 0.2);
   font-weight: 600;
   font-size: 14px;
-  animation: db-slide 0.35s both;
 }
 .db-toast--success svg:first-child { color: var(--db-green); }
 .db-toast--error { border-left-color: var(--db-red); }
@@ -687,49 +620,6 @@
 }
 .db-toast button:hover { background: #eef2fb; }
 
-/* ---------- Animations ---------- */
-@keyframes db-page-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes db-banner-in {
-  from { opacity: 0; transform: translateY(-24px) scale(0.98); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-rise {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-card-in {
-  from { opacity: 0; transform: translateY(34px) scale(0.94); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-pop {
-  from { opacity: 0; transform: scale(0.6); }
-  to { opacity: 1; transform: scale(1); }
-}
-@keyframes db-float {
-  50% { transform: translateY(10px); }
-}
-@keyframes db-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes db-modal-in {
-  from { opacity: 0; transform: translateY(30px) scale(0.9); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-slide {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes db-shake {
-  20% { transform: rotate(-10deg); }
-  40% { transform: rotate(10deg); }
-  60% { transform: rotate(-6deg); }
-  80% { transform: rotate(6deg); }
-}
-
 /* ---------- Date bar ---------- */
 .db-datebar {
   display: flex;
@@ -746,13 +636,11 @@
   background: #fff;
   color: #3b4c75;
   cursor: pointer;
-  transition: all 0.2s;
 }
 .db-datebar > button:not(.db-today):hover {
   border-color: var(--db-blue);
   background: var(--db-blue);
   color: #fff;
-  transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
 }
 .db-date {
@@ -766,7 +654,6 @@
   color: var(--db-blue);
   background: #fff;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .db-date:hover { border-color: #a9c0f5; }
 .db-date:focus-within {
@@ -794,7 +681,6 @@
   font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
 }
 .db-today:hover { border-color: var(--db-blue); background: var(--db-blue-soft); }
 .db-today.is-on { background: var(--db-blue); border-color: var(--db-blue); color: #fff; }
@@ -807,7 +693,6 @@
   align-items: center;
   gap: 10px;
   margin: 0 4px 10px;
-  animation: db-rise 0.45s both;
 }
 .db-dayline h3 {
   margin: 0;
@@ -854,8 +739,6 @@
 .db-row {
   position: relative;
   border-bottom: 1px dashed var(--db-border);
-  transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
-  animation: db-rise 0.55s calc(var(--i) * 0.08s) cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .db-row:last-child {
   border-bottom: 0;
@@ -864,7 +747,6 @@
 .db-row:hover {
   background: #f7faff;
   box-shadow: inset 4px 0 0 var(--db-blue);
-  transform: translateX(3px);
 }
 .db-row.is-cancelled { opacity: 0.62; }
 .db-row.is-cancelled .db-guest strong { text-decoration: line-through; }
@@ -907,18 +789,14 @@
   color: #fff !important;
   font-size: 15px !important;
   font-weight: 800;
-  transition: transform 0.3s;
 }
-.db-row:hover .db-avatar { transform: scale(1.1) rotate(-6deg); }
 .db-room img {
   width: 46px;
   height: 38px;
   flex-shrink: 0;
   object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.4s;
 }
-.db-row:hover .db-room img { transform: scale(1.08); }
 .db-stay span { flex-wrap: wrap; }
 
 .db-stage {
@@ -976,10 +854,8 @@
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.2s;
 }
 .db-act:hover {
-  transform: translateY(-2px);
   border-color: var(--db-blue);
   background: var(--db-blue-soft);
   color: var(--db-blue-dark);
@@ -993,14 +869,12 @@
 .db-act--main:hover {
   background: var(--db-blue);
   color: #fff;
-  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
 }
 .db-act--danger { color: var(--db-red); border-color: #fecaca; background: #fff8f8; }
 .db-act--danger:hover {
   background: var(--db-red);
   border-color: var(--db-red);
   color: #fff;
-  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.3);
 }
 .db-act:focus-visible { outline: 3px solid rgba(37, 99, 235, 0.4); outline-offset: 2px; }
 
@@ -1015,7 +889,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: db-zoom 6s ease-out both;
 }
 .db-detail-top::after {
   content: "";
@@ -1037,9 +910,8 @@
   background: rgba(255, 255, 255, 0.9);
   color: var(--db-navy);
   cursor: pointer;
-  transition: transform 0.25s, background 0.25s, color 0.25s;
 }
-.db-detail-close:hover { background: var(--db-red); color: #fff; transform: rotate(90deg); }
+.db-detail-close:hover { background: var(--db-red); color: #fff; }
 .db-detail-title {
   position: absolute;
   left: 18px;
@@ -1075,7 +947,6 @@
   border-radius: 12px;
   color: #7a8bb0;
   background: #fff;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 .db-input:hover { border-color: #a9c0f5; }
 .db-input:focus-within {
@@ -1094,7 +965,7 @@
   box-shadow: none;
   background: transparent;
 }
-.db-error { font-size: 12px; font-weight: 500; color: var(--db-red); animation: db-shake 0.35s; }
+.db-error { font-size: 12px; font-weight: 500; color: var(--db-red); }
 .db-total {
   align-self: end;
   display: flex;
@@ -1110,11 +981,6 @@
 .db-total span { font-size: 12.5px; color: var(--db-muted); }
 .db-total strong { font-size: 18px; color: var(--db-blue-dark); }
 
-@keyframes db-zoom {
-  from { transform: scale(1.15); }
-  to { transform: scale(1); }
-}
-
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
   .db-stats { grid-template-columns: repeat(2, 1fr); }
@@ -1129,7 +995,6 @@
     border-radius: 16px;
     box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);
   }
-  .db-row:hover { transform: translateY(-3px); }
   .db-guest,
   .db-actions { grid-column: 1 / -1; }
   .db-actions { justify-content: flex-start; }

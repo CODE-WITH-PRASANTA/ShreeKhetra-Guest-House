@@ -161,8 +161,8 @@
   letter-spacing: 1px;
 }
 
-.add-room-form { padding: 24px 25px 0; }
-.add-room-grid { display: grid; gap: 12px 25px; }
+.add-room-form { padding: 19px 25px 0; }
+.add-room-grid { display: grid; gap: 9px 25px; }
 .add-room-grid-two { grid-template-columns: 1fr 1fr; }
 .add-room-grid-three { grid-template-columns: 1fr 1fr 1fr; }
 .add-room-field { min-width: 0; }
@@ -186,7 +186,6 @@
   border: 1px solid #d7e0ed;
   border-radius: 10px;
   background: #fff;
-  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
 .add-room-input-wrap:focus-within {
   border-color: #60a5fa;
@@ -217,8 +216,15 @@
 }
 .add-room-textarea-wrap .add-room-input-icon { margin-top: 13px; }
 .add-room-input-wrap textarea { min-height: 106px; resize: vertical; line-height: 1.6; }
-.add-room-date-row { margin-top: 13px; }
-.add-room-price-row { margin-top: 13px; }
+
+/* Location field sits slightly higher (kept from compact spacing) */
+.add-room-grid-two:first-of-type .add-room-field:nth-child(3) {
+  position: relative;
+  top: -5px;
+}
+
+.add-room-date-row { margin-top: 3px; }
+.add-room-price-row { margin-top: 9px; }
 .add-room-final-price {
   background: #eff6ff;
   border-color: #bfdbfe;
@@ -226,8 +232,8 @@
 .add-room-final-price input { color: #1d4ed8; font-weight: 800; }
 
 .add-room-media-grid {
-  margin-top: 13px;
-  padding-bottom: 24px;
+  margin-top: 9px;
+  padding-bottom: 18px;
   grid-template-columns: .9fr 1.1fr;
   gap: 25px;
 }
@@ -247,13 +253,11 @@
   background: #f7fbff;
   cursor: pointer;
   font-family: inherit;
-  transition: .2s ease;
 }
 .add-room-upload-zone:hover,
 .add-room-upload-zone.is-dragging {
   border-color: #2563eb;
   background: #eff6ff;
-  transform: translateY(-1px);
 }
 .add-room-upload-zone strong { color: #1e3a8a; font-size: 12px; }
 .add-room-upload-zone span { color: #64748b; font-size: 11px; }
@@ -307,7 +311,6 @@
   font-size: 11px;
   font-weight: 650;
   cursor: pointer;
-  transition: .2s ease;
 }
 .add-room-amenity:hover { border-color: #93c5fd; background: #eff6ff; }
 .add-room-amenity input { position: absolute; opacity: 0; pointer-events: none; }
@@ -361,9 +364,7 @@
   font-size: 12px;
   font-weight: 750;
   cursor: pointer;
-  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
-.add-room-actions button:hover { transform: translateY(-2px); }
 .add-room-reset-btn {
   border: 1px solid #dbe5f2;
   color: #2563eb;
@@ -377,7 +378,6 @@
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   box-shadow: 0 5px 13px rgba(37,99,235,.2);
 }
-.add-room-save-btn:hover { box-shadow: 0 8px 18px rgba(37,99,235,.28); }
 .add-room-alert {
   margin-bottom: 17px;
   padding: 11px 13px;
@@ -412,13 +412,17 @@
   .add-room-card-header h2 { font-size: 17px; }
   .add-room-card-header p { max-width: 240px; font-size: 10px; line-height: 1.5; }
   .add-room-header-tag { display: none; }
-  .add-room-form { padding: 18px 15px 0; }
+  .add-room-form { padding: 16px 15px 0; }
   .add-room-grid-two,
   .add-room-grid-three,
   .add-room-media-grid { grid-template-columns: 1fr; gap: 17px; }
-  .add-room-date-row,
+  .add-room-grid-two:first-of-type .add-room-field:nth-child(3) {
+    top: 0;
+    transform: translateY(-12px);
+  }
+  .add-room-date-row { margin-top: 3px; }
   .add-room-price-row,
-  .add-room-media-grid { margin-top: 13px; }
+  .add-room-media-grid { margin-top: 9px; }
   .add-room-form-footer { margin: 0 -15px; padding: 13px 15px; align-items: flex-start; flex-direction: column; }
   .add-room-actions { width: 100%; }
   .add-room-actions button { flex: 1; padding: 0 12px; }
@@ -429,153 +433,4 @@
   .add-room-amenities { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
   .add-room-amenity { padding: 7px; font-size: 10px; }
   .add-room-actions button { font-size: 11px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .add-room-page *, .add-room-page *::before, .add-room-page *::after {
-    transition-duration: .01ms !important;
-    animation-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* =========================================================
-   PAGE ENTRY ANIMATION — plays whenever Add Room route opens
-========================================================= */
-.add-room-page {
-  animation: addRoomPageEnter 520ms cubic-bezier(.2,.75,.25,1) both;
-}
-
-.add-room-page .add-room-card {
-  transform-origin: top center;
-  animation: addRoomCardEnter 680ms cubic-bezier(.18,.8,.25,1) 100ms both;
-}
-
-.add-room-page .add-room-card-header {
-  animation: addRoomHeaderEnter 650ms ease-out 180ms both;
-}
-
-@keyframes addRoomPageEnter {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes addRoomCardEnter {
-  from { opacity: 0; transform: translateY(24px) scale(.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes addRoomHeaderEnter {
-  from { background-position: 35% 50%; }
-  to { background-position: 0 50%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .add-room-page,
-  .add-room-page .add-room-card,
-  .add-room-page .add-room-card-header {
-    animation: none !important;
-  }
-}
-
-/* =========================================================
-   PREMIUM STAGGERED SECTION REVEAL + COMPACT VERTICAL SPACING
-   Keeps the existing layout and functionality intact.
-========================================================= */
-.add-room-form {
-  padding-top: 19px;
-}
-
-/* Keep the original Description size; lift Location and the following rows instead. */
-.add-room-textarea-wrap {
-  min-height: 108px;
-}
-.add-room-textarea-wrap textarea {
-  min-height: 106px;
-}
-
-.add-room-grid {
-  row-gap: 9px;
-}
-.add-room-grid-two:first-of-type .add-room-field:nth-child(3) {
-  position: relative;
-  top: -5px;
-}
-.add-room-date-row {
-  margin-top: 3px;
-}
-.add-room-price-row,
-.add-room-media-grid {
-  margin-top: 9px;
-}
-.add-room-media-grid {
-  padding-bottom: 18px;
-}
-
-/* Each form section enters smoothly, one after another. */
-.add-room-form > .add-room-grid-two:first-of-type {
-  animation: arSectionReveal 620ms cubic-bezier(.2,.75,.25,1) 120ms both;
-}
-.add-room-form > .add-room-date-row {
-  animation: arSectionReveal 650ms cubic-bezier(.2,.75,.25,1) 220ms both;
-}
-.add-room-form > .add-room-price-row {
-  animation: arSectionReveal 680ms cubic-bezier(.2,.75,.25,1) 320ms both;
-}
-.add-room-form > .add-room-media-grid {
-  animation: arSectionReveal 700ms cubic-bezier(.2,.75,.25,1) 420ms both;
-}
-.add-room-form > .add-room-form-footer {
-  animation: arFooterReveal 650ms cubic-bezier(.2,.75,.25,1) 520ms both;
-}
-
-/* Soft individual field lift for a polished, premium feel. */
-.add-room-form .add-room-field {
-  animation: arFieldReveal 560ms cubic-bezier(.2,.75,.25,1) both;
-}
-.add-room-form > .add-room-grid-two:first-of-type .add-room-field:nth-child(1) { animation-delay: 150ms; }
-.add-room-form > .add-room-grid-two:first-of-type .add-room-field:nth-child(2) { animation-delay: 220ms; }
-.add-room-form > .add-room-grid-two:first-of-type .add-room-field:nth-child(3) { animation-delay: 290ms; }
-.add-room-date-row .add-room-field:nth-child(1) { animation-delay: 300ms; }
-.add-room-date-row .add-room-field:nth-child(2) { animation-delay: 370ms; }
-.add-room-price-row .add-room-field:nth-child(1) { animation-delay: 410ms; }
-.add-room-price-row .add-room-field:nth-child(2) { animation-delay: 470ms; }
-.add-room-price-row .add-room-field:nth-child(3) { animation-delay: 530ms; }
-.add-room-media-grid .add-room-field:nth-child(1) { animation-delay: 570ms; }
-.add-room-media-grid .add-room-field:nth-child(2) { animation-delay: 640ms; }
-
-@keyframes arSectionReveal {
-  from { opacity:  0; transform: translate3d(0, 17px, 0); filter: blur(3px); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
-}
-@keyframes arFieldReveal {
-  from { opacity: 0; transform: translate3d(0, 11px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}
-@keyframes arFooterReveal {
-  from { opacity: 0; transform: translate3d(0, 13px, 0); }
-  to { opacity: 1; transform: translate3d(0, 0, 0); }
-}
-
-@media (max-width: 760px) {
-  .add-room-form { padding-top: 16px; }
-  .add-room-textarea-wrap { min-height: 108px; }
-  .add-room-textarea-wrap textarea { min-height: 106px; }
-  .add-room-grid-two:first-of-type .add-room-field:nth-child(3) {
-    transform: translateY(-12px);
-  }
-  .add-room-date-row { margin-top: 3px; }
-  .add-room-price-row,
-  .add-room-media-grid { margin-top: 9px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .add-room-form > .add-room-grid-two:first-of-type,
-  .add-room-form > .add-room-date-row,
-  .add-room-form > .add-room-price-row,
-  .add-room-form > .add-room-media-grid,
-  .add-room-form > .add-room-form-footer,
-  .add-room-form .add-room-field {
-    animation: none !important;
-    filter: none !important;
-  }
 }
