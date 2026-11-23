@@ -148,7 +148,7 @@ body.booking-open [class*="FloatingContact"] {
   from {
     opacity: 0;
     transform: translateY(24px);
-    filter: blur(8px);
+    filter: blur(0px);
   }
   to {
     opacity: 1;
@@ -171,8 +171,8 @@ body.booking-open [class*="FloatingContact"] {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(217, 164, 65, 0.75);
   border-radius: 999px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   animation: textReveal 0.9s ease both;
 }
 
@@ -213,7 +213,7 @@ body.booking-open [class*="FloatingContact"] {
   from {
     opacity: 0;
     transform: translateY(26px);
-    filter: blur(5px);
+    filter: blur(0px);
   }
   to {
     opacity: 1;
@@ -963,8 +963,8 @@ body.booking-open [class*="FloatingContact"] {
   justify-content: center;
   padding: 18px;
   background: rgba(7, 31, 47, 0.62);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   animation: hpFade 0.3s ease;
 }
 

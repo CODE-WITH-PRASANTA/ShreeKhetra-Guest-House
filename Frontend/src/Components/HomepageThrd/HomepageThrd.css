@@ -18,7 +18,7 @@
   position: relative;
 
   width: 100%;
-  padding: 100px 0 80px;
+  padding: 100px 0 90px;
 
   background:
     radial-gradient(circle at 92% 10%, rgba(232, 137, 42, 0.13), transparent 40%),
@@ -62,18 +62,15 @@
 
   opacity: 0;
   transform: translateY(55px);
-  filter: blur(8px);
 
   transition:
     opacity 1s ease,
-    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1s ease;
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rooms-visible .rooms-heading {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
 /* =========================================
@@ -174,45 +171,38 @@
 }
 
 /* =========================================
-   SLIDER
+   GRID  (4 cards top row + 4 cards bottom row)
 ========================================= */
 
-.rooms-slider {
+.rooms-grid {
   width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 20px 0 35px;
-}
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px 30px 10px;
 
-.rooms-slider-track {
-  display: flex;
-  width: 300%;
-  will-change: transform;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px 24px;
 }
 
 /* =========================================
-   INDIVIDUAL CARD WIDTH
+   CARD ENTRANCE (no blur)
 ========================================= */
 
 .room-card-entrance {
-  flex: 0 0 8.333333%;
   min-width: 0;
-  padding: 0 14px;
 
   opacity: 0;
   transform: translateY(45px) scale(0.96);
-  filter: blur(5px);
 
   transition:
     opacity 0.8s ease,
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.8s ease;
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .rooms-visible .room-card-entrance {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0);
 }
 
 /* =========================================
@@ -266,14 +256,11 @@
   height: 100%;
   object-fit: cover;
 
-  transition:
-    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.7s ease;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .room-card:hover .room-image {
   transform: scale(1.12);
-  filter: brightness(0.85);
 }
 
 /* =========================================
@@ -612,49 +599,17 @@
 }
 
 /* =========================================
-   PAGINATION
-========================================= */
-
-.rooms-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-.rooms-dot {
-  width: 11px;
-  height: 11px;
-
-  border: none;
-  border-radius: 20px;
-
-  background: rgba(11, 122, 154, 0.25);
-  cursor: pointer;
-  padding: 0;
-
-  transition:
-    width 0.4s ease,
-    background 0.4s ease;
-}
-
-.rooms-dot:hover {
-  background: var(--gold);
-}
-
-.rooms-dot.active {
-  width: 38px;
-  background: var(--grad-orange);
-}
-
-/* =========================================
-   LAPTOP
+   LAPTOP  (still 4 + 4, slightly smaller cards)
 ========================================= */
 
 @media (max-width: 1200px) {
+  .rooms-grid {
+    gap: 26px 18px;
+    padding: 20px 20px 10px;
+  }
+
   .room-image-wrapper {
-    height: 185px;
+    height: 175px;
   }
 
   .room-details {
@@ -682,7 +637,7 @@
 }
 
 /* =========================================
-   TABLET
+   TABLET  (2 columns x 4 rows)
 ========================================= */
 
 @media (max-width: 900px) {
@@ -698,16 +653,14 @@
     font-size: 45px;
   }
 
-  .rooms-slider-track {
-    width: 600%;
-  }
-
-  .room-card-entrance {
-    padding: 0 12px;
+  .rooms-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 22px;
+    padding: 20px 24px 10px;
   }
 
   .room-image-wrapper {
-    height: 215px;
+    height: 200px;
   }
 
   .room-details {
@@ -725,10 +678,10 @@
 }
 
 /* =========================================
-   MOBILE
+   MOBILE  (1 column)
 ========================================= */
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .homepage-rooms {
     padding: 60px 0 55px;
   }
@@ -756,20 +709,14 @@
     line-height: 1.7;
   }
 
-  .rooms-slider-track {
-    width: 1200%;
-  }
-
-  .room-card-entrance {
-    padding: 0 28px;
+  .rooms-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 10px 20px 10px;
   }
 
   .room-image-wrapper {
-    height: 200px;
-  }
-
-  .room-details {
-    padding: 18px 18px 20px;
+    height: 210px;
   }
 
   .room-name {
@@ -779,10 +726,6 @@
   .room-facility {
     font-size: 13px;
   }
-
-  .rooms-pagination {
-    margin-top: 5px;
-  }
 }
 
 /* =========================================
@@ -790,7 +733,6 @@
 ========================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .rooms-slider-track,
   .room-card,
   .room-image,
   .room-card-entrance,
@@ -802,6 +744,5 @@
   .room-card-entrance {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }

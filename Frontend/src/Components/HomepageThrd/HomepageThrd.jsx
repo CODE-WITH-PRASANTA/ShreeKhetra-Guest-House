@@ -125,16 +125,8 @@ const RoomCard = ({ room }) => {
 // ==========================================
 
 const HomepageThrd = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [visible, setVisible] = useState(false);
-  const [paused, setPaused] = useState(false);
-
   const sectionRef = useRef(null);
-  const resetRef = useRef(false);
-
-  // Duplicate first four cards for seamless looping
-  const sliderRooms = [...rooms, ...rooms.slice(0, 4)];
 
   // Scroll reveal animation
   useEffect(() => {
@@ -145,7 +137,7 @@ const HomepageThrd = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     const current = sectionRef.current;
@@ -153,48 +145,6 @@ const HomepageThrd = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  // Automatic one-card movement
-  useEffect(() => {
-    if (!visible || paused) return;
-
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => {
-        if (prev >= rooms.length) return prev;
-        return prev + 1;
-      });
-    }, 3200);
-
-    return () => clearInterval(interval);
-  }, [visible, paused]);
-
-  // Seamless infinite reset
-  const handleTransitionEnd = (event) => {
-    if (
-      event.target !== event.currentTarget ||
-      event.propertyName !== "transform"
-    ) {
-      return;
-    }
-
-    if (activeIndex === rooms.length) {
-      resetRef.current = true;
-      setTransitionEnabled(false);
-      setActiveIndex(0);
-    }
-  };
-
-  // Re-enable transition after invisible reset
-  useEffect(() => {
-    if (resetRef.current && activeIndex === 0) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setTransitionEnabled(true);
-          resetRef.current = false;
-        });
-      });
-    }
-  }, [activeIndex]);
 
   return (
     <section
@@ -219,53 +169,17 @@ const HomepageThrd = () => {
         </p>
       </div>
 
-      {/* One Card Slider */}
-      <div
-        className="rooms-slider"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocusCapture={() => setPaused(true)}
-        onBlurCapture={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) {
-            setPaused(false);
-          }
-        }}
-      >
-        <div
-          className="rooms-slider-track"
-          onTransitionEnd={handleTransitionEnd}
-          style={{
-            transform: `translateX(-${activeIndex * (100 / 12)}%)`,
-            transition: transitionEnabled
-              ? "transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)"
-              : "none",
-          }}
-        >
-          {sliderRooms.map((room, index) => (
-            <div
-              className="room-card-entrance"
-              key={`${room.id}-${index}`}
-              style={{ transitionDelay: `${(index % 4) * 0.1}s` }}
-            >
-              <RoomCard room={room} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Pagination */}
-      <div className="rooms-pagination">
-        <button
-          className={`rooms-dot ${activeIndex < 4 ? "active" : ""}`}
-          onClick={() => setActiveIndex(0)}
-          aria-label="Show first room group"
-        />
-
-        <button
-          className={`rooms-dot ${activeIndex >= 4 ? "active" : ""}`}
-          onClick={() => setActiveIndex(4)}
-          aria-label="Show second room group"
-        />
+      {/* Grid: 4 cards on top row, 4 cards on bottom row */}
+      <div className="rooms-grid">
+        {rooms.map((room, index) => (
+          <div
+            className="room-card-entrance"
+            key={room.id}
+            style={{ transitionDelay: `${(index % 4) * 0.1 + Math.floor(index / 4) * 0.15}s` }}
+          >
+            <RoomCard room={room} />
+          </div>
+        ))}
       </div>
     </section>
   );

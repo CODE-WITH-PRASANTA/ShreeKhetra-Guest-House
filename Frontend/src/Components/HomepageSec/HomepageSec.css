@@ -106,7 +106,7 @@
 
   transform: translate(-180px, 40px) scale(0.82);
 
-  filter: blur(12px);
+  filter: blur(0px);
 
   transition:
     opacity 1.2s ease,
@@ -236,7 +236,7 @@
 
   transform: translateX(160px) rotate(12deg) scale(0.65);
 
-  filter: blur(8px);
+  filter: blur(0px);
 
   transition:
     opacity 1s ease 0.7s,
@@ -331,7 +331,7 @@
 
   transform: translate(160px, 160px) scale(0.7);
 
-  filter: blur(12px);
+  filter: blur(0px);
 
   transition:
     opacity 1.2s ease 0.45s,
@@ -385,7 +385,7 @@
 
   background: rgba(255, 252, 246, 0.94);
 
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(0px);
 
   border: 1px solid rgba(232, 137, 42, 0.25);
   border-left: 5px solid var(--orange);
@@ -396,7 +396,7 @@
 
   transform: translate(-100px, 100px) scale(0.7);
 
-  filter: blur(8px);
+  filter: blur(0px);
 
   transition:
     opacity 1s ease 1s,
@@ -557,7 +557,7 @@
 
     transform: translateY(55px);
 
-    filter: blur(8px);
+    filter: blur(0px);
   }
 
   to {
